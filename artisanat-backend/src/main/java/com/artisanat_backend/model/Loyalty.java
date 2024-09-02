@@ -1,10 +1,8 @@
-package com.artisanat_backend.entity;
+package com.artisanat_backend.model;
 
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.Date;
 
 
 @Getter
@@ -12,17 +10,14 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Review {
+public class Loyalty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int rating;
-    private String comment;
-    private Date reviewDate;
+    private int points;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @OneToOne(mappedBy = "loyalty")
     private Customer customer;
 
 }

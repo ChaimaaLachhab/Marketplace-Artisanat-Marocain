@@ -1,4 +1,4 @@
-package com.artisanat_backend.entity;
+package com.artisanat_backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

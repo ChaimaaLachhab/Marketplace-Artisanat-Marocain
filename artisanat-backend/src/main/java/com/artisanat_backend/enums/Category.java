@@ -1,5 +1,8 @@
 package com.artisanat_backend.enums;
 
+import lombok.*;
+
+@Getter
 public enum Category {
     WALL_ART(Collection.HOME_DECOR), RUGS(Collection.HOME_DECOR), VASES(Collection.HOME_DECOR),
     CANDLES(Collection.HOME_DECOR), LANTERNS(Collection.HOME_DECOR),
@@ -20,9 +23,5 @@ public enum Category {
 
     Category(Collection collection) {
         this.collection = collection;
-    }
-
-    public Collection getCollection() {
-        return collection;
     }
 }

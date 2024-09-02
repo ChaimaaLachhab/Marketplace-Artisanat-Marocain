@@ -1,4 +1,4 @@
-package com.artisanat_backend.entity;
+package com.artisanat_backend.model;
 
 import com.artisanat_backend.enums.Status;
 import jakarta.persistence.GenerationType;
@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,4 +1,4 @@
-package com.artisanat_backend.entity;
+package com.artisanat_backend.model;
 
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;

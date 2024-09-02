@@ -1,4 +1,4 @@
-package com.artisanat_backend.entity;
+package com.artisanat_backend.model;
 
 import com.artisanat_backend.enums.Role;
 import jakarta.persistence.*;
@@ -14,6 +14,10 @@ import java.util.List;
 @Entity
 public class Customer extends User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     public Customer() {
         this.setRole(Role.CUSTOMER);
     }
@@ -25,12 +29,9 @@ public class Customer extends User {
     private List<Order> orders;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "loyalty_id", referencedColumnName = "id")
     private Loyalty loyalty;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private Cart cart;
-
 
 }

@@ -1,6 +1,6 @@
 package com.artisanat_backend.service;
 
-import com.artisanat_backend.entity.User;
+import com.artisanat_backend.model.User;
 import com.artisanat_backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

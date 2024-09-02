@@ -4,10 +4,9 @@ import com.artisanat_backend.dto.AdminDTO;
 import com.artisanat_backend.dto.ArtisanDTO;
 import com.artisanat_backend.dto.CustomerDTO;
 import com.artisanat_backend.dto.LoginUserDto;
-import com.artisanat_backend.entity.LoginResponse;
-import com.artisanat_backend.entity.User;
+import com.artisanat_backend.model.LoginResponse;
+import com.artisanat_backend.model.User;
 import com.artisanat_backend.enums.Role;
-import com.artisanat_backend.exception.UserAlreadyExistsException;
 import com.artisanat_backend.exception.UserNotFoundException;
 import com.artisanat_backend.service.AuthenticationService;
 import com.artisanat_backend.service.JwtService;
@@ -37,14 +36,14 @@ public class AuthenticationController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/admin/add-artisan")
+    @PostMapping("/add-artisan")
     public ResponseEntity<User> addArtisan(@RequestBody ArtisanDTO artisanDTO) {
         User newTechnician = authenticationService.addArtisan(artisanDTO);
         return ResponseEntity.ok(newTechnician);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/admin/add-admin")
+    @PostMapping("/add-admin")
     public ResponseEntity<User> addAdmin(@RequestBody AdminDTO adminDTO) {
         User newAdmin = authenticationService.addAdmin(adminDTO);
         return ResponseEntity.ok(newAdmin);

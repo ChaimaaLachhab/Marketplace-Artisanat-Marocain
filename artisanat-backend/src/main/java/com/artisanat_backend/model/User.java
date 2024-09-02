@@ -1,4 +1,4 @@
-package com.artisanat_backend.entity;
+package com.artisanat_backend.model;
 
 import com.artisanat_backend.enums.Role;
 import jakarta.persistence.GenerationType;
@@ -28,6 +28,9 @@ public abstract class User implements UserDetails {
     private String email;
     private String phone;
 
+    @OneToOne
+    private Media userPhoto;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -45,11 +48,4 @@ public abstract class User implements UserDetails {
     public String getUsername() {
         return username;
     }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-
 }

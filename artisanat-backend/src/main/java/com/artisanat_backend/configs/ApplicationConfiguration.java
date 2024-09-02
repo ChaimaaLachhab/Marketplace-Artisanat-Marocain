@@ -1,6 +1,7 @@
 package com.artisanat_backend.configs;
 
 import com.artisanat_backend.repository.UserRepository;
+import com.artisanat_backend.util.UserDetailsServiceImp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,8 +20,8 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    UserDetailsService userDetailsService() {
-        return userRepository::findByUsername;
+    public UserDetailsService userDetailsService() {
+        return new UserDetailsServiceImp(userRepository);
     }
 
     @Bean

@@ -1,6 +1,6 @@
 package com.artisanat_backend.service;
 
-import com.artisanat_backend.entity.Customer;
+import com.artisanat_backend.model.Customer;
 import com.artisanat_backend.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,10 +19,6 @@ public class CustomerService {
 
     public Customer getCustomerById(Long id) {
         return customerRepository.findById(id).orElse(null);
-    }
-
-    public Customer createCustomer(Customer customer) {
-        return customerRepository.save(customer);
     }
 
     public void deleteCustomer(Long id) {
