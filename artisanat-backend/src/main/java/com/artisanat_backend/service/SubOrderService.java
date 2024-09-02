@@ -26,7 +26,7 @@ public class SubOrderService {
     public void createSubOrderForSingleProduct(Order mainOrder) {
         SubOrder subOrder = new SubOrder();
         subOrder.setArtisan(mainOrder.getProducts().getFirst().getArtisan());
-        subOrder.setProducts(mainOrder.getProducts()); // Une liste avec un seul produit
+        subOrder.setProducts(mainOrder.getProducts());
         subOrder.setSubTotal(mainOrder.getProducts().getFirst().getPrice());
         subOrder.setOrder(mainOrder);
 

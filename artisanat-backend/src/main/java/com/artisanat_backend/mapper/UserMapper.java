@@ -12,7 +12,6 @@ import org.mapstruct.Mappings;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
@@ -27,6 +26,7 @@ public interface UserMapper {
     ArtisanDTO toArtisanDTO(Artisan artisan);
 
     Artisan toArtisanEntity(ArtisanDTO dto);
+    @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 
     // Customer Mappings
     CustomerDTO toCustomerDTO(Customer customer);

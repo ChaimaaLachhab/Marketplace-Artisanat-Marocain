@@ -5,71 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b2be703-2552-4526-9ac4-7c3b9f662edc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/configs/CloudinaryConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/dto/CloudinaryResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/enums/Type.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/enums/VerificationStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/model/Media.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/model/SubOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/SubOrderRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/CloudinaryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/EmailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/MediaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/NotificationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/SubOrderService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/util/FileUploadUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/util/UserDetailsServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/configs/ApplicationConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/configs/ApplicationConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/configs/DataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/configs/DataInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/configs/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/configs/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/ArtisanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/ArtisanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/LoyaltyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/LoyaltyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/ReviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/entity/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/model/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/entity/Artisan.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/model/Artisan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/entity/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/model/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/model/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/entity/ImageModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/entity/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/model/LoginResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/entity/Loyalty.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/model/Loyalty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/model/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/entity/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/model/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/enums/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/enums/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/AdminRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/AdminRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/ArtisanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/ArtisanRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/CartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/CartRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/CustomerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/LoyaltyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/LoyaltyRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/ProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/ReviewRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/ArtisanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/ArtisanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/CartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/ImageModelService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/LoyaltyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/LoyaltyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/ReviewService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/.vscode/extensions.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/.vscode/launch.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/.vscode/tasks.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/angular.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/app.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/app.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/app.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/app.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/app.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/app.routes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/src/assets/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/src/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/src/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/src/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/tsconfig.app.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artisanat-frontend/tsconfig.spec.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,14 +48,19 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2lTxi9bHbmmba40r8XMMu8GzbbH" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Maven.artisanat-backend [clean].executor": "Run",
     "Maven.artisanat-backend [compile].executor": "Run",
+    "Maven.artisanat-backend [install].executor": "Run",
     "Maven.artisanat-backend [package].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.ArtisanatBackendApplication.executor": "Run",
@@ -151,10 +114,25 @@
       <updated>1725217997503</updated>
       <workItem from="1725217997824" duration="895000" />
       <workItem from="1725218912049" duration="23833000" />
+      <workItem from="1725268037622" duration="570000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/ProductService.java</url>
+          <line>102</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
