@@ -124,7 +124,7 @@
 
 @media (max-width: 991px) {
   .login-page {
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding: 20px;
   }
 

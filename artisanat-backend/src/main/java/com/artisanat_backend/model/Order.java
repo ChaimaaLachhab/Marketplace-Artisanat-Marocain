@@ -18,7 +18,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private int quantity;
     private String orderDate;
     private String location;

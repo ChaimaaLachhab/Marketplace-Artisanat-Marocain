@@ -23,8 +23,4 @@ public class Review {
     private LocalDateTime reviewDate = LocalDateTime.now();
     @ManyToOne
     private Customer customer;
-
-    @ManyToOne
-    private Review review;
-
 }

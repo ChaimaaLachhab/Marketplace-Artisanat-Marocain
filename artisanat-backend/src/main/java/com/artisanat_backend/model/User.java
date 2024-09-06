@@ -1,6 +1,7 @@
 package com.artisanat_backend.model;
 
 import com.artisanat_backend.enums.Role;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,6 +25,7 @@ public abstract class User implements UserDetails {
 
     private String fullName;
     private String username;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private String email;
     private String phone;
