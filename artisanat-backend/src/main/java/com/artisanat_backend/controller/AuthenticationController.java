@@ -1,9 +1,6 @@
 package com.artisanat_backend.controller;
 
-import com.artisanat_backend.dto.AdminDTO;
-import com.artisanat_backend.dto.ArtisanDTO;
-import com.artisanat_backend.dto.CustomerDTO;
-import com.artisanat_backend.dto.LoginUserDto;
+import com.artisanat_backend.dto.*;
 import com.artisanat_backend.model.User;
 import com.artisanat_backend.enums.Role;
 import com.artisanat_backend.exception.UserNotFoundException;

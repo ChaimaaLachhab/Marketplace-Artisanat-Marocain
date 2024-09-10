@@ -2,6 +2,8 @@ package com.artisanat_backend.service;
 
 import com.artisanat_backend.enums.Collection;
 import com.artisanat_backend.enums.Type;
+import com.artisanat_backend.enums.VerificationStatus;
+import com.artisanat_backend.model.Artisan;
 import com.artisanat_backend.model.Media;
 import com.artisanat_backend.model.Product;
 import com.artisanat_backend.enums.Category;
@@ -42,7 +44,12 @@ public class ProductService {
     }
 
     @Transactional
-    public Product createProductWithMedia(Product product, List<MultipartFile> attachments) {
+    public Product createProductWithMedia(Product product, List<MultipartFile> attachments, Artisan artisan) {
+
+        if(artisan.getVerificationStatus().equals(VerificationStatus.PENDING)){
+            throw new IllegalArgumentException("Artisan not accepted");
+        }
+
         if (attachments.isEmpty()) {
             throw new IllegalArgumentException("No media files provided.");
         }
