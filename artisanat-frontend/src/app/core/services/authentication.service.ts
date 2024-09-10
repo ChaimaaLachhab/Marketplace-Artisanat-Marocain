@@ -2,12 +2,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {LoginUserDto} from "../dtos/login-user-dto.dto";
-import {LoginResponse} from "../models/login-response.model";
-import {RegisterUserDto} from "../dtos/register-user-dto.dto";
-import {environment} from "../../../environments/environment";
+import {LoginUserDto} from "../dtos/login-user.dto";
+import {LoginResponse} from "../dtos/login-response.dto";
+import {RegisterUserDto} from "../dtos/register-user.dto";
 import {JwtService} from "./jwt.service";
 import {Router} from "@angular/router";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
