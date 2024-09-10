@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
-import { LoginUserDto } from '../../../core/dtos/login-user-dto.dto';
+import { LoginUserDto } from '../../../core/dtos/login-user.dto';
 import {jwtDecode} from "jwt-decode";
 import {JwtService} from "../../../core/services/jwt.service";
 import {MatCard, MatCardContent} from "@angular/material/card";
@@ -49,7 +49,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const formValues = this.loginForm.value;
       const loginUser: LoginUserDto = {
-        userName: formValues.userName,
+        userNameOrEmail: formValues.userName,
         password: formValues.password
       };
 
