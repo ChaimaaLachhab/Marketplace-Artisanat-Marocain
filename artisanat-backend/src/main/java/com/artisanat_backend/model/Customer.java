@@ -14,10 +14,6 @@ import java.util.List;
 @Entity
 public class Customer extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     public Customer() {
         this.setRole(Role.CUSTOMER);
     }

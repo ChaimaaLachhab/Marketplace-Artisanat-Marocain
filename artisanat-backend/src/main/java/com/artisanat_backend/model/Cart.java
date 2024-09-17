@@ -17,8 +17,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cart_id")
+    @OneToMany(mappedBy = "carts", cascade = CascadeType.ALL)
     private List<Product> products;
 
     @OneToOne(mappedBy = "cart")

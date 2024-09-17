@@ -16,10 +16,6 @@ import java.util.List;
 @Entity
 public class Artisan extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     public Artisan() {
         this.setRole(Role.ARTISAN);
     }

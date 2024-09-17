@@ -27,9 +27,9 @@ public class SubOrder {
 
     @ManyToMany
     @JoinTable(
-        name = "sub_order_products",
-        joinColumns = @JoinColumn(name = "sub_order_id"),
-        inverseJoinColumns = @JoinColumn(name = "product_id")
+            name = "sub_order_products",
+            joinColumns = @JoinColumn(name = "sub_order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private List<Product> products;
 }
