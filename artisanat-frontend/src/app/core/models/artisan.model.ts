@@ -1,15 +1,14 @@
-export abstract class User {
-  id: number;
-  username: string;
-  password?: string;
-  email: string;
-  role: string;
+import {User} from "./user.model";
+import {Product} from "./product.model";
+import {SubOrder} from "./sub-order.model";
+import {Specialty} from "../enums/specialty.enum";
+import {VerificationStatus} from "../enums/verification-status.enum";
 
-  constructor(id: number, username: string, email: string, role: string, password?: string) {
-    this.id = id;
-    this.username = username;
-    this.email = email;
-    this.role = role;
-    this.password = password;
-  }
+export interface Artisan extends User {
+  specialty: Specialty;
+  location: string;
+  experience: number;
+  verificationStatus: VerificationStatus;
+  products: Product[];
+  subOrders: SubOrder[];
 }

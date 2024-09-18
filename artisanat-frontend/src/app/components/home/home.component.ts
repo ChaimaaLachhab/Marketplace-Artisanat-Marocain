@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
+import {Button} from "primeng/button";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"],
+  imports: [
+    Button
+  ],
   standalone: true
 })
 export class HomeComponent {
-  // Component logic here
+  constructor(private router: Router) {}
+
+  navigateToLogin() {
+    this.router.navigate(['/auth/login']);
+  }
 }

@@ -1,5 +1,6 @@
 package com.artisanat_backend.controller;
 
+import com.artisanat_backend.model.Artisan;
 import com.artisanat_backend.model.Product;
 import com.artisanat_backend.service.ProductService;
 import com.artisanat_backend.enums.Category;
@@ -7,6 +8,7 @@ import com.artisanat_backend.enums.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -68,8 +70,9 @@ public class ProductController {
      */
     @PostMapping("/create-with-media")
     public ResponseEntity<Product> createProductWithMedia(@RequestPart("product") Product product,
-                                                          @RequestPart("attachments") List<MultipartFile> attachments) {
-        Product createdProduct = productService.createProductWithMedia(product, attachments);
+                                                          @RequestPart("attachments") List<MultipartFile> attachments,
+                                                          @AuthenticationPrincipal Artisan artisan) {
+        Product createdProduct = productService.createProductWithMedia(product, attachments, artisan);
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
 

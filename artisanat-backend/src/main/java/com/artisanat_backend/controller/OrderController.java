@@ -21,9 +21,6 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @Autowired
-    private CustomerService customerService;
-
     /**
      * Récupère toutes les commandes.
      * @return Liste des commandes.

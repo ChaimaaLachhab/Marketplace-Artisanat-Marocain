@@ -1,0 +1,29 @@
+import { Collection } from './collection.enum';
+
+export enum Category {
+  WALL_ART = 'WALL_ART',
+  RUGS = 'RUGS',
+  VASES = 'VASES',
+  CANDLES = 'CANDLES',
+  LANTERNS = 'LANTERNS',
+  JEWELRY = 'JEWELRY',
+  BAGS = 'BAGS',
+  SCARVES = 'SCARVES',
+  BELTS = 'BELTS',
+  HATS = 'HATS',
+  DRESSES = 'DRESSES',
+  SHIRTS = 'SHIRTS',
+  PANTS = 'PANTS',
+  JACKETS = 'JACKETS',
+  KAFTANS = 'KAFTANS',
+  PLATES = 'PLATES',
+  BOWLS = 'BOWLS',
+  TEAPOTS = 'TEAPOTS',
+  CUTLERY = 'CUTLERY',
+  GLASSWARE = 'GLASSWARE',
+  TABLES = 'TABLES',
+  CHAIRS = 'CHAIRS',
+  CABINETS = 'CABINETS',
+  SOFAS = 'SOFAS',
+  BEDS = 'BEDS'
+}

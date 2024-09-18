@@ -1,15 +1,3 @@
-export abstract class User {
-  id: number;
-  username: string;
-  password?: string;
-  email: string;
-  role: string;
+import {User} from "./user.model";
 
-  constructor(id: number, username: string, email: string, role: string, password?: string) {
-    this.id = id;
-    this.username = username;
-    this.email = email;
-    this.role = role;
-    this.password = password;
-  }
-}
+export interface Admin extends User {}

@@ -1,15 +1,13 @@
-export abstract class User {
-  id: number;
-  username: string;
-  password?: string;
-  email: string;
-  role: string;
+import {User} from "./user.model";
+import {Review} from "./review.model";
+import {Order} from "./order.model";
+import {Loyalty} from "./loyalty.model";
+import {Cart} from "./cart.model";
 
-  constructor(id: number, username: string, email: string, role: string, password?: string) {
-    this.id = id;
-    this.username = username;
-    this.email = email;
-    this.role = role;
-    this.password = password;
-  }
+
+export interface Customer extends User {
+  reviews: Review[];
+  orders: Order[];
+  loyalty: Loyalty;
+  cart: Cart;
 }
