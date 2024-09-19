@@ -1,0 +1,17 @@
+<app-header></app-header>
+<app-hero-artisan></app-hero-artisan>
+<section class="product-catalog">
+  <h1 class="catalog-title">All Products</h1>
+  <div class="product-grid">
+    <article class="product-card" *ngFor="let product of products">
+      <img [src]="product.image" [alt]="product.name" class="product-image">
+      <div class="product-details">
+        <h2 class="product-name">{{ product.name }}</h2>
+        <p class="product-price">${{ product.price.toFixed(2) }}</p>
+        <img *ngIf="product.isNew" src="https://cdn.builder.io/api/v1/image/assets/TEMP/0c90e8c1c133dc0ccb9ab07a97a1bef7c755244772e930a70d5b4af906e2dede?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="New product" class="new-badge">
+      </div>
+    </article>
+  </div>
+  <button class="shop-now-btn">Shop now</button>
+</section>
+<app-footer></app-footer>
