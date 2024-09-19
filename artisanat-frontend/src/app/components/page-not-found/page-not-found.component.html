@@ -1,1 +1,29 @@
-<p>page-not-found works!</p>
+<main class="product-search-container">
+  <div class="content-wrapper">
+    <aside class="image-container align-self-start">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/671df9f6d504bb51c8597ce8be9124b149b9e71d09b87eb41c2bf11e2b929e8e?placeholderIfAbsent=true&apiKey=636115f9631f48bf97a296bc25ce3201" alt="Company logo" class="company-logo" />
+    </aside>
+    <section class="search-section">
+      <header class="search-header">
+        <h1 class="product-title">Our Products</h1>
+        <form (ngSubmit)="searchProduct($event)" class="search-form">
+          <label for="productSearch" class="visually-hidden">Find product you like</label>
+          <div class="search-input-wrapper">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/140ee6a9b6dcbbc7419edf9203cbb8f3318ad4bea4f4d846467b66b256fb941d?placeholderIfAbsent=true&apiKey=636115f9631f48bf97a296bc25ce3201" alt="" class="search-icon" />
+            <input
+              type="text"
+              id="productSearch"
+              placeholder="Find product you like"
+              class="search-input"
+              aria-label="Find product you like"
+            />
+          </div>
+          <button type="submit" class="visually-hidden">Search</button>
+        </form>
+      </header>
+    </section>
+    <aside class="image-container img align-self-end">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/39c00388ec0462b29c97a845a249d49194ed75a9cea530474031510d1d0dc897?placeholderIfAbsent=true&apiKey=636115f9631f48bf97a296bc25ce3201" alt="Decorative product image" class="company-logo" />
+    </aside>
+  </div>
+</main>

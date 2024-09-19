@@ -6,7 +6,7 @@ import {FormComponent} from "./form/form.component";
 import {authGuard} from "../../core/guards/auth.guard";
 import {roleGuard} from "../../core/guards/role.guard";
 import {Role} from "../../core/enums/role.enum";
-import {DashboardComponent} from "../../components/features/admin/dashboard/dashboard.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 const routes: Routes = [
   {

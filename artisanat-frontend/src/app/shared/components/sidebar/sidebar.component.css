@@ -1,0 +1,73 @@
+:host {
+  display: contents;
+}
+
+.header {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin: 0 17px 0 16px;
+  padding: 18px 16px 0;
+}
+
+.logo {
+  aspect-ratio: 0.97;
+  object-fit: contain;
+  width: 57px;
+}
+
+.brand-name {
+  color: #f5d38e;
+  font: 30px/2 Cormorant, sans-serif;
+  margin: auto 0;
+  transform: rotate(2.4492937051703357e-16rad);
+}
+
+.sidebar-menu {
+  background-color: transparent;
+  color: #fff;
+  font: 14px/2 Manrope, sans-serif;
+  margin-top: 23px;
+  width: 100%;
+}
+
+.menu-item {
+  border-radius: 4px;
+  display: flex;
+  gap: 8px;
+  overflow: hidden;
+  padding: 8px 16px;
+}
+
+.menu-item.active {
+  background-color: #effdfb;
+  color: #0d554a;
+  font-weight: 700;
+}
+
+.menu-icon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  width: 24px;
+}
+
+.footer {
+  margin-top: 518px;
+}
+
+.footer-image {
+  aspect-ratio: 0.84;
+  object-fit: contain;
+  width: 172px;
+  max-width: 100%;
+}
+
+@media (max-width: 991px) {
+  .header {
+    margin: 0 10px;
+  }
+
+  .footer {
+    margin-top: 40px;
+  }
+}
