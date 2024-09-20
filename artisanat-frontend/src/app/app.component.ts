@@ -8,11 +8,12 @@ import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.
 import {AboutUsComponent} from "./components/about-us/about-us.component";
 import {ContactUsComponent} from "./components/contact-us/contact-us.component";
 import {ArtisanInfosComponent} from "./components/artisan-infos/artisan-infos.component";
+import {ProductListingComponent} from "./components/product-listing/product-listing.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroHomeComponent, PageNotFoundComponent, AboutUsComponent, ContactUsComponent, ArtisanInfosComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroHomeComponent, PageNotFoundComponent, AboutUsComponent, ContactUsComponent, ArtisanInfosComponent, ProductListingComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

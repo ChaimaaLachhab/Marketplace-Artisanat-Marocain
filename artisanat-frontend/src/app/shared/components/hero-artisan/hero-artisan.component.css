@@ -1,6 +1,6 @@
 .gratitude-section {
   background-color: rgba(9, 57, 49, 1);
-  padding: 0 56px 24px 0;
+
 }
 
 @media (max-width: 991px) {
@@ -10,23 +10,45 @@
 }
 
 .gratitude-container {
+  margin-left: 40px;
+  padding: 60px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
+  align-items: center;
+  gap: 50px;
 }
 
 .decorative-image {
-  width: 177px;
-  max-width: 100%;
+  width: 10%;
   aspect-ratio: 0.87;
   object-fit: contain;
+  position: absolute;
+}
+
+@media (max-width: 991px) {
+  .gratitude-container{
+    padding: 0;
+    flex-direction: column;
+  }
+
+  .decorative-image {
+    width: 10%;
+  }
+}
+
+@media (max-width: 640px) {
+  .gratitude-container{
+    margin-left: 20px;
+    padding-top: 100px;
+  }
+
+  .decorative-image {
+    width: 20%;
+  }
 }
 
 .gratitude-content {
   color: #fff;
-  width: 360.5px;
+  width: 30%;
   margin: auto 0;
 }
 
@@ -36,8 +58,18 @@
 }
 
 @media (max-width: 991px) {
+  .gratitude-content {
+    width: 50%;
+  }
+
   .gratitude-title {
     font-size: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .gratitude-content {
+    width: 80%;
   }
 }
 
@@ -53,16 +85,20 @@
   margin-top: 20px;
 }
 
-.decorative-border {
-  width: 360px;
-  max-width: 100%;
+.decorative-border, .decorative-border- {
+  width: 500px;
+  max-width:100%;
   aspect-ratio: 6.94;
   object-fit: contain;
 }
 
 @media (max-width: 991px) {
   .decorative-border {
-    margin-left: 9px;
+    display: none;
+  }
+
+  .decorative-border- {
+    width: 100%;
   }
 }
 
@@ -73,13 +109,14 @@
   background-color: rgba(23, 26, 31, 0.3);
   padding-right: 40px;
   overflow: hidden;
-  width: 782px;
+  width: 100%
 }
 
 @media (max-width: 991px) {
   .artisan-card {
     max-width: 100%;
     padding-right: 20px;
+    padding-left: 20px;
     flex-direction: column;
   }
 }
@@ -108,7 +145,7 @@
 }
 
 .artisan-info {
-  width: 60%;
+  width: 70%;
   color: rgba(242, 198, 109, 1);
   font: 400 24px/48px Cormorant, -apple-system, Roboto, Helvetica, sans-serif;
   margin: auto 0;
@@ -117,18 +154,25 @@
 @media (max-width: 991px) {
   .artisan-info {
     width: 100%;
-    margin-top: 40px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .artisan-info {
+    font-size: 18px;
   }
 }
 
 .info-item {
   display: flex;
   gap: 17px;
-  align-items: center;
+  align-items: start;
 }
 
 .info-icon {
-  width: 24px;
+  width: 6%;
+  margin-top: 5px;
   aspect-ratio: 1;
   object-fit: contain;
 }

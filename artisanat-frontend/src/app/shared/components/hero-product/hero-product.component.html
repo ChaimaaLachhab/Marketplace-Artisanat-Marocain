@@ -1,1 +1,21 @@
-<p>hero-product works!</p>
+<section class="product-search">
+  <div class="product-search__content">
+    <header class="product-search__header">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e3a9d666730577021e3c7075fc65ed10e13cbc083f603f419276e58f24fa309d?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" class="product-search__image product-search__image--left">
+    </header>
+    <main class="product-search__main">
+      <h1 class="product-search__title">Our Products</h1>
+      <form (ngSubmit)="searchProduct($event)" class="product-search__form">
+        <label for="productSearch" class="visually-hidden">Find product you like</label>
+        <div class="product-search__input-wrapper">
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/321bcafeb85b7e1ebeafc0f781762bfe8b8231f6a972eaea2f10efb64ed8787d?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" class="product-search__icon">
+          <input type="text" id="productSearch" placeholder="Find product you like" class="product-search__input">
+        </div>
+        <button type="submit" class="visually-hidden">Search</button>
+      </form>
+    </main>
+    <footer class="product-search__footer">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/aaad106249f7b34a95d44297ce9c7fc7e421b58a820903136bc32e760358a2ca?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" class="product-search__image product-search__image--right">
+    </footer>
+  </div>
+</section>
