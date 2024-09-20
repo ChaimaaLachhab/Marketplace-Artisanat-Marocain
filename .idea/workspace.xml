@@ -9,13 +9,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/collection-listing/collection-listing.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/components/collection-listing/collection-listing.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/collection-listing/collection-listing.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/components/collection-listing/collection-listing.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-artisan/hero-artisan.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-artisan/hero-artisan.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-artisan/hero-artisan.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-artisan/hero-artisan.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-product/hero-product.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-product/hero-product.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-product/hero-product.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-product/hero-product.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-product/hero-product.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-product/hero-product.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-details/product-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-details/product-details.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-details/product-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-details/product-details.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-details/product-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-details/product-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/features/product/detail/detail.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/features/product/detail/detail.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/features/product/detail/detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/features/product/detail/detail.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/features/product/detail/detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/features/product/detail/detail.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/features/review/list/list.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/features/review/list/list.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/features/review/list/list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/features/review/list/list.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/features/review/list/list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/features/review/list/list.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,10 +27,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2mIrMRTTvIw4gyvusxrlHuKfnqY" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -45,7 +47,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "npm.start.executor": "Run",
-    "ts.external.directory.path": "C:\\Users\\PCPACK\\Videos\\Marketplace-Artisanat-Marocain\\artisanat-frontend\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\user\\Videos\\Marketplace-Artisanat-Marocain\\artisanat-frontend\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -78,6 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1726774890346</updated>
       <workItem from="1726774894532" duration="11445000" />
+      <workItem from="1726819319018" duration="9312000" />
     </task>
     <servers />
   </component>

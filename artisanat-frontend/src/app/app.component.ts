@@ -9,11 +9,13 @@ import {AboutUsComponent} from "./components/about-us/about-us.component";
 import {ContactUsComponent} from "./components/contact-us/contact-us.component";
 import {ArtisanInfosComponent} from "./components/artisan-infos/artisan-infos.component";
 import {ProductListingComponent} from "./components/product-listing/product-listing.component";
+import {ProductDetailsComponent} from "./components/product-details/product-details.component";
+import {CollectionListingComponent} from "./components/collection-listing/collection-listing.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroHomeComponent, PageNotFoundComponent, AboutUsComponent, ContactUsComponent, ArtisanInfosComponent, ProductListingComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroHomeComponent, PageNotFoundComponent, AboutUsComponent, ContactUsComponent, ArtisanInfosComponent, ProductListingComponent, ProductDetailsComponent, HomeComponent, CollectionListingComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
