@@ -1,1 +1,134 @@
-<p>chackout-success works!</p>
+<main class="checkout-success">
+  <header class="top-bar">
+    <div class="logo-container">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0b8c81b0077b24965d7d2421b59218264470673a3e627e76b9e88ffff0b08a18?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="Darling Logo" class="logo-image" />
+      <h1 class="brand-name">Darling.</h1>
+    </div>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="#" class="nav-link">Home</a></li>
+        <li><a href="#" class="nav-link">Shop</a></li>
+        <li><a href="#" class="nav-link">Collections</a></li>
+        <li><a href="#" class="nav-link">About</a></li>
+        <li><a href="#" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="user-actions">
+      <button class="icon-button" aria-label="Search">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/57711329c8c71b351c6c2b144e9c3df780d07a4c113d7e34b02ddc468974c68d?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" />
+      </button>
+      <button class="icon-button" aria-label="Cart">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/967c19707520eb9b5adf94b59986687a6f766885a8c2c5d76d8bf3cc4d1927dd?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" />
+      </button>
+    </div>
+  </header>
+
+  <section class="success-content">
+    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbc3f30ac7eade0663db83f385f424c3ac392f22341e684652ae2c6a43e5ee76?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="Success Checkmark" class="success-icon" />
+    <h2 class="success-title">Thank you for your purchase!</h2>
+    <p class="success-message">You will receive a confirmation letter through your email</p>
+
+    <article class="order-details">
+      <div class="order-info">
+        <div class="info-column">
+          <div class="info-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6a4a481b0c4f375f1ff1838a730e92a206c7de76fda56d52a42116781018f9a2?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" class="info-icon" />
+            <span class="info-label">Date</span>
+          </div>
+          <div class="info-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5677dd99769904c1497999c33415b4768566838491062a5e37bb96b58361f891?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" class="info-icon" />
+            <span class="info-label">Customer</span>
+          </div>
+          <div class="info-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2822c70f34300fe23989502070cc6e5a2f8fdb9582e55184f7a655aea3fb7784?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" class="info-icon" />
+            <span class="info-label">Location</span>
+          </div>
+        </div>
+        <div class="info-column">
+          <p class="info-value">{{orderDate}}</p>
+          <p class="info-value">{{customerName}}</p>
+          <p class="info-value">{{customerAddress}}</p>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="order-summary">
+        <div class="summary-row">
+          <div class="summary-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/34837b9c0c389b16140c65174f13e559876d46ec5ed124f6f856b3b571172b9a?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" class="summary-icon" />
+            <span class="summary-label">Order Number</span>
+          </div>
+          <div class="summary-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b4ac27c2d5f997a38dae1f3089e4e838ab5a64859e5c1e9aa4a9e3088b291051?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" class="summary-icon" />
+            <span class="summary-label">Total</span>
+          </div>
+        </div>
+        <div class="summary-row">
+          <span class="summary-value">{{orderNumber}}</span>
+          <span class="summary-value">{{totalAmount}}</span>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <h3 class="order-line-title">Order Line</h3>
+      <ul class="order-items">
+        <li *ngFor="let item of orderItems" class="order-item">
+          <div class="item-details">
+            <img [src]="'http://b.io/ext_' + (11) + '-'" [alt]="item.name" class="item-image" />
+            <div class="item-info">
+              <h4 class="item-name">{{item.name}}</h4>
+              <p class="item-code">Code: {{item.code}}</p>
+              <span class="item-quantity">x{{item.quantity}}</span>
+            </div>
+          </div>
+          <span class="item-price">{{item.price}}</span>
+        </li>
+      </ul>
+    </article>
+
+    <button class="continue-shopping">Continue shopping</button>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0b8c81b0077b24965d7d2421b59218264470673a3e627e76b9e88ffff0b08a18?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="Darling Logo" class="footer-logo" />
+        <span class="footer-brand-name">Darling.</span>
+      </div>
+      <nav class="footer-nav">
+        <div class="footer-nav-column">
+          <a href="#" class="footer-link">Shop</a>
+          <a href="#" class="footer-link">Collections</a>
+          <a href="#" class="footer-link">About</a>
+        </div>
+        <div class="footer-nav-column">
+          <a href="#" class="footer-link">Contact</a>
+          <a href="#" class="footer-link">Privacy</a>
+          <a href="#" class="footer-link">Terms</a>
+        </div>
+      </nav>
+      <div class="newsletter-signup">
+        <h3 class="newsletter-title">Subscribe to our newsletter</h3>
+        <p class="newsletter-description">For product announcements and exclusive insights</p>
+        <form class="newsletter-form">
+          <label for="email-input" class="visually-hidden">Input your email</label>
+          <div class="input-group">
+            <input type="email" id="email-input" placeholder="Input your email" class="newsletter-input" required />
+            <button type="submit" class="newsletter-submit">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="copyright">&copy; 2022 Brand, Inc.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5040a4207719663dc073486561e03bc671b14befcb428fed5b1d4da1e846e2e6?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" /></a>
+        <a href="#" aria-label="Twitter"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d7c722a69dd1b69e70e772531072b60884525d76674858eec922ca29d5d408e1?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" /></a>
+        <a href="#" aria-label="Instagram"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/a0f87c258de8849e91b25eb6591b0f200e1dd14d0b6e3ab2b98749101c2ca2fc?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" /></a>
+        <a href="#" aria-label="LinkedIn"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f635632e6b03418d4cdf8294838426df5bb4ad1de7fb56b78fed78a54c34d037?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" /></a>
+      </div>
+    </div>
+  </footer>
+</main>
