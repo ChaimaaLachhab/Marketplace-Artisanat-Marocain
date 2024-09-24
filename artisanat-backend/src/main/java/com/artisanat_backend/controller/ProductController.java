@@ -7,7 +7,9 @@ import com.artisanat_backend.enums.Category;
 import com.artisanat_backend.enums.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,6 +47,7 @@ public class ProductController {
      * Récupère tous les produits recament ajouté.
      * @return Liste des produits.
      */
+    @PreAuthorize("hasAnyRole('ADMIN', 'ARTISAN')")
     @GetMapping("/recent")
     public ResponseEntity<List<Product>> getRecentlyAddedProducts() {
         List<Product> products = productService.getRecentlyAddedProducts();
@@ -68,7 +71,8 @@ public class ProductController {
      * @param attachments Liste des fichiers médias.
      * @return Produit créé.
      */
-    @PostMapping("/create-with-media")
+    @PreAuthorize("hasAnyRole('ADMIN', 'ARTISAN')")
+    @PostMapping(value = "/create-with-media", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Product> createProductWithMedia(@RequestPart("product") Product product,
                                                           @RequestPart("attachments") List<MultipartFile> attachments,
                                                           @AuthenticationPrincipal Artisan artisan) {
@@ -85,6 +89,7 @@ public class ProductController {
      * @param maxPrice Prix maximum (optionnel).
      * @return Liste des produits filtrés.
      */
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER', 'ARTISAN')")
     @GetMapping("/filter")
     public ResponseEntity<List<Product>> getFilteredProducts(
             @RequestParam(required = false) String name,

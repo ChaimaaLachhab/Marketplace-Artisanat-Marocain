@@ -4,6 +4,8 @@ import com.artisanat_backend.dto.AdminDTO;
 import com.artisanat_backend.dto.ArtisanDTO;
 import com.artisanat_backend.dto.CustomerDTO;
 import com.artisanat_backend.dto.LoginUserDto;
+import com.artisanat_backend.model.Admin;
+import com.artisanat_backend.model.Artisan;
 import com.artisanat_backend.model.User;
 import com.artisanat_backend.mapper.UserMapper;
 import com.artisanat_backend.repository.UserRepository;
@@ -41,7 +43,7 @@ public class AuthenticationService {
         return userRepository.save(user);
     }
 
-    public User addArtisan(ArtisanDTO input) {
+    public Artisan addArtisan(ArtisanDTO input) {
         if (userRepository.findByUsername(input.getUsername()).isPresent()) {
             throw new RuntimeException("Username already exists");
         }
@@ -49,12 +51,12 @@ public class AuthenticationService {
             throw new RuntimeException("Email already exists");
         }
 
-        User user = userMapper.toArtisanEntity(input);
-        user.setPassword(passwordEncoder.encode(input.getPassword()));
-        return userRepository.save(user);
+        Artisan artisan = userMapper.toArtisanEntity(input);
+        artisan.setPassword(passwordEncoder.encode(input.getPassword()));
+        return userRepository.save(artisan);
     }
 
-    public User addAdmin(AdminDTO input) {
+    public Admin addAdmin(AdminDTO input) {
         if (userRepository.findByUsername(input.getUsername()).isPresent()) {
             throw new RuntimeException("Username already exists");
         }
@@ -62,9 +64,9 @@ public class AuthenticationService {
             throw new RuntimeException("Email already exists");
         }
 
-        User user = userMapper.toAdminEntity(input);
-        user.setPassword(passwordEncoder.encode(input.getPassword()));
-        return userRepository.save(user);
+        Admin admin = userMapper.toAdminEntity(input);
+        admin.setPassword(passwordEncoder.encode(input.getPassword()));
+        return userRepository.save(admin);
     }
 
     public User authenticate(LoginUserDto input) {

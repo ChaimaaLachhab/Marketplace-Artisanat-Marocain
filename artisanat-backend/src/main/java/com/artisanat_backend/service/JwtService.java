@@ -33,12 +33,13 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(UserDetails userDetails, Role role) {
-        return generateToken(new HashMap<>(), userDetails, role);
+    public String generateToken(UserDetails userDetails,Long currentUserId, Role role) {
+        return generateToken(new HashMap<>(), userDetails, currentUserId, role);
     }
 
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails, Role role) {
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails, Long currentUserId, Role role) {
         extraClaims.put("role", role);
+        extraClaims.put("currentUserId", currentUserId);
         return buildToken(extraClaims, userDetails, jwtExpiration);
     }
 

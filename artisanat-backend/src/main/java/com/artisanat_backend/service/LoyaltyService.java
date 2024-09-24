@@ -29,6 +29,7 @@ public class LoyaltyService {
         if (loyalty == null) {
             loyalty = new Loyalty();
             loyalty.setCustomer(customer);
+            customer.setLoyalty(loyalty);
         }
         loyalty.setPoints(loyalty.getPoints() + points);
         loyaltyRepository.save(loyalty);

@@ -2,7 +2,6 @@ package com.artisanat_backend.service;
 
 import com.artisanat_backend.model.Artisan;
 import com.artisanat_backend.enums.VerificationStatus;
-import com.artisanat_backend.model.SubOrder;
 import com.artisanat_backend.repository.ArtisanRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

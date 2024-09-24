@@ -50,8 +50,9 @@ public class AuthenticationController {
         try {
             User authenticatedUser = authenticationService.authenticate(loginUserDto);
             Role role = authenticatedUser.getRole();
+            Long currentUserId = authenticatedUser.getId();
 
-            String jwtToken = jwtService.generateToken(authenticatedUser, role);
+            String jwtToken = jwtService.generateToken(authenticatedUser, currentUserId, role);
 
             LoginResponse loginResponse = new LoginResponse();
             loginResponse.setToken(jwtToken);

@@ -6,6 +6,7 @@ import com.artisanat_backend.enums.VerificationStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -73,6 +74,7 @@ public class ArtisanController {
      *
      * @return List of all pending artisans.
      */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/pending")
     public ResponseEntity<List<Artisan>> getPendingArtisans() {
         List<Artisan> pendingArtisans = artisanService.getPendingArtisans();
@@ -86,6 +88,7 @@ public class ArtisanController {
      * @param status The verification status.
      * @return The verified artisan.
      */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/verify/{id}")
     public ResponseEntity<Artisan> verifyArtisan(@PathVariable Long id, @RequestParam VerificationStatus status) {
         Artisan artisan = artisanService.verifyArtisan(id, status);

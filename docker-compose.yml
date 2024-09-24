@@ -1,0 +1,43 @@
+version: "3.4"
+services:
+  server:
+    build: artisanat-backend
+    restart: always
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysqldb
+    networks:
+      - artisanat-network
+
+  angular-app:
+    build: ./artisanat-frontend
+    container_name: angular-app
+    ports:
+      - '4200:4200'
+    volumes:
+      - ./artisanat-frontend:/angular-app
+    environment:
+      - STYLE=css
+    networks:
+      - artisanat-network
+
+  mysqldb:
+    image: "mysql:latest"
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: artisanat-db
+      MYSQL_ROOT_PASSWORD: 1234
+    volumes:
+      - artisanat-db:/var/lib/mysql
+    networks:
+      - artisanat-network
+
+volumes:
+  artisanat-db:
+
+networks:
+  artisanat-network:
+    driver: bridge

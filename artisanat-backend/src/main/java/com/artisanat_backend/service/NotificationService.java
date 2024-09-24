@@ -13,15 +13,12 @@ public class NotificationService {
     @Autowired
     private ArtisanRepository artisanRepository;
 
-    // Hypothèse : Notification par email
     @Autowired
     private EmailService emailService;
 
     public void notifyArtisan(Long artisanId, SubOrder subOrder) {
-        // Logique pour récupérer les informations de l'artisan
         Artisan artisan = getArtisanById(artisanId);
 
-        // Créer un message de notification
         String subject = "Nouvelle sous-commande reçue";
         String message = "Cher " + artisan.getFullName() + ",\n\n" +
                          "Vous avez reçu une nouvelle sous-commande avec un total de " + subOrder.getSubTotal() + "€.\n" +
@@ -31,11 +28,9 @@ public class NotificationService {
                          "Nombre de produits : " + subOrder.getProducts().size() + "\n\n" +
                          "Merci.";
 
-        // Envoyer la notification par email
         emailService.sendEmail(artisan.getEmail(), subject, message);
     }
 
-    // Simuler une méthode pour récupérer un artisan par ID
     private Artisan getArtisanById(Long artisanId) {
         Artisan artisan = artisanRepository.findById(artisanId).orElseThrow();
         artisan.setId(artisanId);
