@@ -25,14 +25,14 @@ public class SubOrderService {
 
     public void createSubOrderForSingleProduct(Order mainOrder) {
         SubOrder subOrder = new SubOrder();
-        subOrder.setArtisan(mainOrder.getProducts().getFirst().getArtisan());
+        subOrder.setArtisan(mainOrder.getProducts().get(0).getArtisan());
         subOrder.setProducts(mainOrder.getProducts());
-        subOrder.setSubTotal(mainOrder.getProducts().getFirst().getPrice());
+        subOrder.setSubTotal(mainOrder.getProducts().get(0).getPrice());
         subOrder.setOrder(mainOrder);
 
         subOrderRepository.save(subOrder);
 
-        notificationService.notifyArtisan(mainOrder.getProducts().getFirst().getArtisan().getId(), subOrder);
+        notificationService.notifyArtisan(mainOrder.getProducts().get(0).getArtisan().getId(), subOrder);
     }
 
     public void createSubOrders(Order mainOrder) {

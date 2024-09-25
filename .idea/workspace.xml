@@ -5,26 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09dd51d9-48e5-4bde-ae67-cc7711c5a8f2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/test/java/com/artisanat_backend/service/ArtisanServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/test/java/com/artisanat_backend/service/AuthenticationServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/test/java/com/artisanat_backend/service/CartServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/test/java/com/artisanat_backend/service/LoyaltyServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/test/java/com/artisanat_backend/service/OrderServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/test/java/com/artisanat_backend/service/ProductServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/test/java/com/artisanat_backend/service/ReviewServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisanat-backend/src/test/java/com/artisanat_backend/service/SubOrderServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/ArtisanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/ArtisanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/ArtisanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/ArtisanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/LoyaltyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/LoyaltyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/SubOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/java/com/artisanat_backend/service/SubOrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/artisanat-backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +29,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
 }]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2mTXdNG10C5KphLeZxkzfUsZXZS" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -52,6 +44,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.docker-compose.yml.angular-app: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.server: Compose Deployment.executor": "Run",
     "JUnit.ArtisanServiceTest.executor": "Run",
     "JUnit.AuthenticationServiceTest.executor": "Run",
     "JUnit.CartServiceTest.executor": "Run",
@@ -74,39 +68,34 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/PCPACK/Videos/Marketplace-Artisanat-Marocain/artisanat-frontend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\PCPACK\Videos\Marketplace-Artisanat-Marocain\artisanat-frontend" />
+      <recent name="C:\Users\PCPACK\Videos\Marketplace-Artisanat-Marocain\artisanat-backend" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\PCPACK\Videos\Marketplace-Artisanat-Marocain" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.artisanat_backend.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.OrderServiceTest">
-    <configuration name="LoyaltyServiceTest.addPointsToCustomerLoyalty_CreatesNewLoyalty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="artisanat-backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.artisanat_backend.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.artisanat_backend.service" />
-      <option name="MAIN_CLASS_NAME" value="com.artisanat_backend.service.LoyaltyServiceTest" />
-      <option name="METHOD_NAME" value="addPointsToCustomerLoyalty_CreatesNewLoyalty" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Docker.docker-compose.yml.angular-app: Compose Deployment">
     <configuration name="OrderServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="artisanat-backend" />
       <extension name="coverage">
@@ -117,21 +106,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.artisanat_backend.service" />
       <option name="MAIN_CLASS_NAME" value="com.artisanat_backend.service.OrderServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProductServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="artisanat-backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.artisanat_backend.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.artisanat_backend.service" />
-      <option name="MAIN_CLASS_NAME" value="com.artisanat_backend.service.ProductServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -174,13 +148,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.angular-app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="angular-app" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.server: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="server" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml.angular-app: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.server: Compose Deployment" />
         <item itemvalue="JUnit.OrderServiceTest" />
         <item itemvalue="JUnit.SubOrderServiceTest" />
         <item itemvalue="JUnit.ReviewServiceTest" />
-        <item itemvalue="JUnit.ProductServiceTest" />
-        <item itemvalue="JUnit.LoyaltyServiceTest.addPointsToCustomerLoyalty_CreatesNewLoyalty" />
       </list>
     </recent_temporary>
   </component>
@@ -200,7 +204,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727101629943</updated>
-      <workItem from="1727101631118" duration="9290000" />
+      <workItem from="1727101631118" duration="14401000" />
+      <workItem from="1727203556208" duration="5778000" />
     </task>
     <servers />
   </component>
