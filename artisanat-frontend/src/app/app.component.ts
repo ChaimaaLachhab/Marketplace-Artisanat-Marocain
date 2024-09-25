@@ -11,14 +11,14 @@ import {ArtisanInfosComponent} from "./components/artisan-infos/artisan-infos.co
 import {ProductListingComponent} from "./components/product-listing/product-listing.component";
 import {ProductDetailsComponent} from "./components/product-details/product-details.component";
 import {CollectionListingComponent} from "./components/collection-listing/collection-listing.component";
-import {DashboardComponent} from "./features/admin/dashboard/dashboard.component";
 import {ChackoutSuccessComponent} from "./components/chackout-success/chackout-success.component";
 import {CheckoutComponent} from "./components/checkout/checkout.component";
+import {DashboardComponent} from "./features/artisan/dashboard/dashboard.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroHomeComponent, PageNotFoundComponent, AboutUsComponent, ContactUsComponent, ArtisanInfosComponent, ProductListingComponent, ProductDetailsComponent, HomeComponent, CollectionListingComponent, DashboardComponent, ChackoutSuccessComponent, CheckoutComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroHomeComponent, PageNotFoundComponent, AboutUsComponent, ContactUsComponent, ArtisanInfosComponent, ProductListingComponent, ProductDetailsComponent, HomeComponent, CollectionListingComponent, DashboardComponent, ChackoutSuccessComponent, CheckoutComponent, DashboardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

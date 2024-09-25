@@ -3,7 +3,7 @@ import {HeaderDashComponent} from "../../../shared/components/header-dash/header
 import {SidebarComponent} from "../../../shared/components/sidebar/sidebar.component";
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-artisan-dashboard',
   standalone: true,
     imports: [
         HeaderDashComponent,
