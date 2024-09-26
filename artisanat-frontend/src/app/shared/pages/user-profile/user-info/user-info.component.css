@@ -1,0 +1,72 @@
+.user-info {
+  border-radius: 40px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(23, 26, 31, 0.12);
+  overflow: hidden;
+  color: #171a1f;
+  font: 700 20px Manrope, sans-serif;
+}
+.background-image {
+  width: 100%;
+  aspect-ratio: 1.13;
+  object-fit: cover;
+}
+.info-content {
+  padding: 19px 41px 42px;
+}
+.user-name {
+  color: #0d554a;
+  font: 600 48px/1 Cormorant, sans-serif;
+  margin: 0;
+}
+.user-handle {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 2;
+  margin: 0;
+}
+.divider {
+  border: none;
+  border-top: 1px solid #dee1e6;
+  margin: 20px 0;
+}
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 26px;
+}
+.edit-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 26px;
+  background-color: #083831;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 2;
+  padding: 12px 51px;
+  border: none;
+  cursor: pointer;
+}
+@media (max-width: 991px) {
+  .info-content {
+    padding: 19px 20px 42px;
+  }
+  .user-name {
+    font-size: 40px;
+  }
+  .edit-profile {
+    padding: 12px 20px;
+  }
+}

@@ -1,0 +1,55 @@
+.points-card {
+  border-radius: 40px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(23, 26, 31, 0.12);
+  padding: 18px 37px;
+}
+.card-title {
+  color: #0d554a;
+  font: 600 40px/1.4 Cormorant, sans-serif;
+  margin: 0;
+}
+.divider {
+  border: none;
+  border-top: 1px solid #dee1e6;
+  margin: 13px 0;
+}
+.card-content {
+  display: flex;
+  justify-content: space-between;
+  gap:1rem;
+  align-items: center;
+  margin-top: 13px;
+}
+.points-description {
+  color: #323743;
+  font: 700 18px/28px Manrope, sans-serif;
+  margin: 0;
+  flex: 1;
+}
+.points-badge {
+  background-color: #efb034;
+  border-radius: 54px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 20px;
+}
+.points-value {
+  color: #fff;
+  font: 400 32px Manrope, sans-serif;
+}
+.points-icon {
+  width: 32px;
+  height: 32px;
+}
+@media (max-width: 991px) {
+  .points-card {
+    padding: 18px 20px;
+  }
+  .card-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}

@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
 import {authGuard} from "./core/guards/auth.guard";
 import {roleGuard} from "./core/guards/role.guard";
-import {HomeComponent} from "./components/home/home.component";
 import {Role} from "./core/enums/role.enum";
-import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
+import {ContactUsComponent} from "./shared/pages/contact-us/contact-us.component";
+import {AboutUsComponent} from "./shared/pages/about-us/about-us.component";
+import {CollectionListingComponent} from "./shared/pages/collection-listing/collection-listing.component";
+import {ProductListingComponent} from "./shared/pages/product-listing/product-listing.component";
+import {HomeComponent} from "./shared/pages/home/home.component";
+import {PageNotFoundComponent} from "./shared/pages/page-not-found/page-not-found.component";
 
 export const routes: Routes = [
   { path: '',
@@ -13,6 +17,22 @@ export const routes: Routes = [
 
   { path: 'home',
     component: HomeComponent
+  },
+
+  { path: 'shop',
+    component: ProductListingComponent
+  },
+
+  { path: 'collection',
+    component: CollectionListingComponent
+  },
+
+  { path: 'about',
+    component: AboutUsComponent
+  },
+
+  { path: 'contact',
+    component: ContactUsComponent
   },
 
   {

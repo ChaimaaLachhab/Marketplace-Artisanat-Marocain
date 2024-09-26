@@ -1,0 +1,32 @@
+<section class="orders-table">
+  <h2 class="table-title">Your Orders</h2>
+  <hr class="divider" />
+  <p class="table-description">
+    Nisi sit nulla pariat Nisi sit nulla pariat Nisi sit nulla pariat Nisi sit nulla pariat Nisi sit nulla pariat
+  </p>
+  <table>
+    <thead>
+    <tr>
+      <th>Check</th>
+      <th>Avatar & Text</th>
+      <th>Text</th>
+      <th>Tag</th>
+      <th>Icon</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of orderItems">
+      <td><input type="checkbox" aria-label="Select order" /></td>
+      <td>
+        <div class="user-info">
+          <img [src]="item.avatar" [alt]="item.username + 's avatar'" class="avatar" />
+          <span>{{ item.username }}</span>
+        </div>
+      </td>
+      <td>{{ item.content }}</td>
+      <td><span class="tag">{{ item.tag }}</span></td>
+      <td><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b726b741277d2190411067caf7b1d322d35c5a3acabf5848404f18abcb2bd904?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" class="action-icon" /></td>
+    </tr>
+    </tbody>
+  </table>
+</section>

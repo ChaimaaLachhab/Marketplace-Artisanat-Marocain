@@ -1,0 +1,268 @@
+.checkout-place-order {
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(18, 15, 40, 0.12);
+}
+
+.order-summary-section {
+  padding: 44px 80px;
+}
+
+.order-summary-wrapper {
+  width: 50%;
+}
+
+.billing-details {
+  width: 40%;
+}
+
+.section-title {
+  color: #171a1f;
+  font: 700 24px Cormorant, sans-serif;
+  margin-bottom: 24px;
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.item-image {
+  width: 143px;
+  aspect-ratio: 1.03;
+  object-fit: contain;
+}
+
+.item-details {
+  flex-grow: 1;
+}
+
+.item-title {
+  color: #171a1f;
+  font: 700 14px/2 Manrope, sans-serif;
+  margin: 0;
+}
+
+.item-code {
+  color: #565d6d;
+  font: 400 12px/2 Manrope, sans-serif;
+  margin: 0;
+}
+
+.item-price {
+  color: #171a1f;
+  font: 700 14px/2 Manrope, sans-serif;
+  margin: 0;
+}
+
+.remove-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.billing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: #424856;
+  font: 700 14px/2 Manrope, sans-serif;
+  margin-bottom: 4px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 7px 12px;
+  border: 1px solid #bdc1ca;
+  border-radius: 4px;
+  font: 400 14px/2 Manrope, sans-serif;
+}
+
+.input-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.voucher-section {
+  margin-top: 32px;
+}
+
+.voucher-title {
+  color: #171a1f;
+  font: 700 18px/2 Cormorant, sans-serif;
+  margin-bottom: 8px;
+}
+
+.voucher-input {
+  display: flex;
+  gap: 6px;
+}
+
+.voucher-input input {
+  flex-grow: 1;
+  padding: 7px 12px;
+  border: 1px solid #bdc1ca;
+  border-radius: 4px;
+  font: 400 14px/2 Manrope, sans-serif;
+}
+
+.apply-btn {
+  background-color: #f2c66d;
+  color: #6b4a09;
+  border: none;
+  border-radius: 4px;
+  padding: 7px 19px;
+  font: 400 14px/2 Manrope, sans-serif;
+  cursor: pointer;
+}
+
+.voucher-tag {
+  display: inline-block;
+  background-color: #fef9ee;
+  color: #8f640c;
+  font: 400 12px/2 Manrope, sans-serif;
+  padding: 4px 6px;
+  border-radius: 14px;
+  margin-top: 8px;
+}
+
+.order-summary {
+  margin-top: 32px;
+}
+
+.summary-title {
+  color: #171a1f;
+  font: 700 18px/2 Cormorant, sans-serif;
+  margin-bottom: 8px;
+}
+
+.summary-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font: 400 12px/2 Manrope, sans-serif;
+  color: #171a1f;
+}
+
+.summary-divider {
+  border: none;
+  border-top: 1px solid #bdc1ca;
+  margin: 16px 0;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  font: 700 18px/2 Manrope, sans-serif;
+  color: #e8502e;
+}
+
+.place-order-btn {
+  width: 100%;
+  background-color: #083831;
+  color: #fff;
+  border: none;
+  border-radius: 22px;
+  padding: 9px 0;
+  font: 400 16px/2 Manrope, sans-serif;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.recommendations {
+  padding: 57px 0 57px 80px;
+}
+
+.product-grid {
+  display: flex;
+  gap: 27px;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(23, 26, 31, 0.12);
+  border-radius: 8px;
+  overflow: hidden;
+  padding-bottom: 16px;
+}
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 0.86;
+  object-fit: contain;
+}
+
+.product-title {
+  color: #171a1f;
+  font: 700 24px Cormorant, sans-serif;
+  margin: 11px 12px 0;
+}
+
+.product-price {
+  color: #171a1f;
+  font: 400 16px/2 Manrope, sans-serif;
+  margin: 0 12px;
+}
+
+.product-actions {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 12px 0;
+}
+
+.add-to-cart,
+.add-to-wishlist {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.product-rating {
+  width: 84px;
+  aspect-ratio: 4.2;
+  object-fit: contain;
+}
+
+@media (max-width: 991px) {
+  .order-summary-section {
+    padding: 0 20px;
+  }
+
+  .order-summary-wrapper,
+  .billing-details {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .recommendations {
+    padding: 57px 20px;
+  }
+}

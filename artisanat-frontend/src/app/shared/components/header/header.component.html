@@ -3,34 +3,46 @@
     <div class="container-fluid">
       <div class="logo">
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/aad704c19f96008876e1c8ca950d6de3eef08c4e2df1a7012ddfe3cc6f7f4855?placeholderIfAbsent=true&apiKey=636115f9631f48bf97a296bc25ce3201" alt="Darling Jewelry Logo" class="logo-image">
-        <a class="logo-text" href="#">Darling.</a>
+        <a class="logo-text" routerLink="/shop">Darling.</a>
       </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="av-list navbar-nav ms-auto">
+        <ul class="nav-list navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" routerLink="/home" routerLinkActive="active" aria-current="page">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Shop</a>
+            <a class="nav-link" routerLink="/shop" routerLinkActive="active">Shop</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Collections</a>
+            <a class="nav-link" routerLink="/collection" routerLinkActive="active">Collections</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+          <li class="nav-item" style="margin-right: 3rem;">
+            <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="material-icons">person</i></a>
+          <li class="nav-item" style="margin-top: 0.5rem;">
+            <button (click)="menu.toggle($event)"  class="btn-sidebar">
+              <i class="material-icons">person</i>
+            </button>
+            <p-tieredMenu #menu [model]="menuItems" [popup]="true"></p-tieredMenu>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="material-icons">shopping_cart</i></a>
+          <li class="nav-item" style="margin-top: 0.5rem;">
+            <p-sidebar [(visible)]="sidebarVisible" position="right" [style]="{'width':'400px'}">
+              <h3>Sidebar</h3>
+              <p>
+                Lorem ipsum dolor sit amet...
+              </p>
+            </p-sidebar>
+            <button (click)="sidebarVisible = true" class="btn-sidebar">
+              <i class="material-icons">shopping_cart</i>
+            </button>
           </li>
+
         </ul>
       </div>
     </div>
