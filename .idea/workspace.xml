@@ -6,81 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="09dd51d9-48e5-4bde-ae67-cc7711c5a8f2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/about-us/about-us.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/about-us/about-us.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/about-us/about-us.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/about-us/about-us.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/about-us/about-us.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/about-us/about-us.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/about-us/about-us.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/about-us/about-us.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/artisan-infos/artisan-infos.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/artisan-infos/artisan-infos.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/artisan-infos/artisan-infos.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/artisan-infos/artisan-infos.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/artisan-infos/artisan-infos.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/artisan-infos/artisan-infos.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/artisan-infos/artisan-infos.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/artisan-infos/artisan-infos.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/chackout-success/chackout-success.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/chackout-success/chackout-success.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/chackout-success/chackout-success.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/chackout-success/chackout-success.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/chackout-success/chackout-success.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/chackout-success/chackout-success.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/chackout-success/chackout-success.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/chackout-success/chackout-success.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/checkout/checkout.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/checkout/checkout.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/checkout/checkout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/checkout/checkout.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/checkout/checkout.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/checkout/checkout.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/checkout/checkout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/checkout/checkout.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/collection-details/collection-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-details/collection-details.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/collection-details/collection-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-details/collection-details.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/collection-details/collection-details.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-details/collection-details.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/collection-details/collection-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-details/collection-details.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/collection-listing/collection-listing.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-listing/collection-listing.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/collection-listing/collection-listing.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-listing/collection-listing.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/collection-listing/collection-listing.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-listing/collection-listing.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/collection-listing/collection-listing.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-listing/collection-listing.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/contact-us/contact-us.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/contact-us/contact-us.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/contact-us/contact-us.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/contact-us/contact-us.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/contact-us/contact-us.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/contact-us/contact-us.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/contact-us/contact-us.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/contact-us/contact-us.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/home/home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/home/home.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/page-not-found/page-not-found.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/page-not-found/page-not-found.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/page-not-found/page-not-found.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/page-not-found/page-not-found.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/page-not-found/page-not-found.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/page-not-found/page-not-found.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/page-not-found/page-not-found.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/page-not-found/page-not-found.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-details/product-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-details/product-details.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-details/product-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-details/product-details.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-details/product-details.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-details/product-details.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-details/product-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-details/product-details.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-listing/product-listing.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-listing/product-listing.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-listing/product-listing.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-listing/product-listing.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-listing/product-listing.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-listing/product-listing.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/product-listing/product-listing.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-listing/product-listing.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/user-profile/user-profile.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/user-profile/user-profile.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/user-profile/user-profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/user-profile/user-profile.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/user-profile/user-profile.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/user-profile/user-profile.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/components/user-profile/user-profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/user-profile/user-profile.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/header/header.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/header/header.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/header/header.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-about-us/hero-about-us.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/about-us/hero-about-us/hero-about-us.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-about-us/hero-about-us.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/about-us/hero-about-us/hero-about-us.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-about-us/hero-about-us.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/about-us/hero-about-us/hero-about-us.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-about-us/hero-about-us.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/about-us/hero-about-us/hero-about-us.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-artisan/hero-artisan.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/artisan-infos/hero-artisan/hero-artisan.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-artisan/hero-artisan.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/artisan-infos/hero-artisan/hero-artisan.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-artisan/hero-artisan.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/artisan-infos/hero-artisan/hero-artisan.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-artisan/hero-artisan.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/artisan-infos/hero-artisan/hero-artisan.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-collection/hero-collection.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-listing/hero-collection/hero-collection.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-collection/hero-collection.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-listing/hero-collection/hero-collection.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-collection/hero-collection.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-listing/hero-collection/hero-collection.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-collection/hero-collection.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-listing/hero-collection/hero-collection.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-home/hero-home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/home/hero-home/hero-home.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-home/hero-home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/home/hero-home/hero-home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-home/hero-home.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/home/hero-home/hero-home.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-home/hero-home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/home/hero-home/hero-home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-product/hero-product.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-listing/hero-product/hero-product.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-product/hero-product.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-listing/hero-product/hero-product.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-product/hero-product.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-listing/hero-product/hero-product.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/components/hero-product/hero-product.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-listing/hero-product/hero-product.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/core/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/core/models/user.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/core/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/core/services/product.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/about-us/hero-about-us/hero-about-us.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/about-us/hero-about-us/hero-about-us.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-listing/hero-collection/hero-collection.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/collection-listing/hero-collection/hero-collection.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/contact-us/contact-us.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/contact-us/contact-us.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-listing/hero-product/hero-product.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/product-listing/hero-product/hero-product.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/user-profile/user-info/user-info.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/user-profile/user-info/user-info.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/user-profile/user-info/user-info.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/artisanat-frontend/src/app/shared/pages/user-profile/user-info/user-info.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +32,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -146,7 +85,8 @@
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "ts.external.directory.path": "C:\\Users\\PCPACK\\Videos\\Marketplace-Artisanat-Marocain\\artisanat-frontend\\node_modules\\typescript\\lib",
+    "settings.editor.selected.configurable": "http.proxy",
+    "ts.external.directory.path": "C:\\Users\\user\\Videos\\Marketplace-Artisanat-Marocain\\artisanat-frontend\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -304,10 +244,17 @@
       <workItem from="1727203556208" duration="5778000" />
       <workItem from="1727258202174" duration="8737000" />
       <workItem from="1727277110902" duration="1023000" />
+      <workItem from="1727340586425" duration="5662000" />
+      <workItem from="1727347021545" duration="1146000" />
+      <workItem from="1727356206689" duration="10461000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -6,9 +6,9 @@ pipeline {
     }
 
     environment {
-        SONARQUBE_SERVER = 'SonarQubeServer'
+        SONARQUBE_SERVER = 'SonarQubeServer2'
         DOCKER_HUB_REPO = 'chaimaalachhab01/marketplace-artisanat'
-        SONAR_TOKEN = credentials('SonarQubeToken')
+        SONAR_TOKEN = credentials('SonarQubeToken2')
     }
 
     stages {
@@ -21,8 +21,8 @@ pipeline {
         stage('Build and Unit Tests') {
             steps {
                 dir('artisanat-backend') {
-                    sh "mvn clean install"
-                    sh "mvn test"
+                    bat "mvn clean install"
+                    bat "mvn test"
                 }
             }
         }
@@ -30,7 +30,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
-                    sh "mvn sonar:sonar -Dsonar.projectKey=marketplace-artisanat -Dsonar.host.url=http://localhost:9000 -Dsonar.token=${SONAR_TOKEN}"
+                    bat "mvn sonar:sonar -Dsonar.projectKey=marketplace-artisanat -Dsonar.host.url=http://localhost:9000 -Dsonar.token=${SONAR_TOKEN}"
                 }
             }
         }
@@ -49,7 +49,7 @@ pipeline {
                     def services = ['artisanat-backend', 'artisanat-frontend']
                     services.each { service ->
                         dir(service) {
-                            sh "docker build -t marketplace-artisanat-${service} ."
+                            bat "docker build -t marketplace-artisanat-${service} ."
                         }
                     }
                 }
@@ -63,7 +63,7 @@ pipeline {
                     docker.withRegistry("https://index.docker.io/v1/", 'docker-credentials-id') {
                         services.each { service ->
                             def imageName = "${DOCKER_HUB_REPO}:${service}"
-                            sh """
+                            bat """
                                 docker tag marketplace-artisanat-${service}:latest ${imageName}
                                 docker push ${imageName}
                             """
@@ -76,7 +76,7 @@ pipeline {
         stage('Run Docker Compose') {
             steps {
                 dir('artisanat-backend') {
-                    sh 'docker-compose up -d'
+                    bat 'docker-compose up -d'
                 }
             }
         }

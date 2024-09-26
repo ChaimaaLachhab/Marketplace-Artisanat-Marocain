@@ -15,6 +15,8 @@
 }
 
 .product-search__footer {
+  display: flex;
+  justify-content: right;
   align-self: end;
 }
 

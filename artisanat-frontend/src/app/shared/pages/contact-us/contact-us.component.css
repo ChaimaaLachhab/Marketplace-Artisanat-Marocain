@@ -31,7 +31,8 @@
 
 .form-gallery-container {
   width: 100%;
-  margin-top: 150px;
+  margin-top: 5rem;
+  margin-left: 5rem;
 }
 
 .form-gallery-wrapper {
@@ -161,6 +162,10 @@
     max-width: 100%;
   }
 
+  .form-gallery-container{
+    width: 80%;
+  }
+
   .form-gallery-wrapper {
     flex-direction: column;
     gap: 20px;
@@ -168,11 +173,11 @@
 
   .contact-form-section {
     width: 100%;
+    margin-right: 3rem;
   }
 
   .contact-form {
     max-width: 100%;
-    margin-top: 40px;
     padding: 0 20px;
   }
 
@@ -182,6 +187,9 @@
 
   .image-gallery {
     margin-top: 45px;
+    margin-left: 2rem;
+    width: 100%;
+    align-items: center;
   }
 
   .contact-info-footer {
@@ -197,6 +205,10 @@
   .form-gallery-container,
   .image-gallery {
     margin: 0 auto;
+  }
+
+  .form-gallery-container{
+    margin-top: 10rem;
   }
 
   .contact-info-footer {

@@ -15,6 +15,8 @@
 }
 
 .product-search__footer {
+  display: flex;
+  justify-content: right;
   align-self: end;
 }
 
@@ -92,7 +94,7 @@
 
   .product-search__main {
     flex: 0 0 auto;
-    padding: 40px 0;
+    padding: 10px 0;
   }
 
 
@@ -107,7 +109,7 @@
 
 @media (max-width: 640px) {
   .product-search__main {
-    padding: 30px 0;
+    padding: 10px 0;
   }
 
   .product-search__image {

@@ -1,0 +1,54 @@
+<app-header></app-header>
+<main class="edit-profile">
+  <section class="profile-container mb-5">
+    <h2 class="section-title">Edit profile</h2>
+    <form class="profile-form">
+      <div class="profile-content mb-3">
+        <div class="profile-photo-section">
+          <h3 class="subsection-title">Profile Photo</h3>
+          <div class="avatar-container">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e4d345807707e6cf34cf706659977172dd32936185db8063b2e1ebdec7c97454?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="User avatar" class="avatar-image" />
+          </div>
+        </div>
+        <div class="photo-update-section">
+          <h3 class="subsection-title">Update your Photo</h3>
+          <p class="photo-instructions">Your Photo should be in PNG or JPG format</p>
+          <div class="photo-actions">
+            <button (click)="onChooseImage()" class="btn btn-outline">Choose Image</button>
+            <button (click)="onRemoveImage()" class="btn btn-text">Remove</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <p-floatLabel>
+          <input pInputText formControlName="fullName" id="fullName" variant="filled" class="form-input" required/>
+          <label for="fullName">Full Name</label>
+        </p-floatLabel>
+      </div>
+      <div class="form-group">
+        <p-floatLabel>
+          <input pInputText formControlName="userName" id="userName" variant="filled" class="form-input" required/>
+          <label for="userName">Username</label>
+        </p-floatLabel>
+      </div>
+      <div class="form-group">
+        <p-floatLabel>
+          <input pInputText type="email" formControlName="email" id="email" variant="filled" class="form-input" required/>
+          <label for="email">Email</label>
+        </p-floatLabel>
+      </div>
+      <div class="form-group">
+        <p-floatLabel>
+          <input pInputText type="number" formControlName="phone" id="phone" variant="filled" class="form-input" required/>
+          <label for="phone">Phone</label>
+        </p-floatLabel>
+      </div>
+      <p-divider class="mt-3 mb-2"/>
+      <div class="form-actions">
+        <button (click)="onCancel()" class="btn btn-text">Cancel</button>
+        <button (click)="onSaveProfile()" class="btn btn-primary">Save profile</button>
+      </div>
+    </form>
+  </section>
+</main>
+<app-footer></app-footer>

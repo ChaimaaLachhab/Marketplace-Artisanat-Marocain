@@ -31,7 +31,7 @@ export class ProductService {
 
   createProductWithMedia(product: Product, attachments: File[]): Observable<Product> {
     const formData: FormData = new FormData();
-    formData.append('product', JSON.stringify(product));
+    formData.append('product', new Blob([JSON.stringify(product)], { type: 'application/json' }));
     attachments.forEach((file, index) => formData.append(`attachments`, file, file.name));
 
     return this.http.post<Product>(`${this.apiUrl}/create-with-media`, formData);

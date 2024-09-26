@@ -8,6 +8,8 @@ import {CollectionListingComponent} from "./shared/pages/collection-listing/coll
 import {ProductListingComponent} from "./shared/pages/product-listing/product-listing.component";
 import {HomeComponent} from "./shared/pages/home/home.component";
 import {PageNotFoundComponent} from "./shared/pages/page-not-found/page-not-found.component";
+import {UserProfileComponent} from "./shared/pages/user-profile/user-profile.component";
+import {EditProfileComponent} from "./shared/pages/edit-profile/edit-profile.component";
 
 export const routes: Routes = [
   { path: '',
@@ -33,6 +35,14 @@ export const routes: Routes = [
 
   { path: 'contact',
     component: ContactUsComponent
+  },
+
+  { path: 'profile',
+    component: UserProfileComponent
+  },
+
+  { path: 'edit-profile',
+    component: EditProfileComponent
   },
 
   {

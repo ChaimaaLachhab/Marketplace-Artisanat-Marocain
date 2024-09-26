@@ -67,6 +67,10 @@
     max-width: 100%;
   }
 
+  .logo-image {
+    width: 15rem;
+  }
+
   .about-us-content {
     max-width: 100%;
     flex-direction: column;
@@ -76,7 +80,6 @@
 
   .about-us-info {
     width: 100%;
-    margin-top: 40px;
   }
 
   .logo-and-title {
@@ -85,16 +88,13 @@
     gap: 0;
   }
 
-  .logo-wrapper{
-
-  }
 
   .title-wrapper {
     width: 100%;
   }
 
   .about-us-title {
-    margin-top: 40px;
+    margin-top: 3rem;
     font-size: 40px;
   }
 
@@ -111,9 +111,5 @@
 @media (max-width: 640px) {
   .logo-image {
     width: 145.5px;
-  }
-
-  .about-us-title {
-    margin: -50px 0 auto auto;
   }
 }

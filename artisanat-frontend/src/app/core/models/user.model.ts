@@ -7,5 +7,4 @@ export interface User {
   email: string;
   phone: string;
   userPhoto: Media;
-  role: string;
 }
