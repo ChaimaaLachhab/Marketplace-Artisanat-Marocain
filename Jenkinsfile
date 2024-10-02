@@ -64,7 +64,7 @@ pipeline {
                         services.each { service ->
                             def imageName = "${DOCKER_HUB_REPO}:${service}"
                             bat """
-                                docker tag marketplace-artisanat-${service}:latest ${imageName}
+                                docker tag marketplace-${service}:latest ${imageName}
                                 docker push ${imageName}
                             """
                         }

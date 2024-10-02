@@ -1,48 +1,25 @@
 import { Component } from '@angular/core';
-import {CommonModule, Location, NgClass, NgForOf, NgIf} from "@angular/common";
+import { MessageService, PrimeNGConfig } from 'primeng/api';
+import {FileRemoveEvent, FileSelectEvent, FileUploadModule} from 'primeng/fileupload';
+import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
+import { BadgeModule } from 'primeng/badge';
+import { HttpClientModule } from '@angular/common/http';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { ToastModule } from 'primeng/toast';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Collection} from "../../../core/enums/collection.enum";
 import {Category} from "../../../core/enums/category.enum";
+import {ProductService} from "../../../core/services/product.service";
+import {Router} from "@angular/router";
+import {Product} from "../../../core/models/product.model";
 import {FloatLabelModule} from "primeng/floatlabel";
 import {InputTextModule} from "primeng/inputtext";
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {AuthenticationService} from "../../../core/services/authentication.service";
-import {Router} from "@angular/router";
-import {JwtService} from "../../../core/services/jwt.service";
-import {ProductService} from "../../../core/services/product.service";
-import {LoginUserDto} from "../../../core/dtos/login-user.dto";
-import {Product} from "../../../core/models/product.model";
-import {BadgeModule} from "primeng/badge";
-import {Button, ButtonModule} from "primeng/button";
-import {ToastModule} from "primeng/toast";
-import {FileUploadModule} from "primeng/fileupload";
-import {MessageService, PrimeNGConfig} from "primeng/api";
-import _default from "chart.js/dist/core/core.interaction";
-import
-import {ProgressBarModule} from "primeng/progressbar";
-import {HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [
-    NgForOf,
-    FloatLabelModule,
-    InputTextModule,
-    ReactiveFormsModule,
-    BadgeModule,
-    Button,
-    NgIf,
-    ToastModule,
-    FileUploadModule,
-    NgClass,
-    FileUploadModule,
-    ButtonModule,
-    BadgeModule,
-    ProgressBarModule,
-    ToastModule,
-    HttpClientModule,
-    CommonModule],
-
+  imports: [FileUploadModule, ButtonModule, BadgeModule, ProgressBarModule, ToastModule, HttpClientModule, CommonModule, ReactiveFormsModule, FloatLabelModule, InputTextModule],
   providers: [MessageService],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
@@ -90,58 +67,57 @@ export class FormComponent {
     console.log('Product saved');
   }
 
-  files = [];
+  files: File[] = [];
 
-  totalSize : number = 0;
+  totalSize: number = 0;
 
-  totalSizePercent : number = 0;
+  totalSizePercent: number = 0;
 
-  choose(event: any, callback: () => void) {
+  choose(event: Event, callback: () => void): void {
     callback();
   }
 
-  onRemoveTemplatingFile(event: any, file: { size: any; }, removeFileCallback: (arg0: any, arg1: any) => void, index: any) {
-    removeFileCallback(event, index);
-    this.totalSize -= parseInt(this.formatSize(file.size));
-    this.totalSizePercent = this.totalSize / 10;
+  onRemoveTemplatingFile(event: Event, file: File, removeFileCallback: (event: FileRemoveEvent) => void, index: number): void {
+    removeFileCallback({ originalEvent: event, file: file });
+    this.totalSize -= file.size;
+    this.totalSizePercent = this.totalSize / 10000; // Assuming 1MB = 100%
   }
 
-  onClearTemplatingUpload(clear: () => void) {
+  onClearTemplatingUpload(clear: () => void): void {
     clear();
     this.totalSize = 0;
     this.totalSizePercent = 0;
   }
 
-  onTemplatedUpload() {
+  onTemplatedUpload(): void {
     this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
   }
 
-  onSelectedFiles(event: { currentFiles: never[]; }) {
-    this.files = event.currentFiles;
-    this.files.forEach((file) => {
-      this.totalSize += parseInt(this.formatSize(file.size));
-    });
-    this.totalSizePercent = this.totalSize / 10;
+  onSelectedFiles(event: FileSelectEvent): void {
+    this.files = [...(this.files || []), ...event.files];
+    this.updateTotalSize();
   }
 
-  uploadEvent(callback: () => void) {
+  updateTotalSize(): void {
+    this.totalSize = this.files.reduce((sum, file) => sum + file.size, 0);
+    this.totalSizePercent = this.totalSize / 10000;
+  }
+
+  uploadEvent(callback: () => void): void {
     callback();
   }
 
-  formatSize(bytes: number) {
+  formatSize(bytes: number): string {
     const k = 1024;
     const dm = 3;
-    const sizes = this.config.translation.fileSizeTypes;
+    const sizes = this.config.translation?.fileSizeTypes || ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     if (bytes === 0) {
-      return `0 ${sizes ? sizes : [0]}`;
+      return `0 ${sizes[0]}`;
     }
 
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     const formattedSize = parseFloat((bytes / Math.pow(k, i)).toFixed(dm));
 
-    return `${formattedSize} ${sizes ? sizes : [i]}`;
+    return `${formattedSize} ${sizes[i]}`;
   }
-
-  protected readonly _default = _default;
-  protected readonly index = index;
 }
