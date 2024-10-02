@@ -1,0 +1,46 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.page-title {
+  color: #171a1f;
+  font: 32px Cormorant, sans-serif;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 3px;
+  font: 14px/2 Manrope, sans-serif;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: #f3f4f6;
+  border: #565d6d;
+  color: #565d6d;
+}
+
+.btn-warning {
+  background-color: #0d554a;
+  border: #0d554a;
+  color: #fff;
+}
+
+.btn-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+

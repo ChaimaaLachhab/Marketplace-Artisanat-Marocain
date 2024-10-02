@@ -1,0 +1,7 @@
+<div class="dashboard">
+  <app-sidebar [menuItems]="menuItems"></app-sidebar>
+  <main class="main-content">
+    <app-header-dashboard (createNewProduct)="createNewProduct()" (logout)="logout()"></app-header-dashboard>
+    <app-product-form></app-product-form>
+  </main>
+</div>

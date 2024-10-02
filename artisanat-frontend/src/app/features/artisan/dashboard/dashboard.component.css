@@ -5,69 +5,6 @@
   overflow: hidden;
 }
 
-.sidebar {
-  width: 18%;
-  background-color: #093830;
-  box-shadow: 0 0 2px rgba(23, 26, 31, 0.12);
-  padding: 18px 16px;
-  display: flex;
-  flex-direction: column;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 23px;
-}
-
-.logo-image {
-  width: 57px;
-  height: 57px;
-  object-fit: contain;
-}
-
-.company-name {
-  color: #f5d38e;
-  font: 30px/2 Cormorant, sans-serif;
-  transform: rotate(2.4492937051703357e-16rad);
-}
-
-.sidebar-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.menu-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 4px;
-  color: #fff;
-  text-decoration: none;
-  font: 14px/2 Manrope, sans-serif;
-}
-
-.menu-item.active {
-  background-color: #effdfA;
-  color: #0d554a;
-  font-weight: 700;
-}
-
-.menu-icon {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-}
-
-.sidebar-decoration {
-  width: 172px;
-  max-width: 100%;
-  margin-top: auto;
-}
-
 .main-content {
   flex: 1;
   padding: 27px 29px;
@@ -384,14 +321,6 @@
 @media (max-width: 991px) {
   .dashboard {
     flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-  }
-
-  .sidebar-decoration {
-    margin-top: 40px;
   }
 
   .main-content {

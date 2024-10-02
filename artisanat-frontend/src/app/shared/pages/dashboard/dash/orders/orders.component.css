@@ -1,0 +1,65 @@
+.orders-container {
+  background-color: #fff;
+  border-radius: 40px;
+  box-shadow: 0 0 2px rgba(23, 26, 31, 0.12);
+  padding: 36px 14px;
+  margin-bottom: 32px;
+}
+
+.orders-title {
+  font-family: Cormorant, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #323743;
+  margin: 0 0 22px 10px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  color: #171a1f;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 13px 20px;
+  text-align: left;
+}
+
+.orders-table th {
+  background-color: #fafafb;
+  font-family: Cormorant, sans-serif;
+  font-weight: 600;
+  color: #565d6d;
+  border-top: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.orders-table td {
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.status-tag {
+  display: inline-block;
+  padding: 4px 7px;
+  border-radius: 14px;
+  font-size: 12px;
+}
+
+.status-tag.new {
+  background-color: #f1f8fd;
+  color: #379ae6;
+}
+
+.status-tag.delivered {
+  background-color: #eefdf3;
+  color: #117b34;
+}
+
+.more-options {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
