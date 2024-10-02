@@ -1,0 +1,27 @@
+.statistics-pie-container {
+  background-color: #fff;
+  border-radius: 40px;
+  box-shadow: 0 0 2px rgba(23, 26, 31, 0.12);
+  padding: 24px;
+  font-family: Manrope, sans-serif;
+}
+
+.statistics-title {
+  font-family: Cormorant, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #171a1f;
+  margin: 0 0 8px;
+}
+
+.statistics-subtitle {
+  font-size: 14px;
+  color: #90959a;
+  margin: 0 0 24px;
+}
+
+.pie-chart-wrapper {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}

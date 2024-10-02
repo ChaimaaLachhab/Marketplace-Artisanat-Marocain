@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import {HeaderComponent} from "../../components/header/header.component";
-import {DetailComponent} from "../../../features/admin/detail/detail.component";
-import {ListComponent} from "../../../features/admin/list/list.component";
 import {FooterComponent} from "../../components/footer/footer.component";
 import {DetailComponent} from "../../../features/product/detail/detail.component";
 import {ListComponent} from "../../../features/review/list/list.component";

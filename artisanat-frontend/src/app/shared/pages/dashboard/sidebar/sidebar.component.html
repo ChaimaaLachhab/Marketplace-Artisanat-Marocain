@@ -1,0 +1,13 @@
+<aside class="sidebar">
+  <div class="logo-container">
+    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/fcd80546f53404303017a2802c467b7da97cfdd9c6a5bc2e77cf74c64e91b9ad?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="Company Logo" class="logo-image">
+    <h1 class="company-name">Darling.</h1>
+  </div>
+  <nav class="sidebar-menu">
+    <a *ngFor="let item of menuItems" [href]="'#'" [class.active]="item['active']" class="menu-item">
+      <img [src]="item.icon" [alt]="item.label + ' icon'" class="menu-icon">
+      <span>{{item.label}}</span>
+    </a>
+  </nav>
+  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8decfba69f8eb0c7cd29917499f60a4a9cece6ccb296aab42b72c2419d5f651c?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="Decorative Image" class="sidebar-image">
+</aside>

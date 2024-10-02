@@ -1,0 +1,31 @@
+<div class="orders-container">
+  <h3 class="orders-title">Recent Orders</h3>
+  <table class="orders-table">
+    <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{order.product}}</td>
+      <td>{{order.price}}</td>
+      <td>{{order.quantity}}</td>
+      <td>${{order.amount}}</td>
+      <td>
+          <span class="status-tag" [ngClass]="{'new': order.status === 'New', 'delivered': order.status === 'Delivered'}">
+            {{order.status}}
+          </span>
+      </td>
+      <td>
+        <img src="http://b.io/ext_29-" alt="More options" class="more-options">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

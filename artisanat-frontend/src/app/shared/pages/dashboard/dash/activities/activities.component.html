@@ -1,0 +1,19 @@
+<div class="activities-container">
+  <div class="activities-header">
+    <h3 class="activities-title">Activities</h3>
+    <div class="dropdown">
+      <img src="http://b.io/ext_27-" alt="Calendar icon" class="calendar-icon">
+      <span>Monthly</span>
+      <img src="http://b.io/ext_28-" alt="Dropdown icon" class="dropdown-icon">
+    </div>
+  </div>
+  <div class="activity-list">
+    <div *ngFor="let activity of activities" class="activity-item">
+      <img [src]="activity.avatar" [alt]="activity.user" class="activity-avatar">
+      <div class="activity-content">
+        <h4 class="activity-user">{{activity.user}}</h4>
+        <p class="activity-description">{{activity.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>
