@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChackoutSuccessComponent } from './chackout-success.component';
+import { OrderSummaryComponent } from './order-summary.component';
 
-describe('ChackoutSuccessComponent', () => {
-  let component: ChackoutSuccessComponent;
-  let fixture: ComponentFixture<ChackoutSuccessComponent>;
+describe('OrderSummaryComponent', () => {
+  let component: OrderSummaryComponent;
+  let fixture: ComponentFixture<OrderSummaryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChackoutSuccessComponent]
+      imports: [OrderSummaryComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ChackoutSuccessComponent);
+    fixture = TestBed.createComponent(OrderSummaryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

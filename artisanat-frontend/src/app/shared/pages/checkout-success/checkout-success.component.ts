@@ -11,10 +11,10 @@ import {HeaderComponent} from "../../components/header/header.component";
     FooterComponent,
     HeaderComponent
   ],
-  templateUrl: './chackout-success.component.html',
-  styleUrl: './chackout-success.component.css'
+  templateUrl: './checkout-success.component.html',
+  styleUrl: './checkout-success.component.css'
 })
-export class ChackoutSuccessComponent {
+export class CheckoutSuccessComponent {
   orderDate: string = '27/04/2022';
   customerName: string = 'John Miller';
   customerAddress: string = '57 West 45th Street, New York, USA, 10036';

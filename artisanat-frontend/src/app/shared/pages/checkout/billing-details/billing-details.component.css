@@ -1,0 +1,121 @@
+.billing-details {
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(23, 26, 31, 0.12);
+  padding: 24px 25px;
+  width: 100%;
+  font-family: Manrope, sans-serif;
+}
+
+.section-title {
+  color: #171a1f;
+  font: 700 24px Cormorant, sans-serif;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-label {
+  display: block;
+  color: #424856;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 7px 12px;
+  border: 1px solid #bdc1ca;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.voucher-section {
+  margin-top: 32px;
+}
+
+.voucher-title {
+  color: #171a1f;
+  font: 700 18px/2 Cormorant, sans-serif;
+  margin-bottom: 8px;
+}
+
+.voucher-input {
+  display: flex;
+  gap: 6px;
+}
+
+.voucher-code {
+  flex-grow: 1;
+  padding: 7px 12px;
+  border: 1px solid #bdc1ca;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.apply-button {
+  background-color: #f2c66d;
+  color: #6b4a09;
+  border: none;
+  border-radius: 4px;
+  padding: 7px 19px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.applied-voucher {
+  display: inline-block;
+  background-color: #fef9ee;
+  color: #8f640c;
+  font-size: 12px;
+  padding: 4px 6px;
+  border-radius: 14px;
+  margin-top: 8px;
+}
+
+.order-summary {
+  margin-top: 32px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.summary-divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 16px 0;
+}
+
+.total {
+  font-weight: 700;
+}
+
+.total-amount {
+  color: #e8502e;
+  font-size: 18px;
+}
+
+.place-order-button {
+  width: 100%;
+  background-color: #083831;
+  color: #fff;
+  border: none;
+  border-radius: 22px;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+@media (max-width: 991px) {
+  .billing-details {
+    margin-top: 40px;
+  }
+}

@@ -1,0 +1,16 @@
+<section class="order-summary">
+  <h2 class="summary-title">Order summary</h2>
+  <ul class="item-list">
+    <li *ngFor="let item of orderItems" class="item">
+      <img [src]="item.image" [alt]="item.name" class="item-image" />
+      <div class="item-details">
+        <h3 class="item-name">{{ item.name }}</h3>
+        <p class="item-code">Code: {{ item.code }}</p>
+      </div>
+      <p class="item-price">{{ item.price }}</p>
+      <button class="remove-button" aria-label="Remove item">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0a61b888807202f71e326a1919048194036bad6452a74c65d2aa9c45166cb228?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" />
+      </button>
+    </li>
+  </ul>
+</section>
