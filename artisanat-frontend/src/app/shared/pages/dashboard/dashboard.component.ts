@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {HeaderDashboardComponent} from "./header-dashboard/header-dashboard.component";
 import {DashComponent} from "./dash/dash.component";
+import {ListComponent} from "../../../features/product/list/list.component";
+import {UploadComponent} from "../../../features/media/upload/upload.component";
 import {FormComponent} from "../../../features/product/form/form.component";
 
 @Component({
@@ -12,6 +14,8 @@ import {FormComponent} from "../../../features/product/form/form.component";
     SidebarComponent,
     HeaderDashboardComponent,
     DashComponent,
+    ListComponent,
+    UploadComponent,
     FormComponent
   ],
   styleUrls: ['./dashboard.component.css']
