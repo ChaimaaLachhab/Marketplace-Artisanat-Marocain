@@ -31,7 +31,7 @@ pipeline {
             steps {
                 dir('artisanat-backend') {
                     withSonarQubeEnv('SonarQubeServer2') {
-                        sh "mvn sonar:sonar -Dsonar.projectKey=marketplace-artisanat-backend -Dsonar.host.url=http://localhost:9000 -Dsonar.token=${SONAR_TOKEN}"
+                        bat "mvn sonar:sonar -Dsonar.projectKey=marketplace-artisanat-backend -Dsonar.host.url=http://localhost:9000 -Dsonar.token=${SONAR_TOKEN}"
                     }
                 }
             }
@@ -51,7 +51,7 @@ pipeline {
                     script {
                         docker.withRegistry("https://index.docker.io/v1/", 'docker-credentials-id') {
                             def imageName = "${DOCKER_HUB_REPO}-backend:latest"
-                            sh """
+                            bat """
                                 docker tag ${DOCKER_HUB_REPO}-backend ${imageName}
                                 docker push ${imageName}
                             """
@@ -64,7 +64,7 @@ pipeline {
         stage('Run Docker Compose') {
             steps {
                 dir('artisanat-backend') {
-                    sh 'docker-compose up -d'
+                    bat 'docker-compose up -d'
                 }
             }
         }
