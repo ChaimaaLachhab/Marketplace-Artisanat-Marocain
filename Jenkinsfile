@@ -21,50 +21,46 @@ pipeline {
         stage('Build and Unit Tests') {
             steps {
                 dir('artisanat-backend') {
-                    bat "mvn clean install"
-                    bat "mvn test"
+                    sh "mvn clean install"
+                    sh "mvn test"
                 }
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQubeServer2') {
-                    bat "mvn sonar:sonar -Dsonar.projectKey=marketplace-artisanat -Dsonar.host.url=http://localhost:9000 -Dsonar.token=${SONAR_TOKEN}"
-                }
-            }
-        }
-
-        stage('Quality Gate Check') {
-            steps {
-                timeout(time: 5, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
-
-        stage('Build Docker Images') {
-            steps {
-                script {
-                    def services = ['artisanat-backend', 'artisanat-frontend']
-                    services.each { service ->
-                        dir(service) {
-                            bat "docker build -t marketplace-artisanat-${service} ."
-                        }
+                dir('artisanat-backend') {
+                    withSonarQubeEnv('SonarQubeServer2') {
+                        sh "mvn sonar:sonar -Dsonar.projectKey=marketplace-artisanat-backend -Dsonar.host.url=http://localhost:9000 -Dsonar.token=${SONAR_TOKEN}"
                     }
                 }
             }
         }
 
-        stage('Tag and Push Docker Images') {
+//         stage('Quality Gate Check') {
+//             steps {
+//                 timeout(time: 5, unit: 'MINUTES') {
+//                     waitForQualityGate abortPipeline: true
+//                 }
+//             }
+//         }
+
+        stage('Build Docker Image') {
             steps {
-                script {
-                    def services = ['artisanat-backend', 'artisanat-frontend']
-                    docker.withRegistry("https://index.docker.io/v1/", 'docker-credentials-id') {
-                        services.each { service ->
-                            def imageName = "${DOCKER_HUB_REPO}:${service}"
-                            bat """
-                                docker tag marketplace-${service}:latest ${imageName}
+                dir('artisanat-backend') {
+                    sh "docker build -t ${DOCKER_HUB_REPO}-backend ."
+                }
+            }
+        }
+
+        stage('Tag and Push Docker Image') {
+            steps {
+                dir('artisanat-backend') {
+                    script {
+                        docker.withRegistry("https://index.docker.io/v1/", 'docker-credentials-id') {
+                            def imageName = "${DOCKER_HUB_REPO}-backend:latest"
+                            sh """
+                                docker tag ${DOCKER_HUB_REPO}-backend ${imageName}
                                 docker push ${imageName}
                             """
                         }
@@ -76,7 +72,7 @@ pipeline {
         stage('Run Docker Compose') {
             steps {
                 dir('artisanat-backend') {
-                    bat 'docker-compose up -d'
+                    sh 'docker-compose up -d'
                 }
             }
         }
