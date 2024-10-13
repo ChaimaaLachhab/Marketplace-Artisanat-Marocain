@@ -21,8 +21,8 @@ pipeline {
         stage('Build and Unit Tests') {
             steps {
                 dir('artisanat-backend') {
-                    sh "mvn clean install"
-                    sh "mvn test"
+                    bat "mvn clean install"
+                    bat "mvn test"
                 }
             }
         }
@@ -44,14 +44,6 @@ pipeline {
 //                 }
 //             }
 //         }
-
-        stage('Build Docker Image') {
-            steps {
-                dir('artisanat-backend') {
-                    sh "docker build -t ${DOCKER_HUB_REPO}-backend ."
-                }
-            }
-        }
 
         stage('Tag and Push Docker Image') {
             steps {
