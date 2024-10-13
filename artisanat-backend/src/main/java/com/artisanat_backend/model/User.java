@@ -1,6 +1,7 @@
 package com.artisanat_backend.model;
 
 import com.artisanat_backend.enums.Role;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
@@ -11,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Getter
 @Setter
@@ -30,8 +33,8 @@ public abstract class User implements UserDetails {
     private String email;
     private String phone;
 
-    @OneToOne
-    private Media userPhoto;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Media userPhoto = new Media();
 
     @Enumerated(EnumType.STRING)
     private Role role;

@@ -1,7 +1,7 @@
 <header class="header">
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <div class="logo">
+      <div class="logo d-flex align-items-center justify-content-center">
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/aad704c19f96008876e1c8ca950d6de3eef08c4e2df1a7012ddfe3cc6f7f4855?placeholderIfAbsent=true&apiKey=636115f9631f48bf97a296bc25ce3201" alt="Darling Jewelry Logo" class="logo-image">
         <a class="logo-text" routerLink="/shop">Darling.</a>
       </div>
@@ -26,21 +26,10 @@
             <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
           </li>
           <li class="nav-item" style="margin-top: 0.5rem;">
-            <button (click)="menu.toggle($event)"  class="btn-sidebar">
-              <i class="material-icons">person</i>
-            </button>
-            <p-tieredMenu #menu [model]="menuItems" [popup]="true"></p-tieredMenu>
+            <app-icon-profile></app-icon-profile>
           </li>
           <li class="nav-item" style="margin-top: 0.5rem;">
-            <p-sidebar [(visible)]="sidebarVisible" position="right" [style]="{'width':'400px'}">
-              <h3>Sidebar</h3>
-              <p>
-                Lorem ipsum dolor sit amet...
-              </p>
-            </p-sidebar>
-            <button (click)="sidebarVisible = true" class="btn-sidebar">
-              <i class="material-icons">shopping_cart</i>
-            </button>
+            <app-summary-cart></app-summary-cart>
           </li>
 
         </ul>

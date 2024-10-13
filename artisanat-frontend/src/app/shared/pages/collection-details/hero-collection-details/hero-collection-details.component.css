@@ -1,0 +1,69 @@
+.hero-section {
+  position: relative;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-content {
+  position: relative;
+  background-color: rgba(23, 26, 31, 0.6); /* Augmentation légère de l'opacité pour plus de lisibilité */
+  border-radius: 8px;
+  box-shadow: 0 0 2px rgba(23, 26, 31, 0.12);
+  padding: 24px;
+  max-width: 40%; /* Ajuster pour qu'il prenne presque toute la largeur */
+  color: #fff;
+}
+
+.hero-title {
+  font: 400 48px/1 'Cormorant Garamond', serif; /* Réduire la taille de la police */
+  margin: 0 0 4px;
+}
+
+.hero-description {
+  font: 400 14px/22px Manrope, sans-serif; /* Réduire la taille de la police */
+  margin-bottom: 48px; /* Ajustement de l'espacement */
+}
+
+.cta-container {
+  display: flex;
+  gap: 15px; /* Réduire l'espacement entre les boutons */
+}
+
+.cta-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cta-icon {
+  width: 48px; /* Réduire la taille de l'icône */
+  height: 48px;
+  border-radius: 24px;
+}
+
+@media (max-width: 991px) {
+  .hero-section {
+    padding: 0 10px; /* Ajuster les marges pour les petits écrans */
+    min-height: 500px; /* Réduire davantage la hauteur */
+  }
+
+  .hero-title {
+    font-size: 32px; /* Diminuer la taille de la police */
+  }
+
+  .hero-description {
+    font-size: 12px;
+    margin-bottom: 30px;
+  }
+}

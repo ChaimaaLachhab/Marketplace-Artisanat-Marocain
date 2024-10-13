@@ -1,0 +1,12 @@
+<section class="d-flex flex-column gap-4">
+  <main class="d-flex flex-column gap-4">
+    <app-product-infos [productId]="productId"></app-product-infos>
+    <app-product-reviews [productId]="productId"></app-product-reviews>
+  </main>
+  <main class="d-flex flex-lg-row flex-md-column flex-sm-column gap-lg-4 gap-sm-2">
+    <app-orders class="col-lg-8 col-md-12 col-sm-12"></app-orders>
+    <app-statistics-pie class="col-lg-4 col-md-12 col-sm-12"></app-statistics-pie>
+  </main>
+</section>
+
+

@@ -1,11 +1,18 @@
 package com.artisanat_backend.controller;
 
+import com.artisanat_backend.dto.request.AdminRequestDto;
+import com.artisanat_backend.dto.response.AdminResponseDto;
 import com.artisanat_backend.model.Admin;
 import com.artisanat_backend.service.AdminService;
+import com.artisanat_backend.mapper.UserMapper; // Import the UserMapper
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,44 +23,57 @@ import java.util.List;
 @RequestMapping("/api/admins")
 public class AdminController {
 
+    private final AdminService adminService;
+    private final UserMapper userMapper; // Declare the mapper
+
     @Autowired
-    private AdminService adminService;
+    public AdminController(AdminService adminService, UserMapper userMapper) {
+        this.adminService = adminService;
+        this.userMapper = userMapper;
+    }
 
     /**
      * Retrieve all admins.
      *
      * @return List of all admins.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
-    public ResponseEntity<List<Admin>> getAllAdmins() {
+    public ResponseEntity<List<AdminResponseDto>> getAllAdmins() {
         List<Admin> admins = adminService.getAllAdmins();
-        return new ResponseEntity<>(admins, HttpStatus.OK);
+        List<AdminResponseDto> adminResponseDtos = admins.stream()
+                .map(userMapper::toAdminResponseDto)
+                .toList();
+        return new ResponseEntity<>(adminResponseDtos, HttpStatus.OK);
     }
 
     /**
      * Retrieve an admin by ID.
      *
-     * @param id The ID of the admin to retrieve.
      * @return The admin with the specified ID.
      */
-    @GetMapping("/details/{id}")
-    public ResponseEntity<Admin> getAdminById(@PathVariable Long id) {
-        Admin admin = adminService.getAdminById(id);
-        return admin != null ? new ResponseEntity<>(admin, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/details")
+    public ResponseEntity<AdminResponseDto> getAdminById(@AuthenticationPrincipal Admin currentAdmin) {
+        Admin admin = adminService.getAdminById(currentAdmin.getId());
+        AdminResponseDto adminResponseDto = userMapper.toAdminResponseDto(admin);
+        return admin != null ? new ResponseEntity<>(adminResponseDto, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
      * Update an existing admin.
      *
-     * @param id The ID of the admin to update.
-     * @param admin The admin with updated information.
+     * @param adminDTO  The admin with updated information.
      * @return The updated admin.
      */
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @RequestBody Admin admin) {
-        admin.setId(id);
-        Admin updatedAdmin = adminService.updateAdmin(admin);
-        return new ResponseEntity<>(updatedAdmin, HttpStatus.OK);
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping(value = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<AdminResponseDto> updateAdmin(@RequestPart("admin") AdminRequestDto adminDTO,
+                                                        @RequestPart(value = "userPhoto", required = false) MultipartFile userPhoto,
+                                                        @AuthenticationPrincipal Admin admin) {
+        Admin updatedAdmin = adminService.updateAdmin(adminDTO, admin, userPhoto);
+        AdminResponseDto adminResponseDto = userMapper.toAdminResponseDto(updatedAdmin);
+        return new ResponseEntity<>(adminResponseDto, HttpStatus.OK);
     }
 
     /**
@@ -61,6 +81,7 @@ public class AdminController {
      *
      * @param id The ID of the admin to delete.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteAdmin(@PathVariable Long id) {
         adminService.deleteAdmin(id);

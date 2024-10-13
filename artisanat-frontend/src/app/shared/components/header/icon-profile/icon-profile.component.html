@@ -1,0 +1,48 @@
+<button *ngIf="isLogin()" (click)="display()"  class="btn-sidebar">
+  <img
+    [src]="userDetails?.userPhoto?.mediaUrl || 'https://icons.veryicon.com/png/o/system/crm-android-app-icon/app-icon-person.png'"
+    [alt]="userDetails?.fullName || 'Artisan'"
+    class="artisan-image"
+  />
+</button>
+<button *ngIf="!isLogin()" (click)="display()"  class="btn-sidebar">
+  <i class="material-icons">person</i>
+</button>
+<div *ngIf="isNightModeActive" class="user-profile-container mt-2">
+  <section *ngIf="isLogin()">
+    <div class="user-info" (click)="editProfile()">
+      <img
+        [src]="userDetails?.userPhoto?.mediaUrl || 'https://icons.veryicon.com/png/o/system/crm-android-app-icon/app-icon-person.png'"
+        [alt]="userDetails?.fullName || 'Artisan'"
+        class="w-25 user-image"
+      />
+      <div class="user-details">
+        <div class="user-name">{{ userDetails?.fullName }}</div>
+        <div class="user-email">{{ userDetails?.email }}</div>
+      </div>
+    </div>
+    <p-divider/>
+    <div class="menu-section">
+      <div class="menu-item mx-3" (click)="logout()">
+        <mat-icon class="material-icons-outlined menu-icon">logout</mat-icon>
+        <div class="menu-text">Log out</div>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="!isLogin()">
+    <div class="menu-section">
+      <div class="menu-item mx-3 mt-2" (click)="login()">
+        <mat-icon class="material-icons-outlined menu-icon">login</mat-icon>
+        <div class="menu-text">Log In</div>
+      </div>
+    </div>
+    <p-divider/>
+    <div class="menu-section">
+      <div class="menu-item mx-3" (click)="register()">
+        <mat-icon class="material-icons-outlined menu-icon">person_add</mat-icon>
+        <div class="menu-text">Register</div>
+      </div>
+    </div>
+  </section>
+
+</div>

@@ -1,7 +1,7 @@
 <div class="dashboard">
-  <app-sidebar [menuItems]="menuItems"></app-sidebar>
+  <app-sidebar (menuSelection)="onMenuSelection($event)"></app-sidebar>
   <main class="main-content">
-    <app-header-dashboard (createNewProduct)="createNewProduct()" (logout)="logout()"></app-header-dashboard>
-    <app-product-form></app-product-form>
+    <app-header-dashboard  [pageTitle]="pageTitle"></app-header-dashboard>
+    <router-outlet></router-outlet>
   </main>
 </div>

@@ -3,6 +3,7 @@
   padding: 2px 80px 2px 40px;
   color: #fff;
   align-items: center;
+  width: 100vw;
 }
 
 .logo {
@@ -146,3 +147,7 @@ p-tieredMenu .ui-menuitem {
     font-size: 15px;
   }
 }
+
+
+/* ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; */
+

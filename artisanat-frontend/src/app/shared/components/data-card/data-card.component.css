@@ -21,6 +21,7 @@
 .yellow-bg { background-color: rgba(254, 249, 238, 1); }
 .red-bg { background-color: rgba(253, 243, 241, 1); }
 .blue-bg { background-color: rgba(242, 251, 252, 1); }
+.green-bg { background-color: rgb(233, 250, 247); }
 
 .card-label {
   font-size: 16px;

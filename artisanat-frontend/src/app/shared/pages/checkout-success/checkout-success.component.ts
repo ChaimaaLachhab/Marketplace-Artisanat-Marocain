@@ -1,27 +1,38 @@
-import { Component } from '@angular/core';
-import {NgForOf} from "@angular/common";
-import {FooterComponent} from "../../components/footer/footer.component";
+import {Component, OnInit} from '@angular/core';
+import {DatePipe, NgForOf} from "@angular/common";
+import {Router} from "@angular/router";
+import {OrderResponseDto} from "../../../core/dtos/response/order-response-dto";
 import {HeaderComponent} from "../../components/header/header.component";
+import {FooterComponent} from "../../components/footer/footer.component";
+import {OrderService} from "../../../core/services/order.service";
 
 @Component({
   selector: 'app-chackout-success',
   standalone: true,
   imports: [
     NgForOf,
+    HeaderComponent,
     FooterComponent,
-    HeaderComponent
+    DatePipe,
   ],
   templateUrl: './checkout-success.component.html',
   styleUrl: './checkout-success.component.css'
 })
-export class CheckoutSuccessComponent {
-  orderDate: string = '27/04/2022';
-  customerName: string = 'John Miller';
-  customerAddress: string = '57 West 45th Street, New York, USA, 10036';
-  orderNumber: string = '586789963';
-  totalAmount: string = '$1058.72';
-  orderItems: Array<{name: string, code: string, quantity: number, price: string}> = [
-    { name: 'Luxury Charms Ring', code: '78205', quantity: 1, price: '$620.73' },
-    { name: 'Exquisite Earrings', code: '92701', quantity: 1, price: '$125.28' }
-  ];
+export class CheckoutSuccessComponent implements OnInit{
+  orderResponse!: OrderResponseDto;
+
+  constructor(
+    private router: Router,
+    private orderStateService: OrderService
+  ) {}
+
+  ngOnInit(): void {
+    this.orderResponse = this.orderStateService.getOrderResponse();
+    if (this.orderResponse) {
+      console.log('Received order response:', this.orderResponse);
+    } else {
+      console.warn('Order response not found, redirecting to error page.');
+      this.router.navigate(['/error-page']);
+    }
+  }
 }

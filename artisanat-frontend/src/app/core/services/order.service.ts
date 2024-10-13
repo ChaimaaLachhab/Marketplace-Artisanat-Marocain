@@ -1,78 +1,62 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { Order } from '../models/order.model';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import { Observable } from 'rxjs';
 import {environment} from "../../../environments/environment";
+import {OrderResponseDto} from "../dtos/response/order-response-dto";
+import {Status} from "../enums/status.enum";
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-
+  private orderResponse!: OrderResponseDto;
   private apiUrl = `${environment.apiUrl}/orders`;
 
   constructor(private http: HttpClient) { }
 
-  getAllOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.apiUrl).pipe(
-      catchError(this.handleError)
-    );
+
+  setOrderResponse(orderResponse: OrderResponseDto): void {
+    this.orderResponse = orderResponse;
   }
 
-  getOrderById(id: number): Observable<Order> {
-    return this.http.get<Order>(`${this.apiUrl}/${id}`).pipe(
-      catchError(this.handleError)
-    );
+  getOrderResponse(): OrderResponseDto {
+    return this.orderResponse;
   }
 
-  getOrdersByCustomer(): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.apiUrl}/customer`).pipe(
-      catchError(this.handleError)
-    );
+  clearOrderResponse(): void {
+    this.orderResponse = {} as OrderResponseDto;
   }
 
-  getOrdersByStatus(status: string): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.apiUrl}/status/${status}`).pipe(
-      catchError(this.handleError)
-    );
+  getAllOrders(): Observable<OrderResponseDto[]> {
+    return this.http.get<OrderResponseDto[]>(this.apiUrl);
   }
 
-  createOrderForSingleProduct(order: Order): Observable<Order> {
-    return this.http.post<Order>(`${this.apiUrl}/single`, order).pipe(
-      catchError(this.handleError)
-    );
+  getOrderById(id: number): Observable<OrderResponseDto> {
+    return this.http.get<OrderResponseDto>(`${this.apiUrl}/${id}`);
   }
 
-  createOrder(order: Order): Observable<Order> {
-    return this.http.post<Order>(`${this.apiUrl}/bulk`, order).pipe(
-      catchError(this.handleError)
-    );
+  getOrdersByCustomer(): Observable<OrderResponseDto[]> {
+    return this.http.get<OrderResponseDto[]>(`${this.apiUrl}/customer`);
   }
 
-  applyDiscountAndFinalizeOrder(orderId: number, loyaltyPoints: number): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/apply-discount/${orderId}`, {}, {
-      params: { loyaltyPoints: loyaltyPoints.toString() }
-    }).pipe(
-      catchError(this.handleError)
-    );
+  getOrdersByStatus(status: Status): Observable<OrderResponseDto[]> {
+    return this.http.get<OrderResponseDto[]>(`${this.apiUrl}/status/${status}`);
   }
 
-  deleteOrder(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
-      catchError(this.handleError)
-    );
+  createOrder(location: string, point?: number): Observable<OrderResponseDto> {
+    const params = new HttpParams()
+      .set('point', point ? point.toString() : '')
+      .set('location', location);
+
+    return this.http.post<OrderResponseDto>(`${this.apiUrl}/create`, null, { params });
   }
 
-  private handleError(error: HttpErrorResponse): Observable<never> {
-    let errorMessage = 'Une erreur inconnue est survenue!';
-    if (error.error instanceof ErrorEvent) {
-      // Erreur côté client
-      errorMessage = `Erreur côté client : ${error.error.message}`;
-    } else {
-      // Erreur côté serveur
-      errorMessage = `Erreur côté serveur : ${error.status} - ${error.message}`;
-    }
-    return throwError(errorMessage);
+
+  updateOrderStatus(orderId: number, status: Status): Observable<OrderResponseDto> {
+    const params = new HttpParams()
+      .set('orderId', orderId.toString())
+      .set('status', status);
+
+    return this.http.post<OrderResponseDto>(`${this.apiUrl}/update`, null, { params });
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-hero-artisan',
@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './hero-artisan.component.css'
 })
 export class HeroArtisanComponent {
+  @Input() artisanId!: number;
   artisan = {
     name: 'Ahmed El Moukhtar',
     specialty: 'Handcrafted Silver Jewelry',

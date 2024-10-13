@@ -1,6 +1,8 @@
 <app-header></app-header>
-<main class="product-details">
-  <app-product-detail></app-product-detail>
-  <app-product-review></app-product-review>
-</main>
+<div class="product-details">
+  <app-product-info [productId]="productId" class="px-5"></app-product-info>
+  <app-product-review [productId]="productId" class="px-5 mx-lg-5"></app-product-review>
+  <app-related-products [productId]="productId"></app-related-products>
+  <app-features class="px-5"></app-features>
+</div>
 <app-footer></app-footer>

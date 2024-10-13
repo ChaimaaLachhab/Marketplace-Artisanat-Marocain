@@ -1,0 +1,25 @@
+<section class="rated-products">
+
+  <div class="section-header">
+    <h2 class="section-title">Featured Products</h2>
+    <p class="section-description">Quis Lorem laborum quis esse officia ad commodo commodo anim est et nulla</p>
+    <a routerLink="/shop" class="btn-secondary" >Shop now</a>
+  </div>
+
+  <div class="carousel-container">
+    <article *ngFor="let product of products" class="product-card mb-2" (click)="navigateToProductDetails(product.id)">
+      <img [src]="product.media[0].mediaUrl" [alt]="product.name" class="product-image">
+      <div class="product-info">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-price">${{ product.price.toFixed(2) }}</p>
+        <div class="product-rating">
+          <p-rating [(ngModel)]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+          <button class="add-to-cart" aria-label="Add to cart" (click)="$event.stopPropagation()">
+            <mat-icon class="material-icons-outlined">shopping_cart</mat-icon>
+          </button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+</section>

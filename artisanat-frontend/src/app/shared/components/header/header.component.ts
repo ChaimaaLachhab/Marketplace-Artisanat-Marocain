@@ -3,6 +3,11 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 import {SidebarModule} from "primeng/sidebar";
 import {Button} from "primeng/button";
 import {TieredMenuModule} from "primeng/tieredmenu";
+import {MatIcon} from "@angular/material/icon";
+import {NgIf} from "@angular/common";
+import {DividerModule} from "primeng/divider";
+import {SummaryComponent} from "../../../features/cart/summary/summary.component";
+import {IconProfileComponent} from "./icon-profile/icon-profile.component";
 
 @Component({
   selector: 'app-header',
@@ -12,22 +17,16 @@ import {TieredMenuModule} from "primeng/tieredmenu";
     RouterLinkActive,
     SidebarModule,
     Button,
-    TieredMenuModule
+    TieredMenuModule,
+    MatIcon,
+    NgIf,
+    DividerModule,
+    SummaryComponent,
+    IconProfileComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements  OnInit{
-  sidebarVisible: boolean = false;
-  menuItems: any[] | undefined;
+export class HeaderComponent {
 
-  ngOnInit() {
-    this.menuItems = [
-      {label: 'Profile', icon: 'pi pi-user', routerLink: '/profile'},
-      {label: 'Logout', icon: 'pi pi-sign-out', command: () => this.logout()}
-    ];
-  }
-  logout() {
-
-  }
 }

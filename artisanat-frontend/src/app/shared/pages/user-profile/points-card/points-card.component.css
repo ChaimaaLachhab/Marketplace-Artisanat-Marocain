@@ -23,7 +23,7 @@
 }
 .points-description {
   color: #323743;
-  font: 700 18px/28px Manrope, sans-serif;
+  font: 500 18px/28px Manrope, sans-serif;
   margin: 0;
   flex: 1;
 }
@@ -33,11 +33,11 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 20px;
+  padding: 15px;
 }
 .points-value {
   color: #fff;
-  font: 400 32px Manrope, sans-serif;
+  font: 400 26px Manrope, sans-serif;
 }
 .points-icon {
   width: 32px;

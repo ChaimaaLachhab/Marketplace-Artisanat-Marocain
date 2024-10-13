@@ -1,6 +1,16 @@
 package com.artisanat_backend.controller;
 
 import com.artisanat_backend.dto.*;
+import com.artisanat_backend.dto.request.AdminRequestDto;
+import com.artisanat_backend.dto.request.ArtisanRequestDto;
+import com.artisanat_backend.dto.request.CustomerRequestDto;
+import com.artisanat_backend.dto.response.AdminResponseDto;
+import com.artisanat_backend.dto.response.ArtisanResponseDto;
+import com.artisanat_backend.dto.response.CustomerResponseDto;
+import com.artisanat_backend.mapper.UserMapper;
+import com.artisanat_backend.model.Admin;
+import com.artisanat_backend.model.Artisan;
+import com.artisanat_backend.model.Customer;
 import com.artisanat_backend.model.User;
 import com.artisanat_backend.enums.Role;
 import com.artisanat_backend.exception.UserNotFoundException;
@@ -18,31 +28,36 @@ public class AuthenticationController {
 
     private final JwtService jwtService;
     private final AuthenticationService authenticationService;
+    private final UserMapper userMapper;
 
     @Autowired
-    public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService) {
+    public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService, UserMapper userMapper) {
         this.jwtService = jwtService;
         this.authenticationService = authenticationService;
+        this.userMapper = userMapper;
     }
+
 
     @PostMapping("/signup")
-    public ResponseEntity<User> register(@RequestBody CustomerDTO customerDTO) {
+    public ResponseEntity<CustomerResponseDto> register(@RequestBody CustomerRequestDto customerDTO) {
         User registeredUser = authenticationService.signup(customerDTO);
-        return ResponseEntity.ok(registeredUser);
+        CustomerResponseDto responseDto = userMapper.toCustomerResponseDto((Customer) registeredUser); // Assuming registeredUser is of type Customer
+        return ResponseEntity.ok(responseDto);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add-artisan")
-    public ResponseEntity<User> addArtisan(@RequestBody ArtisanDTO artisanDTO) {
-        User newTechnician = authenticationService.addArtisan(artisanDTO);
-        return ResponseEntity.ok(newTechnician);
+    public ResponseEntity<ArtisanResponseDto> addArtisan(@RequestBody ArtisanRequestDto artisanDTO) {
+        User newArtisan = authenticationService.addArtisan(artisanDTO);
+        ArtisanResponseDto responseDto = userMapper.toArtisanResponseDto((Artisan) newArtisan); // Assuming newArtisan is of type Artisan
+        return ResponseEntity.ok(responseDto);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add-admin")
-    public ResponseEntity<User> addAdmin(@RequestBody AdminDTO adminDTO) {
+    public ResponseEntity<AdminResponseDto> addAdmin(@RequestBody AdminRequestDto adminDTO) {
         User newAdmin = authenticationService.addAdmin(adminDTO);
-        return ResponseEntity.ok(newAdmin);
+        AdminResponseDto responseDto = userMapper.toAdminResponseDto((Admin) newAdmin); // Assuming newAdmin is of type Admin
+        return ResponseEntity.ok(responseDto);
     }
 
     @PostMapping("/login")
@@ -50,10 +65,8 @@ public class AuthenticationController {
         try {
             User authenticatedUser = authenticationService.authenticate(loginUserDto);
             Role role = authenticatedUser.getRole();
-            Long currentUserId = authenticatedUser.getId();
 
-            String jwtToken = jwtService.generateToken(authenticatedUser, currentUserId, role);
-
+            String jwtToken = jwtService.generateToken(authenticatedUser, role);
             LoginResponse loginResponse = new LoginResponse();
             loginResponse.setToken(jwtToken);
             loginResponse.setExpiresIn(jwtService.getExpirationTime());

@@ -1,30 +1,31 @@
 package com.artisanat_backend.service;
 
-import com.artisanat_backend.model.Customer;
-import com.artisanat_backend.model.Order;
-import com.artisanat_backend.model.Product;
+import com.artisanat_backend.model.*;
 import com.artisanat_backend.repository.OrderRepository;
 import com.artisanat_backend.enums.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Service
 public class OrderService {
 
-    @Autowired
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
+    private final LoyaltyService loyaltyService;
+    private final CartService cartService;
+    private final SubOrderService subOrderService;
+    private final NotificationService notificationService;
 
     @Autowired
-    private LoyaltyService loyaltyService;
-
-    @Autowired
-    private CartService cartService;
-
-    @Autowired
-    private SubOrderService subOrderService;
+    public OrderService(OrderRepository orderRepository, LoyaltyService loyaltyService, CartService cartService, SubOrderService subOrderService, NotificationService notificationService) {
+        this.orderRepository = orderRepository;
+        this.loyaltyService = loyaltyService;
+        this.cartService = cartService;
+        this.subOrderService = subOrderService;
+        this.notificationService = notificationService;
+    }
 
     /**
      * Récupère toutes les commandes.
@@ -62,51 +63,56 @@ public class OrderService {
     }
 
     /**
-     * Crée une commande pour un produit unique.
-     * @param customer Client qui passe la commande.
-     * @param order Commande contenant un produit unique.
-     * @return La commande créée.
-     */
-    public Order createOrderForSingleProduct(Customer customer, Order order) {
-        // Sauvegarder la commande principale
-        Order mainOrder = orderRepository.save(order);
-
-        // Calculer et ajouter les points de fidélité
-        int earnedPoints = loyaltyService.calculatePoints(order);
-        loyaltyService.addPointsToCustomerLoyalty(customer, earnedPoints);
-
-        // Créer la sous-commande pour le produit unique
-        subOrderService.createSubOrderForSingleProduct(mainOrder);
-        return mainOrder;
-    }
-
-    /**
      * Crée une commande avec plusieurs produits.
      * @param customer Client qui passe la commande.
-     * @param mainOrder Commande contenant plusieurs produits.
      * @return La commande créée.
      */
-    public Order createOrder(Customer customer, Order mainOrder) {
-        // Calculer le total basé sur les produits de la commande
-        double totalOrderValue = mainOrder.getProducts().stream()
-                .mapToDouble(Product::getPrice)
+    public Order processOrder(Customer customer, String location, int usedPoints) {
+        List<CartItem> cartItems = cartService.getCartItems(customer);
+
+        Order order = new Order();
+        order.setCustomer(customer);
+        order.setOrderDate(LocalDateTime.now());
+        order.setStatus(Status.PENDING);
+        order.setLocation(location);
+
+        orderRepository.save(order);
+
+        List<SubOrder> subOrders = subOrderService.createSubOrders(order, cartItems);
+
+        double totalAmount = subOrders.stream()
+                .mapToDouble(SubOrder::getSubTotal)
                 .sum();
 
-        mainOrder.setCustomer(customer);
-        mainOrder.setTotalAmount(totalOrderValue);
-
-        // Sauvegarder la commande principale
-        orderRepository.save(mainOrder);
-
-        // Calculer et ajouter les points de fidélité
-        int earnedPoints = loyaltyService.calculatePoints(mainOrder);
+        int earnedPoints = loyaltyService.calculatePoints(totalAmount);
         loyaltyService.addPointsToCustomerLoyalty(customer, earnedPoints);
 
-        // Créer les sous-commandes pour les produits
-        subOrderService.createSubOrders(mainOrder);
+        double discount = 0.0;
+        if (usedPoints > 0) {
+            Loyalty loyalty = customer.getLoyalty();
+            if (loyalty != null && loyalty.getPoints() >= usedPoints) {
+                discount = loyaltyService.calculateDiscount(usedPoints, totalAmount);
+                loyaltyService.updateLoyaltyPoints(customer.getId(), usedPoints);
+            } else {
+                throw new IllegalArgumentException("Not enough loyalty points.");
+            }
+        }
+        double finalAmount = totalAmount - discount;
+        order.setTotalAmount(finalAmount);
+        order.setSubOrders(subOrders);
 
-        return mainOrder;
+        Order finalOrder = orderRepository.save(order);
+
+        for (SubOrder subOrder : subOrders) {
+            Artisan artisan = subOrder.getArtisan();
+            notificationService.notifyArtisan(artisan, subOrder);
+        }
+
+        cartService.clearCart(customer.getId());
+
+        return finalOrder;
     }
+
 
     /**
      * Applique une réduction basée sur les points de fidélité et finalise la commande.
@@ -117,14 +123,11 @@ public class OrderService {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
 
-        // Calculer la réduction basée sur les points
         double discount = loyaltyService.calculateDiscount(loyaltyPoints, order.getTotalAmount());
         order.setTotalAmount(order.getTotalAmount() - discount);
 
-        // Sauvegarder la commande avec la réduction appliquée
         orderRepository.save(order);
 
-        // Mettre à jour les points de fidélité du client
         loyaltyService.updateLoyaltyPoints(order.getCustomer().getId(), loyaltyPoints);
     }
 
@@ -134,5 +137,16 @@ public class OrderService {
      */
     public void deleteOrder(Long id) {
         orderRepository.deleteById(id);
+    }
+
+    /**
+     * Supprime une commande par son ID.
+     * @param orderId ID de la commande.
+     */
+    public Order updateOrderStatus(Long orderId, Status status) {
+        Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+        order.setStatus(status);
+        orderRepository.save(order);
+        return order;
     }
 }

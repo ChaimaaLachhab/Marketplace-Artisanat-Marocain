@@ -34,9 +34,25 @@ export class JwtService {
 
   removeToken(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('userRole');
   }
 
   getToken(): string | null {
     return localStorage.getItem('token');
+  }
+
+  isAdmin(): boolean {
+    const role = this.getUserRoleFromStorage();
+    return role === 'ADMIN';
+  }
+
+  isCustomer(): boolean {
+    const role = this.getUserRoleFromStorage();
+    return role === 'CUSTOMER';
+  }
+
+  isArtisan(): boolean {
+    const role = this.getUserRoleFromStorage();
+    return role === 'ARTISAN';
   }
 }

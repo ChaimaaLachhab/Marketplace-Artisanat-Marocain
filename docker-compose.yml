@@ -11,17 +11,17 @@ services:
     networks:
       - artisanat-network
 
-  angular-app:
-    build: ./artisanat-frontend
-    container_name: angular-app
-    ports:
-      - "4200:4200"
-    volumes:
-      - ./artisanat-frontend:/angular-app
-    environment:
-      - STYLE=css
-    networks:
-      - artisanat-network
+#  angular-app:
+#    build: ./artisanat-frontend
+#    container_name: angular-app
+#    ports:
+#      - "4200:4200"
+#    volumes:
+#      - ./artisanat-frontend:/angular-app
+#    environment:
+#      - STYLE=css
+#    networks:
+#      - artisanat-network
 
   mysqldb:
     image: "mysql:latest"

@@ -14,6 +14,7 @@ import {LoginResponse} from "../../../core/dtos/login-response.dto";
 import {Location} from "@angular/common";
 import {FloatLabelModule} from "primeng/floatlabel";
 import {InputTextModule} from "primeng/inputtext";
+import {PasswordModule} from "primeng/password";
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,8 @@ import {InputTextModule} from "primeng/inputtext";
     MatAnchor,
     MatButton,
     FloatLabelModule,
-    InputTextModule
+    InputTextModule,
+    PasswordModule
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
@@ -105,13 +107,17 @@ export class LoginComponent {
   private redirectUserByRole(role: string | null) {
     switch (role) {
       case Role.ADMIN.toString():
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/dashboard']);
         break;
       case Role.ARTISAN.toString():
-        this.router.navigate(['/artisan']);
+        this.router.navigate(['/dashboard']);
         break;
       case Role.CUSTOMER.toString():
-        this.location.back();
+        if (this.location.path() === '/auth/register') {
+          this.router.navigate(['/home']);
+        } else {
+          this.location.back();
+        }
         break;
       default:
         console.error('Unknown role:', role);

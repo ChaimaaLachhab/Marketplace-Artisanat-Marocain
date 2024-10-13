@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-product-review',
+  selector: 'app-pro-review',
   standalone: true,
   imports: [],
   templateUrl: './list.component.html',

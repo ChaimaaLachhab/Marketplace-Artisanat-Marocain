@@ -1,0 +1,41 @@
+<div class="order-status">
+  <header class="status-header">
+    <h2 class="status-title">Order status</h2>
+    <button class="dropdown-btn">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0698e3ca110a1f27a4e40d087ff925fd3c76d5e905a75fb5336b9c3e8bb96498?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" class="dropdown-icon" />
+      Monthly
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c9324ac780a15e50c2559e0a9ec4bf529c722de5c9cd690592e6c385756e3a48?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" class="dropdown-icon" />
+    </button>
+  </header>
+  <hr class="divider" />
+  <ul class="order-list">
+    <li class="d-flex flex-column gap-3 pb-2 pb-4 mb-4 text-danger border-bottom border-dark-subtle" *ngFor="let order of orders">
+      <div class="d-flex">
+        <img [src]="order.productImage" [alt]="'Product image for order ' + order.id" class="product-image" />
+        <div class="order-details">
+          <div class="order-id"># {{ order.id }}</div>
+          <div class="order-price">${{ order.price }}</div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="customer-info">
+          <div class="customer-name">{{ order.customerName }}</div>
+          <div class="customer-email">{{ order.customerEmail }}</div>
+        </div>
+        <div class="d-flex flex-lg-row flex-md-column flex-sm-column gap-lg-3 gap-md-2 gap-sm-1">
+          <span class="order-date p-2">{{ order.date }}</span>
+          <span class="order-status p-2" [ngClass]="order.status.toLowerCase()">{{ order.status }}</span>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <nav class="pagination" aria-label="Order list navigation">
+    <button class="page-btn" aria-label="Previous page"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d96b1cba2f6209666b33be8e42372c69fd90d0a5baa5b6035211a7106935cbdd?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" /></button>
+    <button class="page-btn active">1</button>
+    <button class="page-btn">2</button>
+    <button class="page-btn">3</button>
+    <button class="page-btn" aria-label="Next page"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/91e0a53d41e4c69662ea51bc6631652d866b122a91e4bf062b20c0fe76c96f58?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" /></button>
+    <button class="page-btn">10</button>
+    <button class="page-btn" aria-label="Last page"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d29145dbbde7d390605a0b6176f19d641bfd3231ee6b7450662610657dac8627?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" /></button>
+  </nav>
+</div>

@@ -7,7 +7,7 @@
 
 .page-title {
   color: #171a1f;
-  font: 32px Cormorant, sans-serif;
+  font: 600 28px Manrope, sans-serif;
   margin: 0;
 }
 
@@ -16,31 +16,61 @@
   gap: 10px;
 }
 
+.material-icons-outlined {
+  font-size: 24px;
+}
+
 .btn {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 7px 12px;
-  border-radius: 3px;
+  border-radius: 20px;
   font: 14px/2 Manrope, sans-serif;
   cursor: pointer;
 }
 
-.btn-secondary {
+.btn-add {
   background-color: #f3f4f6;
   border: #565d6d;
   color: #565d6d;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
-.btn-warning {
+.btn-add:hover {
+  background-color: #e0e1e3;
+  border-color: #454a59;
+  color: #454a59;
+}
+
+.btn-add:active {
+  background-color: #c9cacc;
+  border-color: #2f343e;
+  color: #2f343e;
+}
+
+.btn-logout {
   background-color: #0d554a;
-  border: #0d554a;
+  border: 1px solid #0d554a;
   color: #fff;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
-.btn-icon {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
+.btn-logout:hover {
+  color: #0d554a;
+  background-color: #fff;
+  border-color: #0d554a;
 }
 
+.btn-logout:active {
+  color: #fff;
+  background-color: #0d554a;
+  border-color: #0d554a;
+}
+
+
+@media (max-width: 768px) {
+  .btn-logout {
+    display: none
+  }
+}

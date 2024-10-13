@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import {NgForOf} from "@angular/common";
+import {DividerModule} from "primeng/divider";
 
 @Component({
   selector: 'app-orders-table',
   standalone: true,
-  imports: [
-    NgForOf
-  ],
+    imports: [
+        NgForOf,
+        DividerModule
+    ],
   templateUrl: './orders-table.component.html',
   styleUrl: './orders-table.component.css'
 })

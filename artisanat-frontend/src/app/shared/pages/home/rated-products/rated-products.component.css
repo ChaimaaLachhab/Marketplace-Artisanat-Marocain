@@ -1,0 +1,135 @@
+.rated-products {
+  padding: 49px 0 11px 43px;
+  background-color: #fff;
+  display: flex;
+  gap: 20px;
+}
+
+.section-header {
+  min-width: 20%;
+  text-align: start;
+  z-index: 1;
+  top: 0;
+  background-color: #fff;
+}
+
+.section-title {
+  color: #0d554a;
+  font: 600 40px/56px Cormorant, sans-serif;
+  margin-bottom: 12px;
+}
+
+.section-description {
+  color: #9095a1;
+  font: 400 16px/26px Manrope, sans-serif;
+  margin-bottom: 24px;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid #0d554a;
+  color: #0d554a;
+  padding: 12px 30px;
+  border-radius: 26px;
+  text-decoration: none;
+  font: 18px/2 Manrope, sans-serif;
+}
+
+.btn-secondary:hover {
+  background-color: #0d554a;
+  color: #ffffff;
+  padding: 12px 30px;
+  border-radius: 26px;
+  text-decoration: none;
+  font: 18px/2 Manrope, sans-serif;
+}
+
+.carousel-container {
+  white-space: nowrap;
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(23, 26, 31, 0.12);
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image {
+  border-radius: 8px;
+  width: 100%;
+  max-width: 186px;
+  height: 70%;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 12px;
+}
+.product-name {
+  font: 700 18px 'Cormorant Garamond', serif;
+  margin: 0 0 4px;
+}
+.product-price {
+  font: 500 14px/2 Manrope, sans-serif;
+  margin: 0 0 4px;
+}
+.product-rating {
+  display: flex;
+  gap: 3%;
+  justify-content: space-between;
+  align-items: center;
+}
+.add-to-cart {
+  background: #0d554a;
+  color: #ffffff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-to-cart:hover {
+  background: #ffffff;
+  color: #0d554a;
+  border: 1px solid #0d554a;
+}
+
+.material-icons-outlined {
+  font-size: medium;
+  margin: 8px auto 0;
+}
+
+@media (max-width: 991px) {
+
+  .rated-products {
+    padding: 40px 0 40px 20px ;
+    flex-direction: column;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

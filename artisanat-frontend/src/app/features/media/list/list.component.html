@@ -1,1 +1,53 @@
 <p>list works!</p>
+<main class="product-container">
+  <h1 class="product-title">Add Product</h1>
+  <div class="product-form-wrapper">
+    <section class="product-details">
+      <form class="product-form">
+        <div class="form-group">
+          <label for="productName" class="visually-hidden">Name</label>
+          <input type="text" id="productName" class="form-input" placeholder="Name" aria-label="Product Name">
+        </div>
+        <div class="form-group">
+          <label for="productPrice" class="visually-hidden">Price</label>
+          <input type="text" id="productPrice" class="form-input" placeholder="Price" value="$35" aria-label="Product Price">
+        </div>
+        <div class="form-group">
+          <label for="productStock" class="visually-hidden">Stock</label>
+          <input type="number" id="productStock" class="form-input" placeholder="Stock" value="100" aria-label="Product Stock">
+        </div>
+        <div class="form-group">
+          <label for="productCollection" class="visually-hidden">Collection</label>
+          <select id="productCollection" class="form-select" aria-label="Product Collection">
+            <option value="HOME_DECOR">HOME_DECOR</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="productCategory" class="visually-hidden">Category</label>
+          <select id="productCategory" class="form-select" aria-label="Product Category">
+            <option value="WALL_ART">WALL_ART</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="productDescription" class="visually-hidden">Description</label>
+          <textarea id="productDescription" class="form-textarea" placeholder="Input text" aria-label="Product Description"></textarea>
+        </div>
+      </form>
+    </section>
+    <section class="file-upload">
+      <h2 class="upload-title">Upload files</h2>
+      <div class="upload-area" tabindex="0" role="button" aria-label="Upload files">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d5bf26075b1f6435deae7b0807d1be652adbc8b3471b45fa1d15e6061dafe18f?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="" class="upload-icon">
+        <p class="upload-text">Drop files here</p>
+        <p class="upload-format">Supported format: PNG, JPG</p>
+        <p class="upload-or">OR</p>
+        <button class="browse-button">Browse files</button>
+      </div>
+      <div class="upload-actions">
+        <button class="cancel-button">Cancel</button>
+        <button class="upload-button">Upload</button>
+      </div>
+    </section>
+  </div>
+  <button class="save-button">Save</button>
+</main>

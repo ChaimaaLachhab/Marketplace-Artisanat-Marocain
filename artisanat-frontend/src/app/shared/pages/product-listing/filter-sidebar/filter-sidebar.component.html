@@ -1,0 +1,89 @@
+<div class="filter-sidebar">
+  <div class="filter-title">
+    <mat-icon class="material-icons-outlined">filter_list</mat-icon>
+    <div class="filters">FILTERS</div>
+  </div>
+  <p-divider/>
+
+  <div class="accordion-section">
+    <div class="accordion-header d-flex justify-content-between align-items-center cursor-pointer" (click)="toggleSection('collection')">
+      <div class="collection">Collection</div>
+      <mat-icon class="icon-5">
+        {{ expandedSection === 'collection' ? 'expand_less' : 'expand_more' }}
+      </mat-icon>
+    </div>
+    <div class="accordion-content" *ngIf="expandedSection === 'collection'">
+      <div class="d-flex flex-column gap-3 mt-3">
+        <label *ngFor="let col of collectionOptions" class="d-flex gap-2 align-self-start ml-3">
+          <input type="checkbox" [name]="col" [(ngModel)]="filters.collections[col]">
+          {{ col | titlecase }}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <p-divider/>
+
+  <div class="accordion-section">
+    <div class="accordion-header" (click)="toggleSection('category')">
+      <div class="category">Category</div>
+      <mat-icon class="icon-5">
+        {{ expandedSection === 'category' ? 'expand_less' : 'expand_more' }}
+      </mat-icon>
+    </div>
+    <div class="accordion-content" *ngIf="expandedSection === 'category'">
+      <div class="d-flex flex-column gap-3 mt-3">
+        <label *ngFor="let cat of categoryOptions" class="d-flex gap-2 align-self-start ml-3">
+          <input type="checkbox" [name]="cat" [(ngModel)]="filters.categories[cat]">
+          {{ cat | titlecase }}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <p-divider/>
+
+  <div class="accordion-section">
+    <div class="accordion-header" (click)="toggleSection('priceRange')">
+      <div class="price-range">Price range</div>
+      <mat-icon class="icon-5">
+        {{ expandedSection === 'priceRange' ? 'expand_less' : 'expand_more' }}
+      </mat-icon>
+    </div>
+    <div class="accordion-content" *ngIf="expandedSection === 'priceRange'">
+      <div class="d-flex - flex-lg-row flex-md-column flex-sm-column gap-3 mt-3">
+        <input type="number" name="minPrice" [(ngModel)]="filters.minPrice" placeholder="Min" aria-label="Minimum price">
+        <input type="number" name="maxPrice" [(ngModel)]="filters.maxPrice" placeholder="Max" aria-label="Maximum price">
+      </div>
+    </div>
+  </div>
+
+  <p-divider/>
+
+  <div class="accordion-section">
+    <div class="accordion-header" (click)="toggleSection('rating')">
+      <div class="rating">Rating</div>
+      <mat-icon class="icon-5">
+        {{ expandedSection === 'rating' ? 'expand_less' : 'expand_more' }}
+      </mat-icon>
+    </div>
+    <div class="accordion-content" *ngIf="expandedSection === 'rating'">
+      <div class="d-flex flex-column gap-3 mt-3 ml-3">
+        <div *ngFor="let rating of [5, 4, 3, 2, 1]" class="field-checkbox d-flex gap-3">
+          <p-radioButton
+            name="rating"
+            [value]="rating"
+            [(ngModel)]="filters.rating" />
+          <p-rating [ngModel]="rating" [readonly]="true" [cancel]="false" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p-divider/>
+  <div class="d-flex flex-lg-row flex-md-column flex-sm-column gap-3">
+    <div class="apply-button" (click)="onSubmit()">Apply</div>
+    <div class="clear-button" (click)="clearFilters()">Clear All</div>
+  </div>
+
+</div>

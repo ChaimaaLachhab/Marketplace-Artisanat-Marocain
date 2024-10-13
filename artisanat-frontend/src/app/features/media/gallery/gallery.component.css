@@ -1,0 +1,168 @@
+.file-upload {
+  width: 100%;
+}
+
+.upload-title {
+  color: #171a1f;
+  font: 24px 'Cormorant Garamond', -apple-system, Roboto, Helvetica, sans-serif;
+  margin-bottom: 16px;
+}
+
+.upload-area {
+  border-radius: 6px;
+  background-color: #fafafb;
+  border: 2px dashed #bcc1ca;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.upload-icon {
+  width: 80px;
+  height: 80px;
+}
+
+.upload-text {
+  color: #171a1f;
+  font: 24px 'Cormorant Garamond', -apple-system, Roboto, Helvetica, sans-serif;
+  margin-top: 6px;
+}
+
+.upload-format,
+.upload-or {
+  color: #6e7787;
+  font-size: 16px;
+  line-height: 2;
+}
+
+.browse-button {
+  border-radius: 4px;
+  background-color: #fafafb;
+  color: #0d554a;
+  padding: 9px 16px;
+  border: 1px solid transparent;
+  margin-top: 6px;
+  cursor: pointer;
+}
+
+.upload-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.cancel-button {
+  border-radius: 4px;
+  padding: 5px 16px;
+  font-size: 14px;
+  line-height: 2;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: transparent;
+  color: #909590;
+  border: 1px solid #909590;
+}
+
+@media (max-width: 991px) {
+  .file-upload {
+    width: 100%;
+  }
+
+  .product-form {
+    max-width: 100%;
+    margin-top: 15px;
+  }
+
+  .upload-area {
+    padding: 50px 20px;
+  }
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.preview-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 150px;
+  text-align: center;
+  background-color: #f9f9f9;
+  padding: 10px;
+}
+
+.preview-image,
+video {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+p {
+  font-size: 14px;
+  color: #333;
+}
+
+.preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.preview-item {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 150px;
+  text-align: center;
+  background-color: #f9f9f9;
+  padding: 10px;
+}
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  padding: 0;
+}
+
+.preview-image,
+video {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+p {
+  font-size: 14px;
+  color: #333;
+}

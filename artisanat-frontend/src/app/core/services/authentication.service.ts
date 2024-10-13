@@ -6,11 +6,12 @@ import { environment } from "../../../environments/environment";
 import { JwtService } from "./jwt.service";
 import { Router } from "@angular/router";
 import { Role } from "../enums/role.enum";
-import {User} from "../models/user.model";
-import {RegisterUserDto} from "../dtos/register-user.dto";
 import {LoginUserDto} from "../dtos/login-user.dto";
 import {LoginResponse} from "../dtos/login-response.dto";
-import {ArtisanDTO} from "../dtos/artisan.dto";  // Import de l'énum RoleEnum
+import {CustomerRequestDto} from "../dtos/request/customer-request-dto";
+import {CustomerResponseDto} from "../dtos/response/customer-response-dto";
+import {ArtisanResponseDto} from "../dtos/response/artisan-response-dto";
+import {ArtisanRequestDto} from "../dtos/request/artisan-request-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -28,12 +29,12 @@ export class AuthenticationService {
     private router: Router
   ) {}
 
-  registerUser( customerDto: RegisterUserDto): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signup`, customerDto);
+  register(customerDTO: CustomerRequestDto): Observable<CustomerResponseDto> {
+    return this.http.post<CustomerResponseDto>(`${this.apiUrl}/signup`, customerDTO);
   }
 
-  addArtisan(artisanDTO: ArtisanDTO): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/add-artisan`, artisanDTO);
+  addArtisan(artisanDTO: ArtisanRequestDto): Observable<ArtisanResponseDto> {
+    return this.http.post<ArtisanResponseDto>(`${this.apiUrl}/add-artisan`, artisanDTO);
   }
 
   authenticate(loginUserDto: LoginUserDto): Observable<LoginResponse> {
@@ -52,7 +53,7 @@ export class AuthenticationService {
   logout(): void {
     this.jwtService.removeToken();
     this.currentUserSubject.next(null);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 
   isLoggedIn(): boolean {

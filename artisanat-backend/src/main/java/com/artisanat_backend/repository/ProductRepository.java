@@ -15,4 +15,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>, Queryds
     List<Product> findTopRatedProducts();
 
     @Query("SELECT p FROM Product p ORDER BY p.createdAt DESC")
-    List<Product> findRecentlyAddedProducts();}
+    List<Product> findRecentlyAddedProducts();
+
+    List<Product> findAllByArtisanId(Long artisan_id);
+}

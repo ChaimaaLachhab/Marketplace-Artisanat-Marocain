@@ -1,5 +1,6 @@
 package com.artisanat_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,19 +18,15 @@ public class SubOrder {
 
     private double subTotal;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "artisan_id")
     private Artisan artisan;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "order_id")
     private Order order;
 
-    @ManyToMany
-    @JoinTable(
-            name = "sub_order_products",
-            joinColumns = @JoinColumn(name = "sub_order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> products;
+    @JsonIgnore
+    @OneToMany(mappedBy = "subOrder", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SubOrderItem> subOrderItems;
 }

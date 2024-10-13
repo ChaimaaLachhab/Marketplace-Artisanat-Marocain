@@ -2,19 +2,24 @@
 <main class="edit-profile">
   <section class="profile-container mb-5">
     <h2 class="section-title">Edit profile</h2>
-    <form class="profile-form">
+    <form [formGroup]="profileForm" class="profile-form">
       <div class="profile-content mb-3">
         <div class="profile-photo-section">
           <h3 class="subsection-title">Profile Photo</h3>
           <div class="avatar-container">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e4d345807707e6cf34cf706659977172dd32936185db8063b2e1ebdec7c97454?placeholderIfAbsent=true&apiKey=4bd7f7a51e424385abb4e97f8d321ab4" alt="User avatar" class="avatar-image" />
+            <img
+              [src]="previewUrl || 'https://icons.veryicon.com/png/o/system/crm-android-app-icon/app-icon-person.png'"
+              [alt]="userDetails?.fullName || 'Customer'"
+              class="avatar-image"
+            />
           </div>
         </div>
         <div class="photo-update-section">
           <h3 class="subsection-title">Update your Photo</h3>
           <p class="photo-instructions">Your Photo should be in PNG or JPG format</p>
           <div class="photo-actions">
-            <button (click)="onChooseImage()" class="btn btn-outline">Choose Image</button>
+            <button (click)="triggerFileInput()" class="btn btn-outline">Choose Image</button>
+            <input type="file" #fileInput (change)="onChooseImage($event)" accept="image/png, image/jpeg" style="display: none;" />
             <button (click)="onRemoveImage()" class="btn btn-text">Remove</button>
           </div>
         </div>
@@ -27,7 +32,7 @@
       </div>
       <div class="form-group">
         <p-floatLabel>
-          <input pInputText formControlName="userName" id="userName" variant="filled" class="form-input" required/>
+          <input pInputText formControlName="username" id="userName" variant="filled" class="form-input" required/>
           <label for="userName">Username</label>
         </p-floatLabel>
       </div>

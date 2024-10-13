@@ -3,6 +3,7 @@ package com.artisanat_backend.model;
 import com.artisanat_backend.enums.Role;
 import com.artisanat_backend.enums.Specialty;
 import com.artisanat_backend.enums.VerificationStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,9 +30,11 @@ public class Artisan extends User {
     @Enumerated(EnumType.STRING)
     private VerificationStatus verificationStatus = VerificationStatus.PENDING;
 
-    @OneToMany(mappedBy = "artisan")
+    @JsonIgnore
+    @OneToMany(mappedBy = "artisan", fetch = FetchType.EAGER)
     private List<Product> products;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "artisan")
     private List<SubOrder> subOrders;
 

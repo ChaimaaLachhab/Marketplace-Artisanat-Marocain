@@ -1,19 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
+*{
+  box-sizing: border-box;
+}
+/* Main Colors */
 :root {
-  --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-  Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
-  "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
-  "Source Han Sans CN", sans-serif;
-  --rpx: 100vw / 1440;
+  --primary: #0D554A;
+  --secondary: #F2C66D;
+  --color1: #E8502E;
+  --color2: #73D2DE;
+  --color3: #24837D;
+  --color4: #FFFFFF;
+
+  /* Semantic Colors */
+  --error: #DE3B40;
+  --warning: #EFB034;
+  --success: #1DD75B;
+  --info: #379AE6;
+
+  /* Box Shadow and Corner Radius */
+  --box-shadow: 5px;
+  --corner-radius: 40px;
 }
 
-input,
-select,
-textarea,
-button {
-  outline: 0;
+/* Global Styles */
+body {
+  width:100%;
+  height:100vh;
+  font-family: 'Manrope', sans-serif;
+  background-color: #fff;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+input, textarea {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Rating Styles */
+.p-rating {
+  display: flex !important;
+  position: static !important;
+  align-items: flex-start !important;
+  gap: 2%;
+}
+
+.p-rating .p-rating-icon.p-rating-icon-active {
+  color: var(--secondary);
+}
+
+.p-rating .p-rating-icon {
+  color: var(--secondary);
+}
+
+.p-rating .p-rating-icon {
+  font-size: 0.7rem;
+}

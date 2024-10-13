@@ -1,2 +1,6 @@
 <app-header></app-header>
 <app-hero-product></app-hero-product>
+<main class="product-content">
+  <app-filter-sidebar class="col-lg-3 col-md-12 col-sm-12" (filtersChanged)="onFiltersChanged($event)"></app-filter-sidebar>
+  <app-product-grid class="col-lg-9 col-md-12 col-sm-12" [filters]="currentFilters"></app-product-grid>
+</main>

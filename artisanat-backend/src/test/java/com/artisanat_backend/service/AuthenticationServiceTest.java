@@ -1,9 +1,9 @@
 package com.artisanat_backend.service;
 
-import com.artisanat_backend.dto.AdminDTO;
-import com.artisanat_backend.dto.ArtisanDTO;
-import com.artisanat_backend.dto.CustomerDTO;
 import com.artisanat_backend.dto.LoginUserDto;
+import com.artisanat_backend.dto.request.AdminRequestDto;
+import com.artisanat_backend.dto.request.ArtisanRequestDto;
+import com.artisanat_backend.dto.request.CustomerRequestDto;
 import com.artisanat_backend.model.Admin;
 import com.artisanat_backend.model.Artisan;
 import com.artisanat_backend.model.Customer;
@@ -48,7 +48,7 @@ class AuthenticationServiceTest {
 
     @Test
     void signup() {
-        CustomerDTO customerDTO = new CustomerDTO();
+        CustomerRequestDto customerDTO = new CustomerRequestDto();
         customerDTO.setUsername("testuser");
         customerDTO.setEmail("test@example.com");
         customerDTO.setPassword("password");
@@ -69,9 +69,10 @@ class AuthenticationServiceTest {
         verify(userRepository, times(1)).save(customer);
     }
 
+
     @Test
     void addArtisan() {
-        ArtisanDTO artisanDTO = new ArtisanDTO();
+        ArtisanRequestDto artisanDTO = new ArtisanRequestDto();
         artisanDTO.setUsername("artisanUser");
         artisanDTO.setEmail("artisan@example.com");
         artisanDTO.setPassword("password");
@@ -94,7 +95,7 @@ class AuthenticationServiceTest {
 
     @Test
     void addAdmin() {
-        AdminDTO adminDTO = new AdminDTO();
+        AdminRequestDto adminDTO = new AdminRequestDto();
         adminDTO.setUsername("adminUser");
         adminDTO.setEmail("admin@example.com");
         adminDTO.setPassword("password");

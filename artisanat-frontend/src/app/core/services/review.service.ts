@@ -1,32 +1,36 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {ReviewResponseDto} from "../dtos/response/review-response-dto";
+import {ReviewRequestDto} from "../dtos/request/review-request-dto";
 import {environment} from "../../../environments/environment";
-import {Review} from "../models/review.model";  // Modifiez selon votre structure de projet
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReviewService {
-
   private apiUrl = `${environment.apiUrl}/reviews`;
 
   constructor(private http: HttpClient) { }
 
-  getAllReviews(): Observable<Review[]> {
-    return this.http.get<Review[]>(`${this.apiUrl}/all`);
+  getAllReviews(): Observable<ReviewResponseDto[]> {
+    return this.http.get<ReviewResponseDto[]>(`${this.apiUrl}/all`);
   }
 
-  getReviewById(id: number): Observable<Review> {
-    return this.http.get<Review>(`${this.apiUrl}/${id}`);
+  getAllReviewsByProductId(productId: number): Observable<ReviewResponseDto[]> {
+    return this.http.get<ReviewResponseDto[]>(`${this.apiUrl}/by-product/${productId}`);
   }
 
-  addReview(review: Review): Observable<Review> {
-    return this.http.post<Review>(`${this.apiUrl}/add`, review);
+  getReviewById(id: number): Observable<ReviewResponseDto> {
+    return this.http.get<ReviewResponseDto>(`${this.apiUrl}/${id}`);
   }
 
-  updateReview(id: number, updatedReview: Review): Observable<Review> {
-    return this.http.put<Review>(`${this.apiUrl}/update/${id}`, updatedReview);
+  addReview(productId: number, reviewDto: ReviewRequestDto): Observable<ReviewResponseDto> {
+    return this.http.post<ReviewResponseDto>(`${this.apiUrl}/add-review/${productId}`, reviewDto);
+  }
+
+  updateReview(id: number, reviewDto: ReviewRequestDto): Observable<ReviewResponseDto> {
+    return this.http.put<ReviewResponseDto>(`${this.apiUrl}/update/${id}`, reviewDto);
   }
 
   deleteReview(id: number): Observable<void> {

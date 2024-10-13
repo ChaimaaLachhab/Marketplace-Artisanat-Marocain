@@ -1,6 +1,7 @@
 package com.artisanat_backend.service;
 
 import com.artisanat_backend.enums.Role;
+import com.artisanat_backend.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -33,14 +34,26 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(UserDetails userDetails,Long currentUserId, Role role) {
-        return generateToken(new HashMap<>(), userDetails, currentUserId, role);
+    public String generateToken(UserDetails userDetails, Role role) {
+        return generateToken(new HashMap<>(), userDetails, role);
     }
 
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails, Long currentUserId, Role role) {
-        extraClaims.put("role", role);
-        extraClaims.put("currentUserId", currentUserId);
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails, Role role) {
+        User user = (User) userDetails;
+
+        safelyAddClaim(extraClaims, "role", role);
+        safelyAddClaim(extraClaims, "id", user.getId());
+        safelyAddClaim(extraClaims, "fullName", user.getFullName());
+        safelyAddClaim(extraClaims, "username", user.getUsername());
+        safelyAddClaim(extraClaims, "email", user.getEmail());
+        safelyAddClaim(extraClaims, "phone", user.getPhone());
+        safelyAddClaim(extraClaims, "userPhoto", user.getUserPhoto() != null ? user.getUserPhoto().getMediaUrl() : null);
+
         return buildToken(extraClaims, userDetails, jwtExpiration);
+    }
+
+    private void safelyAddClaim(Map<String, Object> claims, String key, Object value) {
+        claims.put(key, value != null ? value : "");
     }
 
     public long getExpirationTime() {

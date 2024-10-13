@@ -1,0 +1,70 @@
+<section class="product-info">
+  <div class="product-images col-lg-5 col-md-12 col-sm-12">
+    <div class="thumbnail-list">
+      <img *ngFor="let thumbnail of thumbnails"
+           [src]="thumbnail"
+           [alt]="'Product thumbnail ' + (thumbnails.indexOf(thumbnail) + 1)"
+           class="thumbnail"
+           [ngClass]="{'selected-thumbnail': thumbnail === selectedThumbnail}"
+           (click)="updateMainImage(thumbnail)" />
+    </div>
+    <div class="main-image-container">
+      <img [src]="mainImageSrc" alt="Main product image" class="main-image" />
+    </div>
+  </div>
+
+  <div class="product-details col-lg-7 col-md-12 col-sm-12">
+    <div class="d-flex flex-row justify-content-between">
+      <h2 class="product-title">{{ product?.name }}</h2>
+      <span class="tag stock-tag">Stock : {{ product?.stock }}</span>
+    </div>
+    <div class="product-tags mb-3">
+      <span class="tag collection-tag">{{ product?.collection }}</span>
+      <span class="tag category-tag">{{ product?.category }}</span>
+      <span class="product-code">Code: {{ product?.id }}</span>
+    </div>
+    <p class="product-description">{{ product?.description }}</p>
+    <div class="price-rating gap-5">
+      <span class="price">${{ product?.price }}</span>
+      <div class="rating">
+        <p-rating [(ngModel)]="rating" [readonly]="true" [cancel]="false"></p-rating>
+        <span>{{ rating }}/5</span>
+      </div>
+    </div>
+    <div class="artisan-info mt-3">
+      <h3>Artisan</h3>
+      <div class="artisan-details" [routerLink]="['/artisan-infos', product?.artisan?.id]">
+        <img
+          *ngIf="product?.artisan?.userPhoto && product?.artisan?.userPhoto?.mediaUrl; else defaultImage"
+          [src]="product?.artisan?.userPhoto?.mediaUrl"
+          [alt]="product?.artisan?.fullName || 'Artisan'"
+          class="artisan-image"
+        />
+        <ng-template #defaultImage>
+          <img
+            src="https://icons.veryicon.com/png/o/system/crm-android-app-icon/app-icon-person.png"
+            alt="Default Artisan"
+            class="artisan-image"
+          />
+        </ng-template>
+
+        <span class="artisan-name">{{ product?.artisan?.fullName }}</span>
+      </div>
+    </div>
+    <div class="d-flex flex-column mt-3">
+      <label>Quantity</label>
+      <div class="quantity-selector">
+        <button class="quantity-button decrease" (click)="decrease()" aria-label="Decrease quantity">-</button>
+        <span class="quantity-display" aria-live="polite">{{ quantity }}</span>
+        <button class="quantity-button increase" (click)="increase()" aria-label="Increase quantity">+</button>
+      </div>
+    </div>
+    <div class="action-buttons">
+      <button class="add-to-bag"  (click)="addToCart(product?.id)">
+        <mat-icon class="material-icons-outlined">add_shopping_cart</mat-icon>
+        Add to bag
+      </button>
+      <button class="buy-now"  (click)="checkout(product?.id)">Buy now</button>
+    </div>
+  </div>
+</section>

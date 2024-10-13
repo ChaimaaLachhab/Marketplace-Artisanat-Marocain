@@ -3,31 +3,9 @@
   justify-content: center;
   padding: 3rem 6rem;
 }
-.profile-layout {
-  display: flex;
-  width: 90%;
-  gap:3.5%;
-}
-.profile-column {
-  width: 36%;
-}
-.content-column {
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  gap: 49px;
-}
+
 @media (max-width: 991px) {
   .user-profile {
     padding: 40px 0;
-  }
-  .profile-layout {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 40px;
-  }
-  .profile-column,
-  .content-column {
-    width: 100%;
   }
 }

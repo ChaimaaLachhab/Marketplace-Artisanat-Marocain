@@ -1,75 +1,70 @@
 package com.artisanat_backend.controller;
 
+import com.artisanat_backend.dto.response.CartResponseDto;
+import com.artisanat_backend.mapper.CartMapper;
 import com.artisanat_backend.model.Cart;
+import com.artisanat_backend.model.Customer;
 import com.artisanat_backend.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/api/carts")
 public class CartController {
 
+    private final CartService cartService;
+    private final CartMapper cartMapper;
+
     @Autowired
-    private CartService cartService;
-
-    // Ajouter un produit au panier
-    @PostMapping("/{cartId}/add/{productId}")
-    public ResponseEntity<String> addProductToCart(
-            @PathVariable("cartId")  Long cartId,
-            @PathVariable("productId")  Long productId) {
-        try {
-            cartService.addProductToCart(cartId, productId);
-            return ResponseEntity.ok("Product added to cart successfully");
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public CartController(CartService cartService, CartMapper cartMapper) {
+        this.cartService = cartService;
+        this.cartMapper = cartMapper;
     }
 
-    // Supprimer un produit du panier
-    @DeleteMapping("/{cartId}/remove/{productId}")
-    public ResponseEntity<String> removeProductFromCart(
-            @PathVariable("cartId")  Long cartId,
-            @PathVariable("productId")  Long productId) {
-        try {
-            cartService.removeProductFromCart(cartId, productId);
-            return ResponseEntity.ok("Product removed from cart successfully");
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
+    @PostMapping("/add-product/{productId}")
+    public ResponseEntity<CartResponseDto> addProductToCart(
+            @AuthenticationPrincipal Customer customer,
+            @PathVariable Long productId,
+            @RequestParam int quantity) {
+        Cart cart = cartService.addProductToCart(customer, productId, quantity);
+        CartResponseDto cartDto = cartMapper.toDto(cart);
+        return ResponseEntity.ok(cartDto);
     }
 
-    // Calculer le total du panier
-    @GetMapping("/{cartId}/total")
-    public ResponseEntity<Double> calculateCartTotal(@PathVariable("cartId")  Long cartId) {
-        try {
-            double total = cartService.calculateCartTotal(cartId);
-            return ResponseEntity.ok(total);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(null);
-        }
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
+    @DeleteMapping("/remove-product/{productId}")
+    public ResponseEntity<Void> removeProductFromCart(
+            @AuthenticationPrincipal Customer customer,
+            @PathVariable Long productId) {
+        cartService.removeProductFromCart(customer.getId(), productId);
+        return ResponseEntity.noContent().build();
     }
 
-    // Vider le panier
-    @DeleteMapping("/{cartId}/clear")
-    public ResponseEntity<String> clearCart(@PathVariable("cartId")  Long cartId) {
-        try {
-            cartService.clearCart(cartId);
-            return ResponseEntity.ok("Cart cleared successfully");
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
+    @GetMapping("/total")
+    public ResponseEntity<BigDecimal> calculateCartTotal(@AuthenticationPrincipal Customer customer) {
+        BigDecimal total = cartService.calculateCartTotal(customer.getId());
+        return ResponseEntity.ok(total);
     }
 
-    // Obtenir les détails du panier
-    @GetMapping("/{cartId}")
-    public ResponseEntity<Cart> getCart(@PathVariable("cartId")  Long cartId) {
-        try {
-            Cart cart = cartService.getCart(cartId);
-            return ResponseEntity.ok(cart);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
+    @DeleteMapping("/clear")
+    public ResponseEntity<Void> clearCart(@AuthenticationPrincipal Customer customer) {
+        cartService.clearCart(customer.getId());
+        return ResponseEntity.noContent().build();
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
+    @GetMapping("/get-cart")
+    public ResponseEntity<CartResponseDto> getCart(@AuthenticationPrincipal Customer customer) {
+        Cart cart = cartService.getCartByCustomer(customer);
+        CartResponseDto cartDto = cartMapper.toDto(cart);
+        return ResponseEntity.ok(cartDto);
     }
 }

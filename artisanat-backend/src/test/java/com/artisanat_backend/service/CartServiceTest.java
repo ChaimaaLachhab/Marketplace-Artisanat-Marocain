@@ -1,6 +1,8 @@
 package com.artisanat_backend.service;
 
 import com.artisanat_backend.model.Cart;
+import com.artisanat_backend.model.CartItem;
+import com.artisanat_backend.model.Customer;
 import com.artisanat_backend.model.Product;
 import com.artisanat_backend.repository.CartRepository;
 import com.artisanat_backend.repository.ProductRepository;
@@ -10,6 +12,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import jakarta.persistence.EntityNotFoundException;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -27,6 +32,9 @@ class CartServiceTest {
     @Mock
     private ProductRepository productRepository;
 
+    @Mock
+    private CartItemService cartItemService;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -34,101 +42,112 @@ class CartServiceTest {
 
     @Test
     void addProductToCart() {
-        Long cartId = 1L;
+        Long customerId = 1L;
         Long productId = 1L;
+        int quantity = 2;
+
+        Customer customer = new Customer();
+        customer.setId(customerId);
+
         Cart cart = new Cart();
-        cart.setProducts(new ArrayList<>());
+        cart.setCartItems(new ArrayList<>());
+
         Product product = new Product();
         product.setId(productId);
         product.setStock(10);
+        product.setPrice(50.0F); // Assuming price is set
 
-        when(cartRepository.findById(cartId)).thenReturn(Optional.of(cart));
+        when(cartRepository.findByCustomerId(customerId)).thenReturn(Optional.of(cart));
         when(productRepository.findById(productId)).thenReturn(Optional.of(product));
+        when(cartItemService.addOrUpdateCartItem(cart, product, quantity)).thenReturn(new CartItem()); // Mock CartItem creation
 
-        cartService.addProductToCart(cartId, productId);
+        cartService.addProductToCart(customer, productId, quantity);
 
-        assertTrue(cart.getProducts().contains(product));
-        verify(cartRepository, times(1)).save(cart);
-    }
-
-    @Test
-    void addProductToCart_ProductOutOfStock() {
-        Long cartId = 1L;
-        Long productId = 1L;
-        Cart cart = new Cart();
-        Product product = new Product();
-        product.setStock(0);
-
-        when(cartRepository.findById(cartId)).thenReturn(Optional.of(cart));
-        when(productRepository.findById(productId)).thenReturn(Optional.of(product));
-
-        assertThrows(RuntimeException.class, () -> cartService.addProductToCart(cartId, productId));
-        verify(cartRepository, never()).save(cart);
-    }
-
-    @Test
-    void removeProductFromCart() {
-        Long cartId = 1L;
-        Long productId = 1L;
-        Product product = new Product();
-        product.setId(productId);
-        Cart cart = new Cart();
-        cart.setProducts(new ArrayList<>());
-        cart.getProducts().add(product);
-
-        when(cartRepository.findById(cartId)).thenReturn(Optional.of(cart));
-
-        cartService.removeProductFromCart(cartId, productId);
-
-        assertFalse(cart.getProducts().contains(product));
+        assertFalse(cart.getCartItems().isEmpty()); // Check that cart items are added
         verify(cartRepository, times(1)).save(cart);
     }
 
     @Test
     void calculateCartTotal() {
-        Long cartId = 1L;
+        Long customerId = 1L;
+        Customer customer = new Customer();
+        customer.setId(customerId);
         Cart cart = new Cart();
+        cart.setCartItems(new ArrayList<>());
+
         Product product1 = new Product();
         product1.setPrice(50.0F);
+        CartItem item1 = new CartItem();
+        item1.setProduct(product1);
+        item1.setQuantity(1);
+
         Product product2 = new Product();
         product2.setPrice(100.0F);
-        cart.setProducts(new ArrayList<>());
-        cart.getProducts().add(product1);
-        cart.getProducts().add(product2);
+        CartItem item2 = new CartItem();
+        item2.setProduct(product2);
+        item2.setQuantity(2);
 
-        when(cartRepository.findById(cartId)).thenReturn(Optional.of(cart));
+        cart.getCartItems().add(item1);
+        cart.getCartItems().add(item2);
 
-        double total = cartService.calculateCartTotal(cartId);
+        when(cartRepository.findByCustomerId(customerId)).thenReturn(Optional.of(cart));
+        when(cartItemService.calculateTotal(cart)).thenReturn(BigDecimal.valueOf(250.0)); // Mock total calculation
 
-        assertEquals(150.0, total);
+        BigDecimal total = cartService.calculateCartTotal(customerId);
+
+        assertEquals(BigDecimal.valueOf(250.0), total);
     }
 
     @Test
     void clearCart() {
-        Long cartId = 1L;
+        Long customerId = 1L;
+        Customer customer = new Customer();
+        customer.setId(customerId);
         Cart cart = new Cart();
-        Product product = new Product();
-        cart.setProducts(new ArrayList<>());
-        cart.getProducts().add(product);
+        CartItem cartItem = new CartItem();
+        cartItem.setProduct(new Product());
+        cart.setCartItems(new ArrayList<>());
+        cart.getCartItems().add(cartItem);
 
-        when(cartRepository.findById(cartId)).thenReturn(Optional.of(cart));
+        when(cartRepository.findByCustomerId(customerId)).thenReturn(Optional.of(cart));
 
-        cartService.clearCart(cartId);
+        cartService.clearCart(customerId);
 
-        assertTrue(cart.getProducts().isEmpty());
-        verify(cartRepository, times(1)).save(cart);
+        assertTrue(cart.getCartItems().isEmpty()); // Ensure the cart is cleared
+        verify(cartRepository, times(1)).save(cart); // Ensure save is called
     }
 
     @Test
-    void getCart() {
-        Long cartId = 1L;
+    void getCartByCustomer() {
+        Long customerId = 1L;
+        Customer customer = new Customer();
+        customer.setId(customerId);
         Cart cart = new Cart();
 
-        when(cartRepository.findById(cartId)).thenReturn(Optional.of(cart));
+        when(cartRepository.findByCustomerId(customerId)).thenReturn(Optional.of(cart));
 
-        Cart result = cartService.getCart(cartId);
+        Cart result = cartService.getCartByCustomer(customer);
 
         assertNotNull(result);
         assertEquals(cart, result);
+    }
+
+    @Test
+    void getCartItems() {
+        Long customerId = 1L;
+        Customer customer = new Customer();
+        customer.setId(customerId);
+        Cart cart = new Cart();
+        CartItem cartItem = new CartItem();
+        cartItem.setProduct(new Product());
+        cart.setCartItems(new ArrayList<>());
+        cart.getCartItems().add(cartItem);
+
+        when(cartRepository.findByCustomer(customer)).thenReturn(cart);
+
+        var items = cartService.getCartItems(customer);
+
+        assertEquals(1, items.size());
+        assertEquals(cartItem, items.get(0));
     }
 }

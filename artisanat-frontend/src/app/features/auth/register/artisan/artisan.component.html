@@ -1,0 +1,72 @@
+  <p-toast></p-toast>
+  <p-steps [model]="items" [readonly]="false" [activeIndex]="activeIndex" (activeIndexChange)="onActiveIndexChange($event)"></p-steps>
+
+  <div *ngIf="activeIndex === 0" class="form-step">
+    <form class="register-form d-flex flex-column gap-4" [formGroup]="personalForm">
+      <div class="form-group mb-1">
+        <p-floatLabel>
+          <input pInputText formControlName="fullName" id="fullName" variant="filled" class="form-control form-input" required/>
+          <label for="fullName">Full Name</label>
+        </p-floatLabel>
+      </div>
+      <div class="form-group mb-1">
+        <p-floatLabel>
+          <input pInputText formControlName="username" id="username" variant="filled" class="form-control form-input" required/>
+          <label for="username">Username</label>
+        </p-floatLabel>
+      </div>
+      <div class="form-group mb-1">
+        <p-floatLabel>
+          <input pInputText formControlName="email" type="email" id="email" variant="filled" class="form-control form-input" required/>
+          <label for="email">Email</label>
+        </p-floatLabel>
+      </div>
+      <div class="form-group mb-1">
+        <p-floatLabel>
+          <input pInputText formControlName="phone" type="number" id="phone" variant="filled" class="form-control form-input" required/>
+          <label for="phone">Phone</label>
+        </p-floatLabel>
+      </div>
+      <div class="form-group mb-1">
+        <p-floatLabel>
+          <p-password formControlName="password" type="password" id="password" variant="filled" class="p-fluid" [toggleMask]="true" required/>
+          <label for="password">Password</label>
+        </p-floatLabel>
+      </div>
+    </form>
+    <button pButton class="next-button d-flex align-self-end mt-3" label="Next" (click)="onNext()" [disabled]="!personalForm.valid"></button>
+  </div>
+
+  <div *ngIf="activeIndex === 1" class="form-step">
+    <form class="register-form d-flex flex-column gap-4" [formGroup]="professionalForm">
+      <div class="form-group mb-1">
+        <p-floatLabel>
+          <p-dropdown
+            variant="filled"
+            class="p-fluid"
+            formControlName="specialty"
+            [options]="specialtyOptions"
+            optionLabel="name"
+             />
+          <label>Select a Specialty</label>
+        </p-floatLabel>
+      </div>
+      <div class="form-group mb-1">
+        <p-floatLabel>
+          <input pInputText formControlName="location" id="location" variant="filled" class="form-input" required/>
+          <label for="location">Location</label>
+        </p-floatLabel>
+      </div>
+      <div class="form-group mb-1">
+        <p-floatLabel>
+          <input pInputText formControlName="experience" type="number" id="experience" variant="filled" class="form-input" required/>
+          <label for="experience">Experience (Years)</label>
+        </p-floatLabel>
+      </div>
+    </form>
+    <div class="d-flex justify-content-between mt-3">
+      <button pButton class="back-button" label="Previous" (click)="onPrevious()"></button>
+      <button pButton class="next-button" label="Save" (click)="onSubmit()" [disabled]="!professionalForm.valid"></button>
+    </div>
+  </div>
+

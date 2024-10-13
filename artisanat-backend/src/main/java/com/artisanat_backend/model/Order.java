@@ -1,12 +1,13 @@
 package com.artisanat_backend.model;
 
 import com.artisanat_backend.enums.Status;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
-
 
 @Getter
 @Setter
@@ -19,7 +20,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int quantity;
-    private String orderDate;
+    private LocalDateTime orderDate;
     private String location;
 
     @Enumerated(EnumType.STRING)
@@ -27,11 +28,11 @@ public class Order {
 
     private double totalAmount;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToMany(mappedBy = "orders")
-    private List<Product> products;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<SubOrder> subOrders;
 }

@@ -1,60 +1,35 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {catchError, Observable, throwError} from "rxjs";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import {CartResponseDto} from "../dtos/response/cart-response-dto";
 import {environment} from "../../../environments/environment";
-import {Cart} from "../models/cart.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-
   private apiUrl = `${environment.apiUrl}/carts`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  addProductToCart(cartId: number, productId: number): Observable<string> {
-    const url = `${this.apiUrl}/${cartId}/add/${productId}`;
-    return this.http.post<string>(url, {}).pipe(
-      catchError(this.handleError)
-    );
+  addProductToCart(productId: number, quantity: number): Observable<CartResponseDto> {
+    const params = new HttpParams().set('quantity', quantity.toString());
+    return this.http.post<CartResponseDto>(`${this.apiUrl}/add-product/${productId}`, null, { params });
   }
 
-  removeProductFromCart(cartId: number, productId: number): Observable<string> {
-    const url = `${this.apiUrl}/${cartId}/remove/${productId}`;
-    return this.http.delete<string>(url).pipe(
-      catchError(this.handleError)
-    );
+  removeProductFromCart(productId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/remove-product/${productId}`);
   }
 
-  calculateCartTotal(cartId: number): Observable<number> {
-    const url = `${this.apiUrl}/${cartId}/total`;
-    return this.http.get<number>(url).pipe(
-      catchError(this.handleError)
-    );
+  calculateCartTotal(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/total`);
   }
 
-  clearCart(cartId: number): Observable<string> {
-    const url = `${this.apiUrl}/${cartId}/clear`;
-    return this.http.delete<string>(url).pipe(
-      catchError(this.handleError)
-    );
+  clearCart(): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/clear`);
   }
 
-  getCart(cartId: number): Observable<Cart> {
-    const url = `${this.apiUrl}/${cartId}`;
-    return this.http.get<Cart>(url).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  private handleError(error: HttpErrorResponse): Observable<never> {
-    let errorMessage = 'An unknown error occurred!';
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Client-side error: ${error.error.message}`;
-    } else {
-      errorMessage = `Server-side error: ${error.status} - ${error.message}`;
-    }
-    return throwError(errorMessage);
+  getCart(): Observable<CartResponseDto> {
+    return this.http.get<CartResponseDto>(`${this.apiUrl}/get-cart`);
   }
 }

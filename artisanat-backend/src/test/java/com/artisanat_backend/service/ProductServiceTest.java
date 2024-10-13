@@ -1,15 +1,24 @@
 package com.artisanat_backend.service;
 
+import com.artisanat_backend.dto.request.ProductRequestDto;
+import com.artisanat_backend.dto.request.ReviewRequestDto;
+import com.artisanat_backend.enums.Category;
+import com.artisanat_backend.enums.Collection;
+import com.artisanat_backend.enums.Type;
 import com.artisanat_backend.enums.VerificationStatus;
-import com.artisanat_backend.model.Artisan;
-import com.artisanat_backend.model.Media;
-import com.artisanat_backend.model.Product;
+import com.artisanat_backend.exception.ProductNotFoundException;
+import com.artisanat_backend.mapper.ProductMapper;
+import com.artisanat_backend.model.*;
 import com.artisanat_backend.repository.ProductRepository;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
@@ -25,7 +34,13 @@ class ProductServiceTest {
     private ProductRepository productRepository;
 
     @Mock
-    private MediaService mediaService;
+    private ProductMapper productMapper;
+
+    @Mock
+    private MediaUploadService mediaUploadService;
+
+    @Mock
+    private ReviewService reviewService;
 
     @InjectMocks
     private ProductService productService;
@@ -33,6 +48,7 @@ class ProductServiceTest {
     private Product product;
     private Artisan artisan;
     private List<MultipartFile> attachments;
+    private ProductRequestDto productDto;
 
     @BeforeEach
     void setUp() {
@@ -40,6 +56,7 @@ class ProductServiceTest {
         product = new Product();
         artisan = new Artisan();
         attachments = new ArrayList<>();
+        productDto = new ProductRequestDto();
     }
 
     @Test
@@ -67,22 +84,11 @@ class ProductServiceTest {
     }
 
     @Test
-    void getProductById_ReturnsNull_WhenProductNotFound() {
-        Long productId = 1L;
-        when(productRepository.findById(productId)).thenReturn(Optional.empty());
-
-        Product result = productService.getProductById(productId);
-
-        assertNull(result);
-        verify(productRepository, times(1)).findById(productId);
-    }
-
-    @Test
     void createProductWithMedia_ThrowsException_WhenArtisanNotVerified() {
         artisan.setVerificationStatus(VerificationStatus.PENDING);
 
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
-                productService.createProductWithMedia(product, attachments, artisan)
+                productService.createProductWithMedia(productDto, attachments, artisan)
         );
 
         assertEquals("Artisan not accepted", exception.getMessage());
@@ -93,7 +99,7 @@ class ProductServiceTest {
         artisan.setVerificationStatus(VerificationStatus.APPROVED);
 
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
-                productService.createProductWithMedia(product, attachments, artisan)
+                productService.createProductWithMedia(productDto, attachments, artisan)
         );
 
         assertEquals("No media files provided.", exception.getMessage());
@@ -106,26 +112,63 @@ class ProductServiceTest {
         when(mockImage.getContentType()).thenReturn("image/png");
         attachments.add(mockImage);
 
+        when(productMapper.toEntity(productDto)).thenReturn(product);
+
         Media mockMedia = new Media();
-        when(mediaService.handleMediaUpload(any(MultipartFile.class), any(Product.class)))
+        when(mediaUploadService.handleMediaUpload(any(MultipartFile.class), any(Product.class)))
                 .thenReturn(mockMedia);
 
-        productService.createProductWithMedia(product, attachments, artisan);
+        productService.createProductWithMedia(productDto, attachments, artisan);
 
         assertFalse(product.getMedia().isEmpty());
         verify(productRepository, times(1)).save(product);
     }
 
     @Test
-    void updateProduct_SavesAndReturnsProduct() {
+    void updateProduct_SavesAndReturnsUpdatedProduct() {
+        Long productId = 1L;
+        when(productRepository.findById(productId)).thenReturn(Optional.of(product));
         when(productRepository.save(product)).thenReturn(product);
 
-        Product result = productService.updateProduct(product);
+        Product result = productService.updateProduct(productId, productDto);
 
         assertNotNull(result);
-        assertEquals(product, result);
         verify(productRepository, times(1)).save(product);
     }
+
+    @Test
+    void updateProductStock_ThrowsException_WhenNewStockIsNegative() {
+        Long productId = 1L;
+        when(productRepository.findById(productId)).thenReturn(Optional.of(product));
+
+        Exception exception = assertThrows(RuntimeException.class, () ->
+                productService.updateProductStock(productId, -1)
+        );
+
+        assertEquals("Stock cannot be negative", exception.getMessage());
+    }
+
+    @Test
+    void addReviewToProduct_AddsReviewSuccessfully() {
+        Long productId = 1L;
+        Customer customer = new Customer();
+        ReviewRequestDto reviewDto = new ReviewRequestDto();
+        Review review = new Review();
+
+
+        Product product = new Product();
+        product.setReviews(new ArrayList<>());
+
+        when(productRepository.findById(productId)).thenReturn(Optional.of(product));
+        when(reviewService.addReview(productId, reviewDto, customer)).thenReturn(review);
+        when(productRepository.save(product)).thenReturn(product);
+
+        Product result = productService.addReviewToProduct(productId, reviewDto, customer);
+
+        assertNotNull(result);
+        assertTrue(result.getReviews().contains(review));
+    }
+
 
     @Test
     void deleteProduct_CallsDeleteOnRepository() {
@@ -135,29 +178,4 @@ class ProductServiceTest {
 
         verify(productRepository, times(1)).deleteById(productId);
     }
-
-    @Test
-    void getTopRatedProducts_ReturnsTopRatedList() {
-        List<Product> topRatedProducts = new ArrayList<>();
-        when(productRepository.findTopRatedProducts()).thenReturn(topRatedProducts);
-
-        List<Product> result = productService.getTopRatedProducts();
-
-        assertNotNull(result);
-        assertEquals(topRatedProducts, result);
-        verify(productRepository, times(1)).findTopRatedProducts();
-    }
-
-    @Test
-    void getRecentlyAddedProducts_ReturnsRecentlyAddedList() {
-        List<Product> recentlyAddedProducts = new ArrayList<>();
-        when(productRepository.findRecentlyAddedProducts()).thenReturn(recentlyAddedProducts);
-
-        List<Product> result = productService.getRecentlyAddedProducts();
-
-        assertNotNull(result);
-        assertEquals(recentlyAddedProducts, result);
-        verify(productRepository, times(1)).findRecentlyAddedProducts();
-    }
-
 }

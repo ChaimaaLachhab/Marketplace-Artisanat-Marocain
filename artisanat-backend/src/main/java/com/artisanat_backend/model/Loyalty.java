@@ -1,5 +1,6 @@
 package com.artisanat_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,9 +16,9 @@ public class Loyalty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int points;
+    private int points = 0;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "loyalty")
     private Customer customer;
-
 }

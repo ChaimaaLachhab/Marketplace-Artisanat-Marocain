@@ -1,0 +1,4 @@
+<section class="review-container">
+  <app-review-form [productId]="productId" (reviewAdded)="reloadReviews()"></app-review-form>
+  <app-review-list [productId]="productId" [reviews]="reviews"></app-review-list>
+</section>

@@ -1,9 +1,11 @@
 package com.artisanat_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,9 +19,12 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "carts", cascade = CascadeType.ALL)
-    private List<Product> products;
+    @JsonIgnore
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartItem> cartItems;
 
-    @OneToOne(mappedBy = "cart")
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 }

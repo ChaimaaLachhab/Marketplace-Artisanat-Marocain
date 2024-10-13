@@ -1,0 +1,55 @@
+.filter-sidebar {
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(23, 26, 31, 0.12);
+  margin-top: 7px;
+  color: #171a1f;
+  padding: 16px;
+}
+
+.filter-title {
+  align-self: start;
+  display: flex;
+  margin-left: 16px;
+  gap: 6px;
+  white-space: nowrap;
+  font: 700 20px 'Cormorant Garamond', serif;
+}
+
+input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.collection, .category, .price-range, .rating {
+  font: 800 16px/2 Manrope, sans-serif;
+}
+
+.apply-button, .clear-button {
+  text-align: center;
+  flex:1;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.apply-button {
+  background-color: #0d554a;
+  color: #fff;
+}
+.clear-button {
+  background-color: transparent;
+  color: #0d554a;
+  border: 1px solid #0d554a;
+}
+

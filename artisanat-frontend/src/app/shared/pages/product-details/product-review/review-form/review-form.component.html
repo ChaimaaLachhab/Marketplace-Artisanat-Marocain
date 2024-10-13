@@ -1,0 +1,26 @@
+<form [formGroup]="reviewForm" (ngSubmit)="submitReview()" class="review-container">
+  <h2 class="review-title">Add Review</h2>
+  <div class="feedback d-felx flex-column mx-auto">
+    <div class="feedback-section">
+      <label for="feedbackInput" class="feedback-label">Care to share more</label>
+      <div class="feedback-input-wrapper">
+          <textarea
+            id="feedbackInput"
+            formControlName="feedback"
+            class="feedback-input"
+            placeholder="Type your feedback"
+            aria-label="Type your feedback"></textarea>
+      </div>
+    </div>
+    <div class="feedback-section">
+      <label class="rating-label">Rating</label>
+      <p-rating
+        class="rating-stars"
+        formControlName="rating"
+        [cancel]="false"
+      />
+    </div>
+  </div>
+  <button type="submit" class="submit-button" [disabled]="reviewForm.invalid">Submit</button>
+</form>
+<p-toast />

@@ -1,50 +1,33 @@
 <section class="billing-details">
   <h2 class="section-title">Billing details</h2>
-  <form class="billing-form">
-    <div class="form-group">
-      <label for="fullName" class="form-label">Full Name</label>
-      <input type="text" id="fullName" class="form-input" value="John Nelson" />
-    </div>
-    <div class="form-group">
-      <label for="email" class="form-label">Email</label>
-      <input type="email" id="email" class="form-input" value="brooklynwilson98@yahoo.com" />
-    </div>
-    <div class="form-group">
-      <label for="phone" class="form-label">Phone</label>
-      <input type="tel" id="phone" class="form-input" value="(719) 815-9170" />
-    </div>
+  <form class="billing-form" (ngSubmit)="placeOrder()">
     <div class="form-group">
       <label for="location" class="form-label">Location</label>
-      <input type="text" id="location" class="form-input" value="57 West 45th Street, New York, USA, 10036" />
-    </div>
-    <div class="form-group">
-      <label for="orderDate" class="form-label">Order Date</label>
-      <input type="date" id="orderDate" class="form-input" value="2023-05-11" />
+      <input type="text" id="location" class="form-input" [(ngModel)]="location" name="location" required />
     </div>
   </form>
   <div class="voucher-section">
     <h3 class="voucher-title">Voucher</h3>
     <div class="voucher-input">
-      <input type="text" class="voucher-code" placeholder="Enter voucher code" value="$15 OFF" />
-      <button class="apply-button">Apply</button>
+      <input type="text" id="point" class="form-input" [(ngModel)]="point" placeholder="Enter points"/>
+      <button class="apply-button" (click)="calculateDiscount()">Apply</button>
     </div>
-    <span class="applied-voucher">$15 Off</span>
   </div>
   <div class="order-summary">
     <h3 class="summary-title">Summary</h3>
     <div class="summary-row">
       <span>Subtotal</span>
-      <span>$1073.72</span>
+      <span>{{ total | currency }}</span> <!-- Format en devise -->
     </div>
     <div class="summary-row">
       <span>Discount</span>
-      <span>-$15</span>
+      <span>-$ {{ discount | number:'1.2-2' }}</span>
     </div>
     <hr class="summary-divider" />
     <div class="summary-row total">
       <span>Total</span>
-      <span class="total-amount">$1058.72</span>
+      <span class="total-amount">{{ finalAmount | currency }}</span> <!-- Montant final formaté -->
     </div>
   </div>
-  <button class="place-order-button">Place order</button>
+  <button class="place-order-button" (click)="placeOrder()">Place order</button>
 </section>

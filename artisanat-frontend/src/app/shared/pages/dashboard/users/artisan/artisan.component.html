@@ -1,0 +1,74 @@
+<div class="artisan-list-container">
+  <div class="header">
+    <h2>ALL Artisans ({{ onNumber() }})</h2>
+  </div>
+
+  <p-table #dt [value]="artisans" dataKey="id" editMode="cell"  (onEditComplete)="onCellEdit($event)" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+           [globalFilterFields]="['fullName', 'specialty', 'location', 'experience', 'verificationStatus']">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="m-0">Manage Artisans</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="      Search..." />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-ri="rowIndex">
+      <tr>
+        <th pSortableColumn="rowIndex"># <p-sortIcon field="rowIndex"></p-sortIcon></th>
+        <th pSortableColumn="fullName">Full Name<p-sortIcon field="fullName"></p-sortIcon></th>
+        <th pSortableColumn="userPhoto">Photo<p-sortIcon field="userPhoto"></p-sortIcon></th>
+        <th pSortableColumn="location">Location<p-sortIcon field="location"></p-sortIcon></th>
+        <th pSortableColumn="experience">Experience (Years)<p-sortIcon field="experience"></p-sortIcon></th>
+        <th pSortableColumn="specialty">Specialty<p-sortIcon field="specialty"></p-sortIcon></th>
+        <th pSortableColumn="verificationStatus">Verification Status<p-sortIcon field="verificationStatus"></p-sortIcon></th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-artisan let-ri="rowIndex">
+      <tr>
+        <td>{{ artisan.rowIndex }}</td>
+        <td>{{ artisan.fullName }}</td>
+        <td>
+          <img
+            *ngIf="artisan.userPhoto"
+            [src]="artisan.userPhoto.mediaUrl"
+            [alt]="artisan.fullName"
+            width="50"
+            class="shadow-4"
+            (error)="'not photo exist'"
+          />
+        </td>
+        <td>{{ artisan.location }}</td>
+        <td>{{ artisan.experience }}</td>
+        <td>
+          <p-tag [value]="artisan.specialty" [severity]="getSpecialty(artisan.specialty)"></p-tag>
+        </td>
+        <td [pEditableColumn]="artisan.verificationStatus">
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-dropdown
+                [options]="verifications"
+                [(ngModel)]="artisan.verificationStatus"
+                (onChange)="onCellEdit(artisan)"
+                [style]="{'width':'100%'}">
+              </p-dropdown>
+            </ng-template>
+            <ng-template pTemplate="output">
+              <p-tag [value]="artisan.verificationStatus" [severity]="getVerificationStatus(artisan.verificationStatus)">
+              </p-tag>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="confirmDelete(artisan)"></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-toast />

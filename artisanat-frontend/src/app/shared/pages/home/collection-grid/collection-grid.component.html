@@ -1,0 +1,22 @@
+<section class="collections">
+  <h2 class="section-title">Our Collections</h2>
+  <div class="collection-grid">
+    <ng-container *ngFor="let collection of collections">
+      <div class="collection-item m-2">
+        <img [src]="collection.imageUrl" [alt]="collection.title + ' collection'" class="collection-image">
+        <div class="card-container">
+          <div class="collection-info by-3 d-flex flex-column align-items-center">
+              <img [src]="collection.icon" alt="icon" class="icon-container my-3">
+            <h3 class="collection-title">{{ collection.title }}</h3>
+            <p class="collection-description">{{ collection.description }}</p>
+            <button class="collection-button mb-3">
+              <mat-icon class="material-icons-outlined">add</mat-icon>
+              <span class="button-text">Read More</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <a routerLink="/collection" class="btn-secondary">Shop now</a>
+</section>

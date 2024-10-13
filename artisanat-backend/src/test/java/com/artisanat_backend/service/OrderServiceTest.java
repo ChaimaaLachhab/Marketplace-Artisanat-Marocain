@@ -1,8 +1,6 @@
 package com.artisanat_backend.service;
 
-import com.artisanat_backend.model.Customer;
-import com.artisanat_backend.model.Product;
-import com.artisanat_backend.model.Order;
+import com.artisanat_backend.model.*;
 import com.artisanat_backend.enums.Status;
 import com.artisanat_backend.repository.OrderRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +26,13 @@ class OrderServiceTest {
     private LoyaltyService loyaltyService;
 
     @Mock
+    private CartService cartService;
+
+    @Mock
     private SubOrderService subOrderService;
+
+    @Mock
+    private NotificationService notificationService;
 
     @InjectMocks
     private OrderService orderService;
@@ -88,50 +93,7 @@ class OrderServiceTest {
     }
 
     @Test
-    void createOrderForSingleProduct() {
-        Customer customer = new Customer();
-        Order order = new Order();
-        when(orderRepository.save(order)).thenReturn(order);
-
-        orderService.createOrderForSingleProduct(customer, order);
-
-        verify(orderRepository, times(1)).save(order);
-        verify(loyaltyService, times(1)).calculatePoints(order);
-        verify(subOrderService, times(1)).createSubOrderForSingleProduct(order);
-    }
-
-    @Test
-    void createOrder() {
-        Customer customer = new Customer();
-        Order order = new Order();
-
-        Product product1 = new Product();
-        product1.setId(1L);
-        product1.setName("Product 1");
-        product1.setPrice(100.0f);
-        product1.setStock(10);
-
-        Product product2 = new Product();
-        product2.setId(2L);
-        product2.setName("Product 2");
-        product2.setPrice(200.0f);
-        product2.setStock(5);
-
-        order.setProducts(Arrays.asList(product1, product2));
-        when(orderRepository.save(order)).thenReturn(order);
-
-        Order createdOrder = orderService.createOrder(customer, order);
-
-        assertEquals(300.0, createdOrder.getTotalAmount());
-        verify(orderRepository, times(1)).save(order);
-        verify(loyaltyService, times(1)).calculatePoints(order);
-        verify(subOrderService, times(1)).createSubOrders(order);
-    }
-
-
-    @Test
     void applyDiscountAndFinalizeOrder() {
-
         Customer customer = new Customer();
         customer.setId(1L);
 
@@ -146,9 +108,8 @@ class OrderServiceTest {
 
         assertEquals(450.0, order.getTotalAmount());
         verify(orderRepository, times(1)).save(order);
-        verify(loyaltyService, times(1)).updateLoyaltyPoints(customer.getId(), 50); // Use the customer object to get the ID
+        verify(loyaltyService, times(1)).updateLoyaltyPoints(customer.getId(), 50);
     }
-
 
     @Test
     void deleteOrder() {
@@ -157,4 +118,15 @@ class OrderServiceTest {
         verify(orderRepository, times(1)).deleteById(1L);
     }
 
+    @Test
+    void updateOrderStatus() {
+        Order order = new Order();
+        when(orderRepository.findById(1L)).thenReturn(Optional.of(order));
+
+        Status newStatus = Status.DELIVERED;
+        Order updatedOrder = orderService.updateOrderStatus(1L, newStatus);
+
+        assertEquals(newStatus, updatedOrder.getStatus());
+        verify(orderRepository, times(1)).save(order);
+    }
 }

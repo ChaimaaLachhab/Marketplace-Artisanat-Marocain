@@ -1,0 +1,41 @@
+:host {
+  display: contents;
+}
+
+.our-story {
+  background-color: #fafafb;
+  padding: 60px 80px;
+  text-align: center;
+}
+
+.section-title {
+  color: #0d554a;
+  font: 600 40px/56px Cormorant, sans-serif;
+  margin-bottom: 12px;
+}
+
+.story-content {
+  position: relative;
+  margin-top: 20px;
+}
+
+.story-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+}
+
+@media (max-width: 991px) {
+  .our-story {
+    padding: 40px 20px;
+  }
+}

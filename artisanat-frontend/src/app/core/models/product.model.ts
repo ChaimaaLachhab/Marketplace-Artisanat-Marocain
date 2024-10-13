@@ -5,6 +5,7 @@ import {Review} from "./review.model";
 import {Order} from "./order.model";
 import {Collection} from "../enums/collection.enum";
 import {Category} from "../enums/category.enum";
+import {CartItem} from "./cartItem.model";
 
 
 export interface Product {
@@ -18,7 +19,7 @@ export interface Product {
   collection: Collection;
   category: Category;
   artisan: Artisan;
-  carts: Cart;
+  cartItem: CartItem;
   media: Media[];
   reviews: Review[];
   orders: Order[];

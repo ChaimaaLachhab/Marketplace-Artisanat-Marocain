@@ -1,0 +1,168 @@
+.profile-container {
+  border-radius: 40px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(23, 26, 31, 0.12);
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  width: 100%;
+}
+
+.section-title {
+  color: #0d554a;
+  font: 600 40px/1.4 Cormorant, -apple-system, Roboto, Helvetica, sans-serif;
+  align-self: flex-start;
+}
+
+.profile-content {
+  display: flex;
+  gap: 3rem;
+  margin-top: 25px;
+}
+
+.subsection-title {
+  color: #323743;
+  font: 700 14px/2 Manrope, sans-serif;
+}
+
+.avatar-container {
+  border-radius: 98px;
+  background-color: #9aefe2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 195px;
+  height: 195px;
+  border: 1px solid #0d554a;
+  margin-top: 19px;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 98px;
+}
+
+.photo-update-section {
+  width: 65%;
+  margin-top: 4rem;
+}
+
+.photo-instructions {
+  color: #9095a1;
+  font: 700 14px/2 Manrope, sans-serif;
+  margin-top: 21px;
+}
+
+.photo-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.btn {
+  font: 400 14px/2 Manrope, sans-serif;
+  padding: 7px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-outline {
+  color: #0d554a;
+  background-color: #fff;
+  border: 1px solid #0d554a;
+}
+
+.btn-outline:hover {
+  color: #fff;
+  background-color: #0d554a;
+  border: 1px solid #0d554a;
+}
+
+.btn-text {
+  color: #9095a1;
+  background-color: transparent;
+  border: none;
+}
+
+.btn-text:hover {
+  color: #9095a1;
+  background-color: #f3f4f6;
+  border: #9095a1;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  color: #424856;
+  font: 700 14px/2 Manrope, sans-serif;
+}
+
+.form-input {
+  border-radius: 4px;
+  border: 1px solid #0d554a;
+  padding: 11px 16px;
+  font: 400 14px/2 Manrope, sans-serif;
+}
+
+.form-actions {
+  display: flex;
+  align-self: end;
+  gap: 7px;
+}
+
+.form-input {
+  border: 1px solid #0d554a;
+  border-radius: 8px;
+  color: #424955;
+  font: 700 14px/2 "Manrope", sans-serif;
+  padding: 14px 12px;
+  width: 100%;
+}
+
+.form-input:focus {
+  border-color: #0d554a;
+  outline: none;
+  box-shadow: 0 0 8px rgba(13, 85, 74, 0.5);
+}
+
+.btn-primary {
+  background-color: #0d554a;
+  color: #fff;
+  border: none;
+  padding: 12px 42px;
+}
+
+@media (max-width: 991px) {
+  .profile-container {
+    padding: 2rem;
+  }
+
+  .profile-content {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .profile-photo-section,
+  .photo-update-section {
+    width: 100%;
+  }
+
+  .photo-update-section {
+    margin-top: 40px;
+  }
+}

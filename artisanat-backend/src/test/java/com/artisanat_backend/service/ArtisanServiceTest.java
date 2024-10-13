@@ -1,6 +1,9 @@
 package com.artisanat_backend.service;
 
+import com.artisanat_backend.dto.request.ArtisanRequestDto;
+import com.artisanat_backend.mapper.UserMapper;
 import com.artisanat_backend.model.Artisan;
+import com.artisanat_backend.model.Media;
 import com.artisanat_backend.enums.VerificationStatus;
 import com.artisanat_backend.repository.ArtisanRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -9,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +24,12 @@ class ArtisanServiceTest {
 
     @Mock
     private ArtisanRepository artisanRepository;
+
+    @Mock
+    private MediaService mediaService;
+
+    @Mock
+    private UserMapper userMapper;
 
     @InjectMocks
     private ArtisanService artisanService;
@@ -72,20 +82,24 @@ class ArtisanServiceTest {
 
     @Test
     void updateArtisan() {
-        
-        Artisan artisan = new Artisan();
-        when(artisanRepository.save(artisan)).thenReturn(artisan);
+        ArtisanRequestDto artisanDTO = new ArtisanRequestDto();
+        Artisan existingArtisan = new Artisan();
+        MultipartFile userPhoto = mock(MultipartFile.class);
 
-        Artisan result = artisanService.updateArtisan(artisan);
+        when(userMapper.partialUpdateArtisan(artisanDTO, existingArtisan)).thenReturn(existingArtisan);
+        when(mediaService.updateMediaForUser(userPhoto, existingArtisan)).thenReturn(new Media());
+        when(artisanRepository.save(existingArtisan)).thenReturn(existingArtisan);
+
+        Artisan result = artisanService.updateArtisan(artisanDTO, existingArtisan, userPhoto);
 
         assertNotNull(result);
-        assertEquals(artisan, result);
-        verify(artisanRepository, times(1)).save(artisan);
+        verify(userMapper, times(1)).partialUpdateArtisan(artisanDTO, existingArtisan);
+        verify(mediaService, times(1)).updateMediaForUser(userPhoto, existingArtisan);
+        verify(artisanRepository, times(1)).save(existingArtisan);
     }
 
     @Test
     void getPendingArtisans() {
-        
         List<Artisan> pendingArtisans = List.of(new Artisan(), new Artisan());
         when(artisanRepository.findByVerificationStatus(VerificationStatus.PENDING)).thenReturn(pendingArtisans);
 
@@ -98,7 +112,6 @@ class ArtisanServiceTest {
 
     @Test
     void verifyArtisan() {
-        
         Artisan artisan = new Artisan();
         when(artisanRepository.findById(1L)).thenReturn(Optional.of(artisan));
         when(artisanRepository.save(artisan)).thenReturn(artisan);
@@ -113,7 +126,6 @@ class ArtisanServiceTest {
 
     @Test
     void verifyArtisan_NotFound() {
-        
         when(artisanRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThrows(EntityNotFoundException.class, () -> {

@@ -1,0 +1,165 @@
+<div class="equipment-list-container">
+  <div class="header">
+    <h2>Your products ({{onNumber()}})</h2>
+  </div>
+
+  <p-table #dt [value]="products" dataKey="id" editMode="row" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+           [globalFilterFields]="['name', 'collection', 'category', 'price', 'stock']">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="m-0">Manage Products</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="      Search..." />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-ri="rowIndex">
+      <tr>
+        <th pSortableColumn="rowIndex"># <p-sortIcon field="rowIndex"></p-sortIcon></th>
+        <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
+        <th pSortableColumn="image">Image<p-sortIcon field="image"></p-sortIcon></th>
+        <th pSortableColumn="price">Price<p-sortIcon field="price"></p-sortIcon></th>
+        <th pSortableColumn="stock">Stock<p-sortIcon field="stock"></p-sortIcon></th>
+        <th pSortableColumn="createdAt">Created At<p-sortIcon field="createdAt"></p-sortIcon></th>
+        <th pSortableColumn="rating">Rating<p-sortIcon field="rating"></p-sortIcon></th>
+        <th pSortableColumn="collection">Collection<p-sortIcon field="collection"></p-sortIcon></th>
+        <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+      <tr [pEditableRow]="product">
+        <td>{{ri}}</td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="product.name" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{product.name}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <img
+            *ngIf="product.media && product.media.length > 0"
+            [src]="product.media?.[0].mediaUrl"
+            [alt]="product.name"
+            width="50"
+            class="shadow-4"
+            (error)="'not photo exist'"
+          />
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="number"
+                [(ngModel)]="product.price" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{product.price}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="number"
+                [(ngModel)]="product.stock" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{product.stock}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          {{product.createdAt | date}}
+        </td>
+        <td>
+          <p-rating [(ngModel)]="product.rating" [readonly]="true" [cancel]="false" />
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-dropdown
+                [options]="collections"
+                appendTo="body"
+                [(ngModel)]="product.collection"
+                [style]="{'width':'100%'}">
+              </p-dropdown>
+            </ng-template>
+            <ng-template pTemplate="output">
+              <p-tag
+                [value]="product.collection"
+                [severity]="getCollection(product.collection)">
+              </p-tag>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-dropdown
+                [options]="categiries"
+                appendTo="body"
+                [(ngModel)]="product.category"
+                [style]="{'width':'100%'}">
+              </p-dropdown>
+            </ng-template>
+            <ng-template pTemplate="output">
+              <p-tag
+                [value]="product.category"
+                [severity]="getCategory(product.category)">
+              </p-tag>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button
+              *ngIf="!editing"
+              pButton
+              pRipple
+              type="button"
+              pInitEditableRow
+              icon="pi pi-pencil"
+              (click)="onRowEditInit(product)"
+              class="p-button-rounded p-button-text">
+            </button>
+            <button
+              *ngIf="editing"
+              pButton
+              pRipple
+              type="button"
+              pSaveEditableRow
+              icon="pi pi-check"
+              (click)="onRowEditSave(product)"
+              class="p-button-rounded p-button-text p-button-success mr-2">
+            </button>
+            <button
+              *ngIf="editing"
+              pButton pRipple
+              type="button"
+              pCancelEditableRow
+              icon="pi pi-times"
+              (click)="onRowEditCancel(product, ri)"
+              class="p-button-rounded p-button-text p-button-danger">
+            </button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="confirmDelete(product)"></button>
+            <button pButton pRipple icon="pi pi-info" class="p-button-rounded p-button-text" (click)="productInfos(product)"></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-toast />

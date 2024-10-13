@@ -36,6 +36,13 @@
   align-self: flex-start;
 }
 
+.cta-button:hover {
+  background-color: #fff;
+  color: #093931 ;
+  font: 600 18px/2 Manrope, sans-serif;
+
+}
+
 .image-column {
   width: 50%;
 }
@@ -88,13 +95,13 @@
   .cta-button {
     padding: 12px 20px;
   }
-  
+
   .main-image {
     margin-top: 0;
   }
 
   .secondary-image {
-    margin-top: 650px;
+    margin-top: auto;
   }
 }
 

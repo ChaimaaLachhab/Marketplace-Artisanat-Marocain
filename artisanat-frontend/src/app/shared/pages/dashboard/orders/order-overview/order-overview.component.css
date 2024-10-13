@@ -1,0 +1,65 @@
+.main-content {
+  display: flex;
+  gap: 20px;
+}
+.order-status {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(23, 26, 31, 0.12);
+  padding: 25px 24px;
+  border: 1px solid #f3f4f6;
+}
+.statistics {
+  width: 31%;
+}
+@media (max-width: 991px) {
+  .action-buttons {
+    margin-top: 10px;
+  }
+  .main-content {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+  .statistics {
+    width: 100%;
+  }
+}
+
+.manage-orders-card {
+  background-color: #fff;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(23, 26, 31, 0.12);
+  padding: 25px 24px;
+  border: 1px solid #f3f4f6;
+}
+.card-title {
+  font: 700 20px/2 Manrope, sans-serif;
+  color: #171a1f;
+  margin: 0;
+}
+.card-date {
+  font: 14px/2 Manrope, sans-serif;
+  color: #90959f;
+  margin: 0;
+}
+.action-btn {
+  background-color: #0d554a;
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  padding: 7px 0;
+  width: 210px;
+  font: 14px/2 Manrope, sans-serif;
+  cursor: pointer;
+  margin: auto;
+}
+@media (max-width: 991px) {
+  .manage-orders-card {
+    padding: 20px;
+  }
+  .action-btn {
+    margin-top: 40px;
+    width: 100%;
+  }
+}

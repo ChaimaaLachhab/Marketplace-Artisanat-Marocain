@@ -1,16 +1,22 @@
 package com.artisanat_backend.service;
 
+import com.artisanat_backend.dto.request.ProductRequestDto;
+import com.artisanat_backend.dto.request.ReviewRequestDto;
 import com.artisanat_backend.enums.Collection;
 import com.artisanat_backend.enums.Type;
 import com.artisanat_backend.enums.VerificationStatus;
-import com.artisanat_backend.model.Artisan;
-import com.artisanat_backend.model.Media;
-import com.artisanat_backend.model.Product;
+import com.artisanat_backend.exception.ProductNotFoundException;
+import com.artisanat_backend.mapper.ProductMapper;
+import com.artisanat_backend.model.*;
 import com.artisanat_backend.enums.Category;
-import com.artisanat_backend.model.QProduct;
 import com.artisanat_backend.repository.ProductRepository;
 import com.querydsl.core.BooleanBuilder;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,11 +27,18 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+    private final ProductMapper productMapper;
+    private final MediaUploadService mediaUploadService;
+    private final ReviewService reviewService;
 
     @Autowired
-    private MediaService mediaService;
+    public ProductService(ProductRepository productRepository, ProductMapper productMapper, MediaUploadService mediaUploadService, @Lazy ReviewService reviewService) {
+        this.productRepository = productRepository;
+        this.productMapper = productMapper;
+        this.mediaUploadService = mediaUploadService;
+        this.reviewService = reviewService;
+    }
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
@@ -39,14 +52,19 @@ public class ProductService {
         return productRepository.findRecentlyAddedProducts();
     }
 
+    public List<Product> getProductsByArtisan(Long artisanId) {
+        return productRepository.findAllByArtisanId(artisanId);
+    }
+
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
 
-    @Transactional
-    public Product createProductWithMedia(Product product, List<MultipartFile> attachments, Artisan artisan) {
+    public Product createProductWithMedia(ProductRequestDto productDto, List<MultipartFile> attachments, Artisan artisan) {
 
-        if(artisan.getVerificationStatus().equals(VerificationStatus.PENDING)){
+        Product product = productMapper.toEntity(productDto);
+
+        if (artisan.getVerificationStatus().equals(VerificationStatus.PENDING)) {
             throw new IllegalArgumentException("Artisan not accepted");
         }
 
@@ -64,7 +82,7 @@ public class ProductService {
                     throw new IllegalArgumentException("Only one video is allowed.");
                 }
                 video = file;
-            } else if (fileType != null && (fileType.startsWith("image"))) {
+            } else if (fileType != null && fileType.startsWith("image")) {
                 photos.add(file);
             } else {
                 throw new IllegalArgumentException("Invalid file type.");
@@ -81,28 +99,31 @@ public class ProductService {
 
         List<Media> mediaList = new ArrayList<>();
         if (video != null) {
-            Media videoMedia = mediaService.handleMediaUpload(video, product);
+            Media videoMedia = mediaUploadService.handleMediaUpload(video, product);
             videoMedia.setType(Type.VIDEO);
             mediaList.add(videoMedia);
         }
 
         for (MultipartFile file : photos) {
-            Media media = mediaService.handleMediaUpload(file, product);
+            Media media = mediaUploadService.handleMediaUpload(file, product);
             media.setType(Type.PHOTO);
             mediaList.add(media);
         }
 
         product.setMedia(mediaList);
+        product.setArtisan(artisan);
+
         return productRepository.save(product);
     }
 
 
-    public List<Product> getFilteredProducts(String name, Category category, Collection collection, Float minPrice, Float maxPrice) {
-        BooleanBuilder predicate = buildPredicate(name, category, collection, minPrice, maxPrice);
-        return (List<Product>) productRepository.findAll(predicate);
+    public Page<Product> getFilteredProducts(String name, Category category, Collection collection, Float minPrice, Float maxPrice, Double rating, int page, int size) {
+        BooleanBuilder predicate = buildPredicate(name, category, collection, minPrice, maxPrice, rating);
+        Pageable pageable = PageRequest.of(page, size);
+        return productRepository.findAll(predicate, pageable);
     }
 
-    private BooleanBuilder buildPredicate(String name, Category category, Collection collection, Float minPrice, Float maxPrice) {
+    private BooleanBuilder buildPredicate(String name, Category category, Collection collection, Float minPrice, Float maxPrice, Double rating) {
         QProduct product = QProduct.product;
         BooleanBuilder builder = new BooleanBuilder();
 
@@ -113,6 +134,7 @@ public class ProductService {
         if (category != null) {
             builder.and(product.category.eq(category));
         }
+
         if (collection != null) {
             builder.and(product.collection.eq(collection));
         }
@@ -125,14 +147,50 @@ public class ProductService {
             builder.and(product.price.loe(maxPrice));
         }
 
+        if (rating != null) {
+            builder.and(product.rating.eq(rating));
+        }
+
         return builder;
     }
+
 
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
 
-    public Product updateProduct(Product product) {
+    public Product updateProduct(Long productId, ProductRequestDto productDto) {
+        Product existingProduct = productRepository.findById(productId)
+                .orElseThrow(() -> new ProductNotFoundException(productId));
+
+        productMapper.partialUpdate(productDto, existingProduct);
+
+        return productRepository.save(existingProduct);
+    }
+
+    public Product addReviewToProduct(Long productId, ReviewRequestDto reviewDto, Customer customer) {
+        Review review = reviewService.addReview(productId, reviewDto, customer);
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new ProductNotFoundException(productId));
+        product.getReviews().add(review);
         return productRepository.save(product);
     }
+
+    @Transactional
+    public Product updateProductStock(Long productId, int newStock) {
+        if (newStock < 0) {
+            throw new RuntimeException("Stock cannot be negative");
+        }
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new ProductNotFoundException(productId));
+        product.setStock(product.getStock() + newStock);
+        return productRepository.save(product);
+    }
+
+    public void updateProductRating(Long productId) {
+        Product product = productRepository.findById(productId).orElseThrow(() -> new EntityNotFoundException("Product not found"));
+        product.calculateAndPersistRating();
+        productRepository.save(product);
+    }
+
 }

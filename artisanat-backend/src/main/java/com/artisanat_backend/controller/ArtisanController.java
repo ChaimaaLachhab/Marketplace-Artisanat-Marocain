@@ -1,15 +1,22 @@
 package com.artisanat_backend.controller;
 
+import com.artisanat_backend.dto.request.ArtisanRequestDto;
+import com.artisanat_backend.dto.response.ArtisanResponseDto;
+import com.artisanat_backend.mapper.UserMapper;
 import com.artisanat_backend.model.Artisan;
 import com.artisanat_backend.service.ArtisanService;
 import com.artisanat_backend.enums.VerificationStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Controller for managing artisans.
@@ -18,55 +25,61 @@ import java.util.List;
 @RequestMapping("/api/artisans")
 public class ArtisanController {
 
+    private final ArtisanService artisanService;
+    private final UserMapper userMapper;
+
     @Autowired
-    private ArtisanService artisanService;
+    public ArtisanController(ArtisanService artisanService, UserMapper userMapper) {
+        this.artisanService = artisanService;
+        this.userMapper = userMapper;
+    }
 
     /**
      * Retrieve all artisans.
      *
      * @return List of all artisans.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
-    public ResponseEntity<List<Artisan>> getAllArtisans() {
+    public ResponseEntity<List<ArtisanResponseDto>> getAllArtisans() {
         List<Artisan> artisans = artisanService.getAllArtisans();
-        return new ResponseEntity<>(artisans, HttpStatus.OK);
+        List<ArtisanResponseDto> artisanResponseDtos = artisans.stream()
+                .map(userMapper::toArtisanResponseDto)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(artisanResponseDtos, HttpStatus.OK);
     }
 
     /**
      * Retrieve an artisan by ID.
      *
-     * @param id The ID of the artisan to retrieve.
      * @return The artisan with the specified ID.
      */
-    @GetMapping("/details/{id}")
-    public ResponseEntity<Artisan> getArtisanById(@PathVariable Long id) {
-        Artisan artisan = artisanService.getArtisanById(id);
-        return artisan != null ? new ResponseEntity<>(artisan, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @PreAuthorize("hasAnyRole('ADMIN', 'ARTISAN')")
+    @GetMapping("/details")
+    public ResponseEntity<ArtisanResponseDto> getArtisanById(@AuthenticationPrincipal Artisan currentArtisan) {
+        Artisan artisan = artisanService.getArtisanById(currentArtisan.getId());
+        return artisan != null
+                ? new ResponseEntity<>(userMapper.toArtisanResponseDto(artisan), HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
      * Update an existing artisan.
      *
-     * @param id The ID of the artisan to update.
-     * @param artisan The artisan with updated information.
+     * @param artisanDTO The artisan with updated information.
+     * @param userPhoto  The photo to be updated, if any.
+     * @param artisan    The authenticated artisan.
      * @return The updated artisan.
      */
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Artisan> updateArtisan(@PathVariable Long id, @RequestBody Artisan artisan) {
-        artisan.setId(id);
-        Artisan updatedArtisan = artisanService.updateArtisan(artisan);
-        return new ResponseEntity<>(updatedArtisan, HttpStatus.OK);
-    }
+    @PreAuthorize("hasAnyRole('ADMIN', 'ARTISAN')")
+    @PutMapping(value = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<ArtisanResponseDto> updateArtisan(
+            @RequestPart("artisan") ArtisanRequestDto artisanDTO,
+            @RequestPart(value = "userPhoto", required = false) MultipartFile userPhoto,
+            @AuthenticationPrincipal Artisan artisan) {
 
-    /**
-     * Delete an artisan by ID.
-     *
-     * @param id The ID of the artisan to delete.
-     */
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteArtisan(@PathVariable Long id) {
-        artisanService.deleteArtisan(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        Artisan updatedArtisan = artisanService.updateArtisan(artisanDTO, artisan, userPhoto);
+        return new ResponseEntity<>(userMapper.toArtisanResponseDto(updatedArtisan), HttpStatus.OK);
     }
 
     /**
@@ -76,22 +89,25 @@ public class ArtisanController {
      */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/pending")
-    public ResponseEntity<List<Artisan>> getPendingArtisans() {
+    public ResponseEntity<List<ArtisanResponseDto>> getPendingArtisans() {
         List<Artisan> pendingArtisans = artisanService.getPendingArtisans();
-        return ResponseEntity.ok(pendingArtisans);
+        List<ArtisanResponseDto> artisanResponseDtos = pendingArtisans.stream()
+                .map(userMapper::toArtisanResponseDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(artisanResponseDtos);
     }
 
     /**
      * Verify an artisan.
      *
-     * @param id The ID of the artisan to verify.
+     * @param id     The ID of the artisan to verify.
      * @param status The verification status.
      * @return The verified artisan.
      */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/verify/{id}")
-    public ResponseEntity<Artisan> verifyArtisan(@PathVariable Long id, @RequestParam VerificationStatus status) {
+    public ResponseEntity<ArtisanResponseDto> verifyArtisan(@PathVariable Long id, @RequestParam VerificationStatus status) {
         Artisan artisan = artisanService.verifyArtisan(id, status);
-        return ResponseEntity.ok(artisan);
+        return ResponseEntity.ok(userMapper.toArtisanResponseDto(artisan));
     }
 }

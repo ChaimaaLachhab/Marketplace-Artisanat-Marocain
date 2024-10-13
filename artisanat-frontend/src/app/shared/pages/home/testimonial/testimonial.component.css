@@ -1,0 +1,177 @@
+:host {
+  display: contents;
+}
+
+.testimonial-section {
+  width: 100%;
+  background-color: #093931;
+  padding: 0 49px 49px 0;
+}
+
+.testimonial-content {
+  display: flex;
+  gap: 20px;
+}
+
+.testimonial-intro {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+}
+
+.intro-image {
+  aspect-ratio: 0.9;
+  object-fit: contain;
+  width: 100%;
+}
+
+.intro-text {
+  margin: auto;
+}
+
+.testimonial-heading {
+  color: #fff;
+  font: 600 48px/1 Cormorant, sans-serif;
+  margin: 144px auto;
+  width: 100%;
+}
+
+.testimonial-subheading {
+  color: #fff;
+  font: 400 16px/26px Manrope, -apple-system, Roboto, Helvetica, sans-serif;
+  width: 312px;
+}
+
+.testimonial-card-wrapper {
+  width: 55%;
+  padding-top: 37px;
+}
+
+.testimonial-card {
+  background-color: #0d302b;
+  border-radius: 8px;
+  padding-right: 36px;
+}
+
+.card-content {
+  display: flex;
+}
+
+.customer-image-wrapper {
+  width: 50%;
+}
+
+.customer-image {
+  aspect-ratio: 0.8;
+  object-fit: contain;
+  width: 100%;
+}
+
+.customer-feedback {
+  width: 50%;
+  margin-left: 20px;
+  color: #fff;
+  font: 400 16px Manrope, sans-serif;
+}
+
+.feedback-text {
+  line-height: 26px;
+}
+
+.customer-name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 18px;
+}
+
+.customer-location {
+  line-height: 2;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.rating-images {
+  display: flex;
+  gap: 5px;
+  margin: -70px 0 0 500px;
+}
+
+.rating-star {
+  aspect-ratio: 1;
+  object-fit: contain;
+  width: 52px;
+  border-radius: 26px;
+}
+
+
+@media (max-width: 991px) {
+  .testimonial-content {
+    flex-direction: column;
+  }
+
+  .intro-text {
+    margin-right: auto;
+    margin-left: 5%;
+  }
+
+  .intro-image {
+    width: 40%;
+  }
+
+  .testimonial-intro,
+  .testimonial-card-wrapper {
+    min-width: 100%;
+  }
+
+  .customer-feedback {
+    margin-top: 10px;
+  }
+
+  .rating-images {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .testimonial-section {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .intro-image {
+    width: 30%;
+  }
+  .testimonial-intro {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+  }
+
+  .testimonial-heading {
+    font: 600 40px/1 Cormorant, sans-serif;
+    min-width: 100%;
+    margin-top: 25px;
+  }
+
+  .card-content {
+    flex-direction: column;
+  }
+
+  .customer-image-wrapper {
+    width: 100%;
+    margin-left: 20px;
+  }
+
+  .customer-feedback {
+    width: 100%;
+    margin-left: 20px;
+  }
+
+  .rating-images {
+    margin: -70px 0 0 150px;
+  }
+}

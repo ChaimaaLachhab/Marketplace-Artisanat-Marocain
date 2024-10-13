@@ -1,18 +1,23 @@
 package com.artisanat_backend.controller;
 
+import com.artisanat_backend.dto.request.OrderRequestDto;
+import com.artisanat_backend.dto.response.OrderResponseDto;
 import com.artisanat_backend.enums.Status;
+import com.artisanat_backend.mapper.OrderMapper;
+import com.artisanat_backend.model.Admin;
 import com.artisanat_backend.model.Customer;
 import com.artisanat_backend.model.Order;
 import com.artisanat_backend.service.OrderService;
-import com.artisanat_backend.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -21,14 +26,21 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private OrderMapper orderMapper; // Inject OrderMapper
+
     /**
      * Récupère toutes les commandes.
      * @return Liste des commandes.
      */
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
     @GetMapping
-    public ResponseEntity<List<Order>> getAllOrders() {
+    public ResponseEntity<List<OrderResponseDto>> getAllOrders() {
         List<Order> orders = orderService.getAllOrders();
-        return new ResponseEntity<>(orders, HttpStatus.OK);
+        List<OrderResponseDto> orderResponseDtos = orders.stream()
+                .map(orderMapper::toDto) // Map to DTO
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(orderResponseDtos, HttpStatus.OK);
     }
 
     /**
@@ -36,10 +48,12 @@ public class OrderController {
      * @param id ID de la commande.
      * @return Commande demandée.
      */
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
+    public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable Long id) {
         Optional<Order> order = orderService.getOrderById(id);
-        return order.map(ResponseEntity::ok)
+        return order.map(orderMapper::toDto)
+                .map(ResponseEntity::ok)
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -48,10 +62,14 @@ public class OrderController {
      * @param customer L'utilisateur authentifié.
      * @return Liste des commandes du client.
      */
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
     @GetMapping("/customer")
-    public ResponseEntity<List<Order>> getOrdersByCustomer(@AuthenticationPrincipal Customer customer) {
+    public ResponseEntity<List<OrderResponseDto>> getOrdersByCustomer(@AuthenticationPrincipal Customer customer) {
         List<Order> orders = orderService.getOrdersByCustomer(customer);
-        return new ResponseEntity<>(orders, HttpStatus.OK);
+        List<OrderResponseDto> orderResponseDtos = orders.stream()
+                .map(orderMapper::toDto)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(orderResponseDtos, HttpStatus.OK);
     }
 
     /**
@@ -59,71 +77,31 @@ public class OrderController {
      * @param status Statut des commandes.
      * @return Liste des commandes avec le statut spécifié.
      */
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<Order>> getOrdersByStatus(@PathVariable Status status) {
+    public ResponseEntity<List<OrderResponseDto>> getOrdersByStatus(@PathVariable Status status) {
         try {
             List<Order> orders = orderService.getOrdersByStatus(status);
-            return new ResponseEntity<>(orders, HttpStatus.OK);
+            List<OrderResponseDto> orderResponseDtos = orders.stream()
+                    .map(orderMapper::toDto)
+                    .collect(Collectors.toList());
+            return new ResponseEntity<>(orderResponseDtos, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    /**
-     * Crée une commande pour un produit unique pour l'utilisateur authentifié.
-     * @param order Commande à créer.
-     * @param customer L'utilisateur authentifié.
-     * @return Commande créée.
-     */
-    @PostMapping("/single")
-    public ResponseEntity<Order> createOrderForSingleProduct(@RequestBody Order order,
-                                                             @AuthenticationPrincipal Customer customer) {
-        Order createdOrder = orderService.createOrderForSingleProduct(customer, order);
-        return new ResponseEntity<>(createdOrder, HttpStatus.CREATED);
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
+    @PostMapping("/create")
+    public ResponseEntity<OrderResponseDto> createOrder(@AuthenticationPrincipal Customer customer, @RequestParam String location, @RequestParam(defaultValue = "0") int point) {
+        Order order = orderService.processOrder(customer, location, point );
+        return new ResponseEntity<>(orderMapper.toDto(order), HttpStatus.CREATED);
     }
 
-    /**
-     * Crée une commande avec plusieurs produits pour l'utilisateur authentifié.
-     * @param order Commande à créer.
-     * @param customer L'utilisateur authentifié.
-     * @return Commande créée.
-     */
-    @PostMapping("/bulk")
-    public ResponseEntity<Order> createOrder(@RequestBody Order order,
-                                             @AuthenticationPrincipal Customer customer) {
-        Order createdOrder = orderService.createOrder(customer, order);
-        return new ResponseEntity<>(createdOrder, HttpStatus.CREATED);
-    }
-
-    /**
-     * Applique une réduction basée sur les points de fidélité et finalise la commande.
-     * @param orderId ID de la commande.
-     * @param loyaltyPoints Points de fidélité utilisés.
-     * @return Réponse HTTP.
-     */
-    @PostMapping("/apply-discount/{orderId}")
-    public ResponseEntity<Void> applyDiscountAndFinalizeOrder(@PathVariable Long orderId,
-                                                              @RequestParam int loyaltyPoints) {
-        try {
-            orderService.applyDiscountAndFinalizeOrder(orderId, loyaltyPoints);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    /**
-     * Supprime une commande par son ID.
-     * @param id ID de la commande.
-     * @return Réponse HTTP.
-     */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
-        try {
-            orderService.deleteOrder(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
+    @PutMapping("/update")
+    public ResponseEntity<OrderResponseDto> updateOrderStatus(@RequestParam Long orderId, @RequestParam Status status) {
+        Order order = orderService.updateOrderStatus(orderId, status);
+        return new ResponseEntity<>(orderMapper.toDto(order), HttpStatus.CREATED);
     }
 }

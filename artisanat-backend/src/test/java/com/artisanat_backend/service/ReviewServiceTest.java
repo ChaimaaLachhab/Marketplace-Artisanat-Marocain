@@ -1,6 +1,11 @@
 package com.artisanat_backend.service;
 
+import com.artisanat_backend.dto.request.ReviewRequestDto;
+import com.artisanat_backend.mapper.ReviewMapper;
+import com.artisanat_backend.model.Customer;
+import com.artisanat_backend.model.Product;
 import com.artisanat_backend.model.Review;
+import com.artisanat_backend.repository.ProductRepository;
 import com.artisanat_backend.repository.ReviewRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,18 +25,42 @@ class ReviewServiceTest {
     @Mock
     private ReviewRepository reviewRepository;
 
+    @Mock
+    private ProductRepository productRepository;
+
+    @Mock
+    private ReviewMapper reviewMapper;
+
+    @Mock
+    private ProductService productService;
+
     @InjectMocks
     private ReviewService reviewService;
 
     private Review review;
+    private ReviewRequestDto reviewRequestDto;
+    private Customer customer;
+    private Product product;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+
         review = new Review();
         review.setId(1L);
         review.setRating(4);
         review.setComment("Good product!");
+        review.setProduct(product);
+
+        reviewRequestDto = new ReviewRequestDto();
+        reviewRequestDto.setRating(4);
+        reviewRequestDto.setComment("Good product!");
+
+        customer = new Customer();
+        customer.setId(1L);
+
+        product = new Product();
+        product.setId(1L);
     }
 
     @Test
@@ -59,70 +88,34 @@ class ReviewServiceTest {
     }
 
     @Test
-    void getReviewById_ReturnsEmpty_WhenReviewNotFound() {
-        Long reviewId = 1L;
-        when(reviewRepository.findById(reviewId)).thenReturn(Optional.empty());
-
-        Optional<Review> result = reviewService.getReviewById(reviewId);
-
-        assertFalse(result.isPresent());
-        verify(reviewRepository, times(1)).findById(reviewId);
-    }
-
-    @Test
     void addReview_SavesAndReturnsReview() {
+        Long productId = 1L;
+        when(productRepository.findById(productId)).thenReturn(Optional.of(product));
+        when(reviewMapper.toEntity(reviewRequestDto)).thenReturn(review);
         when(reviewRepository.save(review)).thenReturn(review);
 
-        Review result = reviewService.addReview(review);
+        Review result = reviewService.addReview(productId, reviewRequestDto, customer);
 
         assertNotNull(result);
         assertEquals(review, result);
+        verify(productRepository, times(1)).findById(productId);
+        verify(reviewMapper, times(1)).toEntity(reviewRequestDto);
         verify(reviewRepository, times(1)).save(review);
+        verify(productService, times(1)).updateProductRating(productId);
     }
 
     @Test
-    void updateReview_UpdatesAndReturnsReview_WhenReviewExists() {
+    void deleteReview_ThrowsException_WhenCustomerMismatch() {
         Long reviewId = 1L;
-        Review updatedReview = new Review();
-        updatedReview.setRating(5);
-        updatedReview.setComment("Excellent product!");
-
+        Customer otherCustomer = new Customer();
+        otherCustomer.setId(2L);
+        review.setCustomer(otherCustomer);
         when(reviewRepository.findById(reviewId)).thenReturn(Optional.of(review));
-        when(reviewRepository.save(review)).thenReturn(review);
-
-        Review result = reviewService.updateReview(reviewId, updatedReview);
-
-        assertNotNull(result);
-        assertEquals(5, result.getRating());
-        assertEquals("Excellent product!", result.getComment());
-        verify(reviewRepository, times(1)).findById(reviewId);
-        verify(reviewRepository, times(1)).save(review);
-    }
-
-    @Test
-    void updateReview_ThrowsException_WhenReviewNotFound() {
-        Long reviewId = 1L;
-        Review updatedReview = new Review();
-        updatedReview.setRating(5);
-        updatedReview.setComment("Excellent product!");
-
-        when(reviewRepository.findById(reviewId)).thenReturn(Optional.empty());
 
         Exception exception = assertThrows(RuntimeException.class, () ->
-                reviewService.updateReview(reviewId, updatedReview)
-        );
+                reviewService.deleteReview(reviewId, customer));
 
-        assertEquals("Review not found", exception.getMessage());
-        verify(reviewRepository, times(1)).findById(reviewId);
-        verify(reviewRepository, never()).save(any());
-    }
-
-    @Test
-    void deleteReview_DeletesReview() {
-        Long reviewId = 1L;
-
-        reviewService.deleteReview(reviewId);
-
-        verify(reviewRepository, times(1)).deleteById(reviewId);
+        assertEquals("Customer id mismatch", exception.getMessage());
+        verify(reviewRepository, never()).deleteById(any());
     }
 }

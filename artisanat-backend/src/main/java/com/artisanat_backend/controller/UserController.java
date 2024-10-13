@@ -1,13 +1,19 @@
 package com.artisanat_backend.controller;
 
+import com.artisanat_backend.mapper.UserMapper;
+import com.artisanat_backend.model.Admin;
+import com.artisanat_backend.model.Artisan;
+import com.artisanat_backend.model.Customer;
 import com.artisanat_backend.model.User;
 import com.artisanat_backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Controller for managing users.
@@ -19,15 +25,32 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserMapper userMapper;
+
     /**
      * Retrieve all users.
      *
      * @return List of all users.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
-    public ResponseEntity<List<User>> getAllUsers() {
+    public ResponseEntity<List<?>> getAllUsers() {
         List<User> users = userService.getAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        List<?> userDtos = users.stream()
+                .map(user -> {
+                    if (user instanceof Admin) {
+                        return userMapper.toAdminResponseDto((Admin) user);
+                    } else if (user instanceof Artisan) {
+                        return userMapper.toArtisanResponseDto((Artisan) user);
+                    } else if (user instanceof Customer) {
+                        return userMapper.toCustomerResponseDto((Customer) user);
+                    } else {
+                        return null;
+                    }
+                })
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(userDtos, HttpStatus.OK);
     }
 
     /**
@@ -36,22 +59,23 @@ public class UserController {
      * @param id The ID of the user to retrieve.
      * @return The user with the specified ID.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/details/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+    public ResponseEntity<?> getUserById(@PathVariable Long id) {
         User user = userService.getUserById(id);
-        return user != null ? new ResponseEntity<>(user, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 
-    /**
-     * Create a new user.
-     *
-     * @param user The user to create.
-     * @return The created user.
-     */
-    @PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User createdUser = userService.createUser(user);
-        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+        if (user instanceof Admin) {
+            return new ResponseEntity<>(userMapper.toAdminResponseDto((Admin) user), HttpStatus.OK);
+        } else if (user instanceof Artisan) {
+            return new ResponseEntity<>(userMapper.toArtisanResponseDto((Artisan) user), HttpStatus.OK);
+        } else if (user instanceof Customer) {
+            return new ResponseEntity<>(userMapper.toCustomerResponseDto((Customer) user), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -61,6 +85,7 @@ public class UserController {
      * @param user The user with updated information.
      * @return The updated user.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
         user.setId(id);
@@ -73,6 +98,7 @@ public class UserController {
      *
      * @param id The ID of the user to delete.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);

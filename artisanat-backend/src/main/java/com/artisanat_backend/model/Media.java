@@ -1,6 +1,7 @@
 package com.artisanat_backend.model;
 
 import com.artisanat_backend.enums.Type;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,9 +21,11 @@ public class Media {
     private String mediaId;
     private Type type;
 
+    @JsonIgnore
     @ManyToOne
     private Product product;
 
+    @JsonIgnore
     @OneToOne
     private User user;
 }

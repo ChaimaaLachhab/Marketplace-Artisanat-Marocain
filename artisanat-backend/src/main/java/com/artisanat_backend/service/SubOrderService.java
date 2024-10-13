@@ -5,90 +5,53 @@ import com.artisanat_backend.repository.SubOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @Service
 public class SubOrderService {
 
-    @Autowired
-    private SubOrderRepository subOrderRepository;
+    private final SubOrderRepository subOrderRepository;
+    private final SubOrderItemService subOrderItemService;
 
     @Autowired
-    private ArtisanService artisanService;
-
-    @Autowired
-    private NotificationService notificationService;
-
-    public void createSubOrderForSingleProduct(Order mainOrder) {
-        SubOrder subOrder = new SubOrder();
-        subOrder.setArtisan(mainOrder.getProducts().get(0).getArtisan());
-        subOrder.setProducts(mainOrder.getProducts());
-        subOrder.setSubTotal(mainOrder.getProducts().get(0).getPrice());
-        subOrder.setOrder(mainOrder);
-
-        subOrderRepository.save(subOrder);
-
-        notificationService.notifyArtisan(mainOrder.getProducts().get(0).getArtisan().getId(), subOrder);
+    public SubOrderService(SubOrderRepository subOrderRepository, SubOrderItemService subOrderItemService) {
+        this.subOrderRepository = subOrderRepository;
+        this.subOrderItemService = subOrderItemService;
     }
 
-    public void createSubOrders(Order mainOrder) {
-        Map<Artisan, List<Product>> productsByArtisan = mainOrder.getProducts().stream()
-                .collect(Collectors.groupingBy(Product::getArtisan));
+    public List<SubOrder> createSubOrders(Order order, List<CartItem> cartItems) {
+        Map<Artisan, List<CartItem>> artisanCartItemsMap = new HashMap<>();
 
-        for (Map.Entry<Artisan, List<Product>> entry : productsByArtisan.entrySet()) {
+        for (CartItem cartItem : cartItems) {
+            Product product = cartItem.getProduct();
+            Artisan artisan = product.getArtisan();
+            artisanCartItemsMap.computeIfAbsent(artisan, k -> new ArrayList<>()).add(cartItem);
+        }
+
+        List<SubOrder> subOrders = new ArrayList<>();
+
+        for (Map.Entry<Artisan, List<CartItem>> entry : artisanCartItemsMap.entrySet()) {
             SubOrder subOrder = new SubOrder();
+            subOrder.setOrder(order);
             subOrder.setArtisan(entry.getKey());
-            subOrder.setProducts(entry.getValue());
-            subOrder.setSubTotal(entry.getValue().stream().mapToDouble(Product::getPrice).sum());
-            subOrder.setOrder(mainOrder);
+
+            double subTotal = entry.getValue().stream()
+                    .mapToDouble(cartItem -> cartItem.getQuantity() * cartItem.getProduct().getPrice())
+                    .sum();
+            subOrder.setSubTotal(subTotal);
 
             subOrderRepository.save(subOrder);
 
-            notificationService.notifyArtisan(entry.getKey().getId(), subOrder);
+            List<SubOrderItem> subOrderItems = subOrderItemService.createSubOrderItems(subOrder, entry.getValue());
+            subOrder.setSubOrderItems(subOrderItems);
+
+            subOrderRepository.save(subOrder);
+            subOrders.add(subOrder);
         }
+
+        return subOrders;
     }
 
-//    public void createSubOrders(Order mainOrder) {
-//        // Récupérer la liste des produits depuis la commande principale
-//        List<Product> products = mainOrder.getProducts();
-//
-//        // Créer une liste pour stocker les sous-commandes
-//        List<SubOrder> subOrders = new ArrayList<>();
-//
-//        // Parcourir les produits pour les regrouper par artisan
-//        for (Product product : products) {
-//            Artisan artisan = product.getArtisan();
-//            SubOrder existingSubOrder = findSubOrderByArtisan(subOrders, artisan);
-//
-//            if (existingSubOrder == null) {
-//                // Créer une nouvelle sous-commande pour cet artisan
-//                SubOrder newSubOrder = new SubOrder();
-//                newSubOrder.setArtisan(artisan);
-//                newSubOrder.setProducts(new ArrayList<>());
-//                newSubOrder.setOrder(mainOrder);
-//                subOrders.add(newSubOrder);
-//                existingSubOrder = newSubOrder;
-//            }
-//
-//            // Ajouter le produit à la sous-commande existante ou nouvelle
-//            existingSubOrder.getProducts().add(product);
-//            existingSubOrder.setSubTotal(existingSubOrder.getProducts().stream()
-//                    .mapToDouble(Product::getPrice)
-//                    .sum());
-//        }
-//
-//        // Sauvegarder toutes les sous-commandes dans la base de données
-//        for (SubOrder subOrder : subOrders) {
-//            subOrderRepository.save(subOrder);
-//            notificationService.notifyArtisan(subOrder.getArtisan().getId(), subOrder);
-//        }
-//    }
-
-    // Méthode utilitaire pour trouver une sous-commande existante par artisan
     private SubOrder findSubOrderByArtisan(List<SubOrder> subOrders, Artisan artisan) {
         for (SubOrder subOrder : subOrders) {
             if (subOrder.getArtisan().equals(artisan)) {

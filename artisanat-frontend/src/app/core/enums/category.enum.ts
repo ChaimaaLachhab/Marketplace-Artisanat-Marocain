@@ -1,5 +1,3 @@
-import { Collection } from './collection.enum';
-
 export enum Category {
   WALL_ART = 'WALL_ART',
   RUGS = 'RUGS',

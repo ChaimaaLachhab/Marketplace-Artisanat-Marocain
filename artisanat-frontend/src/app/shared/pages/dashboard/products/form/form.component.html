@@ -1,0 +1,60 @@
+<main class="product-container">
+  <h1 class="product-title">Add Product</h1>
+  <form [formGroup]="productForm" class="w-100">
+    <div class="product-form-layout">
+      <section class="product-details">
+
+        <div class="form-group">
+          <p-floatLabel>
+            <input pInputText formControlName="name" id="name" variant="filled" class="form-input" type="text" required/>
+            <label for="name">Name</label>
+          </p-floatLabel>
+        </div>
+
+        <div class="form-group">
+          <p-floatLabel>
+            <input pInputText formControlName="price" id="price" variant="filled" class="form-input" type="text" required/>
+            <label for="price">Price</label>
+          </p-floatLabel>
+        </div>
+
+        <div class="form-group">
+          <p-floatLabel>
+            <input pInputText formControlName="stock" id="stock" variant="filled" class="form-input" type="number" required/>
+            <label for="stock">Stock</label>
+          </p-floatLabel>
+        </div>
+
+        <div class="form-group">
+          <p-floatLabel>
+            <select id="collection" class="select-field" formControlName="collection" required>
+              <option value="" disabled selected>Select Collection</option>
+              <option *ngFor="let collection of collections" [value]="collection">{{collection}}</option>
+            </select>
+          </p-floatLabel>
+        </div>
+
+        <div class="form-group">
+          <p-floatLabel>
+            <select id="category" class="select-field" formControlName="category" required>
+              <option value="" disabled selected>Select Category</option>
+              <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+            </select>
+          </p-floatLabel>
+        </div>
+
+        <div class="form-group">
+          <p-floatLabel>
+            <textarea pInputText formControlName="description" id="description" variant="filled" class="form-input" rows="4" required></textarea>
+            <label for="description">Description</label>
+          </p-floatLabel>
+        </div>
+      </section>
+      <section class="product-images">
+         <app-gallery/>
+      </section>
+    </div>
+  </form>
+  <button class="save-button" (click)="onSave()">Save</button>
+</main>
+<p-toast />

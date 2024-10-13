@@ -1,6 +1,5 @@
 package com.artisanat_backend.model;
 
-
 import com.artisanat_backend.enums.Role;
 import jakarta.persistence.Entity;
 import lombok.*;

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* Main Colors */
+        :root {
+            --primary: #0D554A;
+            --secondary: #F2C66D;
+            --color1: #E8502E;
+            --color2: #73D2DE;
+            --color3: #24837D;
+            --color4: #FFFFFF;
+            /* Semantic Colors */
+            --error: #DE3B40;
+            --warning: #EFB034;
+            --success: #1DD75B;
+            --info: #379AE6;
+
+            /* Box Shadow and Corner Radius */
+            --box-shadow: 5px;
+            --corner-radius: 40px;
+        }
+
+        /* Global Styles */
+        body {
+            width: 100%;
+            height: 100vh;
+            font-family: 'Manrope', sans-serif; /* Change to your desired font */
+            background-color: var(--color4);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: var(--color4);
+            border-radius: var(--corner-radius);
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 var(--box-shadow) 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            background-color: var(--primary);
+            padding: 10px;
+            border-radius: var(--corner-radius) var(--corner-radius) 0 0;
+        }
+
+        .header img {
+            max-width: 100px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            margin: 0;
+        }
+
+        h1 {
+            color: #F2C66D;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+    </style>
+    <title>Notification de sous-commande</title>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1 >Darling.</h1>
+        <h2>Nouvelle sous-commande reçue</h2>
+    </div>
+    <p>Cher <span th:text="${artisanName}">Artisan</span>,</p>
+    <p>Vous avez reçu une nouvelle sous-commande avec un total de <span th:text="${subTotal}">0</span>€.</p>
+    <p>Merci de traiter cette commande dès que possible.</p>
+    <h3>Détails de la sous-commande :</h3>
+    <p>ID de la sous-commande : <span th:text="${subOrderId}">0</span></p>
+    <p>Nombre de produits : <span th:text="${numberOfItems}">0</span></p>
+    <p>Merci.</p>
+</div>
+</body>
+</html>

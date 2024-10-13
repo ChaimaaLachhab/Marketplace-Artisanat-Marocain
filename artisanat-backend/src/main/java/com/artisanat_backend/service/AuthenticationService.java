@@ -1,9 +1,9 @@
 package com.artisanat_backend.service;
 
-import com.artisanat_backend.dto.AdminDTO;
-import com.artisanat_backend.dto.ArtisanDTO;
-import com.artisanat_backend.dto.CustomerDTO;
 import com.artisanat_backend.dto.LoginUserDto;
+import com.artisanat_backend.dto.request.AdminRequestDto;
+import com.artisanat_backend.dto.request.ArtisanRequestDto;
+import com.artisanat_backend.dto.request.CustomerRequestDto;
 import com.artisanat_backend.model.Admin;
 import com.artisanat_backend.model.Artisan;
 import com.artisanat_backend.model.User;
@@ -18,19 +18,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthenticationService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserMapper userMapper;
+    public AuthenticationService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+    }
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    public User signup(CustomerDTO input) {
+    public User signup(CustomerRequestDto input) {
         if (userRepository.findByUsername(input.getUsername()).isPresent()) {
             throw new RuntimeException("Username already exists");
         }
@@ -43,7 +44,7 @@ public class AuthenticationService {
         return userRepository.save(user);
     }
 
-    public Artisan addArtisan(ArtisanDTO input) {
+    public Artisan addArtisan(ArtisanRequestDto input) {
         if (userRepository.findByUsername(input.getUsername()).isPresent()) {
             throw new RuntimeException("Username already exists");
         }
@@ -56,7 +57,7 @@ public class AuthenticationService {
         return userRepository.save(artisan);
     }
 
-    public Admin addAdmin(AdminDTO input) {
+    public Admin addAdmin(AdminRequestDto input) {
         if (userRepository.findByUsername(input.getUsername()).isPresent()) {
             throw new RuntimeException("Username already exists");
         }

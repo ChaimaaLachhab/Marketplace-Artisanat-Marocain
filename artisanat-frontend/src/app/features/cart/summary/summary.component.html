@@ -1,1 +1,30 @@
-<p>summary works!</p>
+<p-sidebar [(visible)]="sidebarVisible" position="right" [style]="{'width':'400px'}">
+  <ng-template pTemplate="header"  class="me-lg-0">
+  <h2 class="cart-title">Your cart</h2>
+  </ng-template>
+    <article *ngFor="let item of cart?.cartItems" class="cart-item">
+      <div class="item-details">
+        <img [src]="item.product.media[0].mediaUrl" [alt]="item.product.name" class="item-image" />
+        <div class="item-info">
+          <h2 class="item-name">{{ item.product.name }}</h2>
+          <p class="item-code">Code: {{ item.product.id }}</p>
+          <p class="item-price">${{ item.product.price.toFixed(2) }}</p>
+        </div>
+      </div>
+      <div class="item-quantity">
+        <span class="quantity-value">x {{item.quantity}}</span>
+      </div>
+    </article>
+  <ng-template pTemplate="footer"  class="me-lg-0 w-75">
+    <footer class="cart-footer justify-content-end">
+      <div class="total-section">
+        <span class="total-label">Total:</span>
+        <span class="total-amount">{{ totalCart | currency }}</span>
+      </div>
+      <button class="checkout-button" (click)="checkout()">Continue to check out</button>
+    </footer>
+  </ng-template>
+</p-sidebar>
+<button (click)="sidebarVisible = true" class="btn-sidebar">
+  <mat-icon class="material-icons-outlined">local_grocery_store</mat-icon>
+</button>

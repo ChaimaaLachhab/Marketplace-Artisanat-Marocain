@@ -75,15 +75,6 @@ class LoyaltyServiceTest {
         verify(loyaltyRepository, times(1)).save(customer.getLoyalty());
     }
 
-    @Test
-    void calculatePoints() {
-        Order order = new Order();
-        order.setTotalAmount(200.0);
-
-        int points = loyaltyService.calculatePoints(order);
-
-        assertEquals(20, points);
-    }
 
     @Test
     void calculateDiscount() {

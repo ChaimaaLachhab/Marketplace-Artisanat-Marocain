@@ -1,0 +1,46 @@
+<div class="customer-list-container">
+  <div class="header">
+    <h2>ALL Customers ({{ onNumber() }})</h2>
+  </div>
+
+  <p-table #dt [value]="customers" dataKey="id" editMode="cell" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+           [globalFilterFields]="['fullName', 'email', 'phone', 'loyalty', 'username']">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="m-0">Manage Customers</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Search..." />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>#</th>
+        <th pSortableColumn="fullName">Full Name<p-sortIcon field="fullName"></p-sortIcon></th>
+        <th pSortableColumn="userPhoto">Photo<p-sortIcon field="userPhoto"></p-sortIcon></th>
+        <th pSortableColumn="email">Email<p-sortIcon field="email"></p-sortIcon></th>
+        <th pSortableColumn="phone">Phone<p-sortIcon field="phone"></p-sortIcon></th>
+        <th pSortableColumn="loyalty">Loyalty Points<p-sortIcon field="loyalty"></p-sortIcon></th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-customer let-editing="editing">
+      <tr>
+        <td>{{ customer.id  || 'not found' }}</td>
+        <td>{{ customer.fullName  || 'not found' }}</td>
+        <td>
+          <img *ngIf="customer.userPhoto" [src]="customer.userPhoto.mediaUrl" [alt]="customer.fullName" width="50" class="shadow-4" (error)="'not photo exist'" />
+        </td>
+        <td>{{ customer.email  || 'not found' }}</td>
+        <td>{{ customer.phone  || 'not found'  }}</td>
+        <td>{{ customer.loyalty.points  || 'not found' }}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="confirmDelete(customer)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-toast></p-toast>

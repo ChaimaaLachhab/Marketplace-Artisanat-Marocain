@@ -1,0 +1,125 @@
+.product-grid {
+  flex-grow: 1;
+  padding-left: 20px;
+}
+.grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.product-result {
+  color: #0d554a;
+  font: 700 24px 'Cormorant Garamond', serif;
+}
+.sort-dropdown select {
+  padding: 5px 10px;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #fff;
+}
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+.product-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(23, 26, 31, 0.12);
+  overflow: hidden;
+}
+.product-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.product-info {
+  padding: 12px;
+}
+.product-name {
+  font: 700 18px 'Cormorant Garamond', serif;
+  margin: 0 0 4px;
+}
+.product-price {
+  font: 500 14px/2 Manrope, sans-serif;
+  margin: 0 0 4px;
+}
+.product-rating {
+  display: flex;
+  gap: 3%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-to-cart {
+  background: #0d554a;
+  color: #ffffff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-to-cart:hover {
+  background: #ffffff;
+  color: #0d554a;
+  border: 1px solid #0d554a;
+}
+
+.material-icons-outlined {
+  font-size: medium;
+  margin: 8px auto 0;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.page-button {
+  background: none;
+  border: 1px solid #0d554a;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+.page-button.active {
+  background-color: #0d554a;
+  color: #fff;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+@media (max-width: 991px) {
+  .product-grid {
+    padding-left: 0;
+  }
+  .grid-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .sort-dropdown {
+    margin-top: 10px;
+  }
+}

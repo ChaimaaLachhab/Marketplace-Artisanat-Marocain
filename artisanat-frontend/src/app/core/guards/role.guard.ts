@@ -9,7 +9,7 @@ export const roleGuard = (allowedRoles: Role[]): CanActivateFn => {
     const router = inject(Router);
 
     if (!authService.isLoggedIn()) {
-      router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+      router.navigate(['/login']);
       return false;
     }
 

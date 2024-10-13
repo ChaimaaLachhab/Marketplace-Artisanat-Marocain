@@ -1,37 +1,35 @@
 package com.artisanat_backend.mapper;
 
-import com.artisanat_backend.dto.AdminDTO;
-import com.artisanat_backend.dto.ArtisanDTO;
-import com.artisanat_backend.dto.CustomerDTO;
-import com.artisanat_backend.dto.LoginResponse;
-import com.artisanat_backend.model.Admin;
-import com.artisanat_backend.model.Artisan;
-import com.artisanat_backend.model.Customer;
-import com.artisanat_backend.model.User;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
-import org.mapstruct.ReportingPolicy;
-import org.mapstruct.factory.Mappers;
+import com.artisanat_backend.dto.request.AdminRequestDto;
+import com.artisanat_backend.dto.response.AdminResponseDto;
+import com.artisanat_backend.dto.request.ArtisanRequestDto;
+import com.artisanat_backend.dto.request.CustomerRequestDto;
+import com.artisanat_backend.dto.response.ArtisanResponseDto;
+import com.artisanat_backend.dto.response.CustomerResponseDto;
+import com.artisanat_backend.model.*;
+import org.mapstruct.*;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {ProductMapper.class})
 public interface UserMapper {
 
     // Admin Mappings
+    AdminResponseDto toAdminResponseDto(Admin admin);
+    Admin toAdminEntity(AdminRequestDto dto);
 
-    AdminDTO toAdminDTO(Admin admin);
-
-    Admin toAdminEntity(AdminDTO dto);
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Admin partialUpdateAdmin(AdminRequestDto adminRequestDto, @MappingTarget Admin admin);
 
     // Artisan Mappings
-    ArtisanDTO toArtisanDTO(Artisan artisan);
+    ArtisanResponseDto toArtisanResponseDto(Artisan artisan);
+    Artisan toArtisanEntity(ArtisanRequestDto dto);
 
-    Artisan toArtisanEntity(ArtisanDTO dto);
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Artisan partialUpdateArtisan(ArtisanRequestDto artisanRequestDto, @MappingTarget Artisan artisan);
 
     // Customer Mappings
-    CustomerDTO toCustomerDTO(Customer customer);
+    CustomerResponseDto toCustomerResponseDto(Customer customer);
+    Customer toCustomerEntity(CustomerRequestDto dto);
 
-    Customer toCustomerEntity(CustomerDTO dto);
-
-    LoginResponse toUserLoginResponse(User user);
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Customer partialUpdateCustomer(CustomerRequestDto customerRequestDto, @MappingTarget Customer customer);
 }
